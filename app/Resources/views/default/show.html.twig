@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div id="container">
+    <ul class="bxslider">
+    {% for p in publications %}
+            <li>
+                {% for m in p.idMusa %}
+                <h2>{{ m.name }}</h2>
+                {% endfor %}
+                <h1>{{ p.idWritting.title }}</h1>
+                <div class="writtingWrapper">
+                <p>{{ p.idWritting.body | raw }}</p>
+                </div>
+                <p class="back-link"><a href="{{ path('homepage') }}">Volver</a></p>
+            </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <!-- jQuery library (served from Google) -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!-- bxSlider Javascript file -->
+    <script src="/bundles/bxslider/jquery.bxslider.min.js"></script>
+    <script type="application/javascript">
+        $(document).ready(function(){
+            $('.bxslider').bxSlider();
+
+            var $bxsliderContainer = $('.bx-wrapper .bx-viewport');
+            $bxsliderContainer.css('background-color', '#F4F4F4');
+
+            //var $container = $('#container');
+            var $writting = $('.bxslider .writtingWrapper');
+
+            var background = new Image();
+            background.onload = function(){
+                $writting.css('background-image', 'url("/img/grunge_paper_background.jpg")');
+                $writting.css('background-repeat', 'no-repeat');
+                $writting.css('background-position', 'center');
+            };
+
+            background.src = "/img/grunge_paper_background.jpg";
+            $bxsliderContainer.css('text-align', 'center');
+
+            $(window).trigger('resize');
+
+        });
+
+    </script>
+{% endblock %}
+{% block stylesheets %}
+        <!-- bxSlider CSS file -->
+    <link href="/bundles/bxslider/jquery.bxslider.css" rel="stylesheet" />
+    <style type="text/css">
+        #container {
+            margin: auto;
+            width: 1366px;
+            height: 620px;
+            position: absolute;
+            display: block;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0;
+        }
+        .bxslider h1 {
+            font-family: 'Walter Turncoat', cursive;
+            color: #5454FF;
+        }
+        .bxslider h2 {
+            font-family: 'Poiret One', cursive;
+            display: inline-block;
+        }
+        .bxslider .writtingWrapper {
+            font-family: 'Architects Daughter', cursive;
+            font-size: 22px;
+            /*padding: 25px 50px 25px 50px;*/
+            color: #2d2d2d;
+            background-size: cover;
+            height: 380px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .bx-wrapper .bx-controls-direction a {
+            top: 80px;
+        }
+        p.back-link {
+            font-size: 24px;
+            display: block;
+            max-width: 100%;
+            background-image: none !important;
+        }
+        .back-link a {
+            font-size: 24px;
+            text-decoration: none;
+            display: inline-block;
+            font-family: "Arial Black", Gadget, sans-serif;
+            color: #2d2d2d;
+        }
+    </style>
+{% endblock %}

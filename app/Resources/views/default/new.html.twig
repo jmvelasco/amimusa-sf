@@ -1,0 +1,243 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    <span>Amimusa, <small>el espacio donde compartir tus musas</small></span>
+{% endblock %}
+
+{% block body %}
+    <div id="container">
+        <div id="formWrapper">
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="form-group">
+                    {{ form_label(form.title) }}
+                    {{ form_errors(form.title) }}
+                    {{ form_widget(form.title, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.musas) }}
+                    {{ form_widget(form.musas, { 'attr': {'class': 'form-control musas', 'rows': 1, 'style' : 'resize: none'} }) }}
+                    <small class="form-message">Pulsa ENTER después de definir tu inspiración o selecciona alguna de las existentes:</small>
+                </div>
+                <div id="musas"></div>
+
+            </div>
+
+            <div class="col-xs-8">
+                <div class="form-group">
+                    {{ form_label(form.body) }}
+                    {{ form_errors(form.body) }}
+                    {{ form_widget(form.body, { 'attr': {'class': 'form-control body-writting', 'rows': 16} }) }}
+                </div>
+                <div id="musas-list"><div id="error-message">{{ form_errors(form.musas) }}</div></div>
+                {{ form_widget(form.musasid_list, { 'attr': {'id': 'musasid_list', 'required': 'required'} }) }}
+            </div>
+
+            <div class="pull-right" style="margin-top: 40px;">
+            {{ form_widget(form.save, { 'attr': {'class': 'btn btn-primary'} }) }}
+            <a class="btn btn-default" href="{{ path('homepage') }}">Volver</a>
+            </div>
+
+        </div>
+
+        {{ form_end(form) }}
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <!-- jQuery library (served from Google) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/bundles/bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="application/javascript">
+
+        $(document).ready(function(){
+            var musas = [];
+            {% for m in musas %}
+                var obj = {
+                    'name' : '{{ m.name|replace({"\n":""}) }}',
+                    'id': {{ m.id }}
+                }
+                var h4 = document.createElement("h4");
+                var label = document.createElement("span");
+                label.className = "label label-primary";
+                var add = document.createElement("span");
+                add.className = "glyphicon glyphicon-plus-sign add-musa";
+                add.id = obj.id;
+                label.innerHTML = obj.name + add.outerHTML;
+                h4.style.marginLeft = "2px";
+                h4.className = "pull-left";
+                h4.appendChild(label);
+                $("#musas").html($("#musas").html() + h4.outerHTML);
+                musas.push(obj);
+            {% endfor %}
+
+            (function ( $ ) {
+                $.fn.addMusa = function( params ) {
+                    var musa = $.extend({
+                        id: 0,
+                        name: ""
+                    }, params );
+
+                    var h4 = document.createElement("h4");
+                    var label = document.createElement("span");
+                    label.className = "label";
+                    label.style.backgroundColor = "#1a82f7";
+                    var remove = document.createElement("span");
+                    remove.className = "glyphicon glyphicon-remove remove-musa";
+                    remove.id = musa.id;
+                    label.innerHTML = musa.name + remove.outerHTML;
+                    h4.style.marginLeft = "2px";
+                    h4.className = "pull-left";
+                    h4.appendChild(label);
+                    var currentMusa = $("#musas-list").html() + h4.outerHTML;
+
+                    $(this).html(currentMusa);
+                    $("#musas-like").html('');
+                    $("#musa").val('');
+                    var musasListObj = $("#form_musasid_list");
+                    var musasListId = musasListObj.val();
+                    if (musasListId != '') {
+                        musasListObj.val(musasListId + ',' + musa.id);
+                    } else {
+                        musasListObj.val(musa.id);
+                    }
+                };
+            }( jQuery ));
+
+            $('.musas').keypress(function(e){
+                var musa = $(this).val();
+                var result = 100 * Math.random();
+                
+                if (13 == e.which) {
+                    $("#musas-list").addMusa({id:result, name: musa});
+                }
+            });
+
+            $('.musas').keyup(function(e){
+                var musa = $(this).val();
+                var musas = $("#musas").children();
+
+                jQuery.grep(musas, function( n, i ) {
+                    $(n).show();
+                    if (0 != $(n).text().indexOf(musa)) {
+                        $(n).hide();
+                    }
+                });
+
+                if (13 == e.which) {
+                    $(this).val("");
+                }
+            });
+
+            $("#formWrapper").on('click', '.add-musa', function(e){
+                if ($("#error-message")) $("#error-message").remove();
+                var musaId = $(this).attr('id');
+                var musa = $(this).parent().text();
+                $("#musas-list").addMusa({id:musaId, name: musa});
+            });
+
+            $("#formWrapper").on('click', '.remove-musa', function(e){
+                var musaId = $(this).attr('id');
+                var musasListObj = $("#form_musasid_list");
+                var musasIdsArr = musasListObj.val().split(",");
+
+                // Actualizar el campo donde se registrar los ids de las musas
+                var pos = $.inArray(musaId, musasIdsArr);
+                if (-1 != pos) {
+                    musasIdsArr = jQuery.grep(musasIdsArr, function(value) {
+                        return value != musaId;
+                    });
+                }
+                musasListObj.val(musasIdsArr.join(","));
+                // Eliminar elemento del DOM
+                $(this).parents('h4').remove();
+            });
+
+
+        });
+    </script>
+{% endblock %}
+{% block stylesheets %}
+    <!-- Bootstrap -->
+    <link href="/bundles/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        #container {
+            margin: auto;
+            width: 1366px;
+            height: 620px;
+            position: absolute;
+            display: block;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0;
+            z-index: 1;
+        }
+        #container:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: .2;
+            z-index: -1;
+            background: url("/img/background.jpg");
+        }
+        #formWrapper {
+            width: 90%;
+            margin: 50px auto;
+        }
+        #formWrapper ul {
+            list-style: none;
+            list-style-position: outside;
+            padding-left: 2px;
+            padding-right: 2px;
+            background-color: #f2dede;
+        }
+        #formWrapper li {
+            color: red;
+            font-size: 1.2em;
+            font-family: 'Poiret One', cursive;
+            font-weight: bold;
+        }
+        #formWrapper li::before {
+            font-family: "Glyphicons Halflings";
+            content:"\e086";
+            margin-right: 5px;
+        }
+        #formWrapper small.form-message {
+            font-family: 'Poiret One', cursive;
+            font-size: 14px;
+            font-weight: bold;
+            padding-top: 5px;
+            display: inline-block;
+        }
+        .add-musa,
+        .remove-musa {
+            cursor: pointer;
+            padding-left: 5px;
+        }
+        .body-writting {
+            resize: none;
+            width: 100%;
+        }
+        #musas {
+            height: 325px;
+            overflow-x: hidden;
+            overflow-y: auto;
+
+        }
+        #musas-list {
+            height: 80px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+    </style>
+{% endblock %}

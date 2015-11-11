@@ -1,0 +1,64 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Writtings
+ *
+ * @ORM\Table(name="writtings", indexes={@ORM\Index(name="fk_publication_type_idx", columns={"publication_type"})})
+ * @ORM\Entity
+ */
+class Writtings
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=80, nullable=false)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="body", type="text", nullable=true)
+     */
+    private $body;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="creation_date", type="datetime", nullable=false)
+     */
+    private $creationDate = 'CURRENT_TIMESTAMP';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="modification_date", type="datetime", nullable=true)
+     */
+    private $modificationDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \AppBundle\Entity\PublicationsType
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PublicationsType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="publication_type", referencedColumnName="id")
+     * })
+     */
+    private $publicationType;
+
+
+}
+

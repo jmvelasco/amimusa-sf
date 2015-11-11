@@ -1,0 +1,47 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Musas
+ *
+ * @ORM\Table(name="musas", uniqueConstraints={@ORM\UniqueConstraint(name="name_UNIQUE", columns={"name"})}, indexes={@ORM\Index(name="name_IDX", columns={"name"})})
+ * @ORM\Entity
+ */
+class Musas
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=45, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Publications", mappedBy="idMusa")
+     */
+    private $idPublication;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idPublication = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
+
