@@ -1,25 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <canvas id="canvas"></canvas>
+    <div id="canvas-conteiner">
+        <canvas id="canvas"></canvas>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
+    <!-- jQuery library (served from Google) -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
     <script type="application/javascript">
-    window.onload = function(){
+    $(document).ready(function(){
         //canvas init
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
 
-        var background = new Image();
-        background.src = "/img/background.jpg";
-
-        background.onload = function(){
-            ctx.drawImage(background,0,0);
-        };
-
-        var W = background.width;
-        var H = background.height;
+        var W = $(document).width();
+        var H = $(document).height() * 0.6;
         canvas.width = W;
         canvas.height = H;
 
@@ -91,21 +89,16 @@
         function draw()
         {
             ctx.clearRect(0, 0, W, H);
-            ctx.drawImage(background,0,0);
-
-            //ctx.fillStyle = "rgba(64, 64, 255, 1)";
             ctx.fillStyle = "#5d5d5d";
             ctx.textBaseline = 'top';
             ctx.beginPath();
             for(var i = 0; i < elements.length; i++) {
-                //ctx.fillText(elements[i].c, elements[i].x, elements[i].y);
                 // Makes left top point a start point for rendering text
                 ctx.textBaseline = "top";
                 ctx.strokeText(elements[i].c, elements[i].x, elements[i].y);
                 ctx.strokeStyle = "rgba(255, 255, 255, 0.8)"; //255, 128, 64
 
             }
-            //ctx.fill();
             if (running) {
                 update();
             }
@@ -167,7 +160,7 @@
 
         //animation loop
         setInterval(draw, 30);
-    }
+    });
     </script>
 {% endblock %}
 {% block stylesheets %}
@@ -182,6 +175,5 @@
             left: 0;
             right: 0;
         }
-
     </style>
 {% endblock %}

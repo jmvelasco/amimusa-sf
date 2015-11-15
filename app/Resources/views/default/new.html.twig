@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block header %}
-    <span>Amimusa, <small>el espacio donde compartir tus musas</small></span>
+    
 {% endblock %}
 
 {% block body %}
@@ -18,7 +18,7 @@
                 <div class="form-group">
                     {{ form_label(form.musas) }}
                     {{ form_widget(form.musas, { 'attr': {'class': 'form-control musas', 'rows': 1, 'style' : 'resize: none'} }) }}
-                    <small class="form-message">Pulsa ENTER después de definir tu inspiración o selecciona alguna de las existentes:</small>
+                    <p class="form-message">Pulsa ENTER después de indicar tu musa o selecciona alguna de las existentes:</p>
                 </div>
                 <div id="musas"></div>
 
@@ -167,7 +167,8 @@
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         #container {
-            margin: auto;
+            margin-left: auto;
+            margin-right: auto;
             width: 1366px;
             height: 620px;
             position: absolute;
@@ -188,7 +189,6 @@
             height: 100%;
             opacity: .2;
             z-index: -1;
-            background: url("/img/background.jpg");
         }
         #formWrapper {
             width: 90%;
@@ -212,12 +212,17 @@
             content:"\e086";
             margin-right: 5px;
         }
-        #formWrapper small.form-message {
+        #formWrapper p.form-message {
             font-family: 'Poiret One', cursive;
-            font-size: 14px;
+            font-size: 18px;
             font-weight: bold;
             padding-top: 5px;
             display: inline-block;
+        }
+        #formWrapper label {
+            font-size: 2em;
+            text-shadow: 0px 1px 1px #d2d2d2;
+            color: #222;
         }
         .add-musa,
         .remove-musa {
