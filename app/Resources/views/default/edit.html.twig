@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block header %}
-   <p>Amimusa:&nbsp;<small>Comparte tu inspiración</small></p>
+    <p>Amimusa:&nbsp;<small>Comparte tu inspiración</small></p>
 {% endblock %}
 
 {% block body %}
@@ -33,10 +33,11 @@
                 <div id="musas-list"><div id="error-message">{{ form_errors(form.musas) }}</div></div>
                 {{ form_widget(form.musasid_list, { 'attr': {'id': 'musasid_list', 'required': 'required'} }) }}
             </div>
+            {{ form_widget(form.musasid_list, { 'attr': {'id': 'publicationid'} }) }}
 
             <div class="pull-right" style="margin-top: 40px;">
             {{ form_widget(form.save, { 'attr': {'class': 'btn btn-primary'} }) }}
-            <a class="btn btn-default" href="{{ path('homepage') }}">Volver</a>
+            <a class="btn btn-default" href="{{ path('show-musas', {'idMusa': app.request.get('idMusa')}) }}">Volver</a>
             </div>
 
         </div>
@@ -55,7 +56,7 @@
     <script src="/assets/publication-handler.js"></script>
 
     <script type="application/javascript">
-        $(document).ready(function(){
+        $(document).ready(function() {
             var musas = [];
             {% for m in musas %}
             var obj = {
@@ -65,10 +66,16 @@
             musas.push(obj);
             {% endfor %}
 
+            var musasId = $("#form_musasid_list").val().split(",");
             for (var i = 0; i < musas.length; i++) {
                 $("#musas").createMusa({id: musas[i].id, name: musas[i].name});
+                if (-1 != $.inArray(musas[i].id.toString(), musasId)) {
+
+                    $("#musas-list").renderMusa({id:musas[i].id, name: musas[i].name});
+                }
             }
         });
+
     </script>
 {% endblock %}
 {% block stylesheets %}

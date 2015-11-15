@@ -4,13 +4,15 @@
 <div id="container">
     <div class="back-link">
         <a href="{{ path('homepage') }}">Cerrar</a>
-        <img src="/img/delete30.png" alt="cerrar">
     </div>
     <ul class="bxslider">
     {% for p in publications %}
             <li>
                 <p class="edit-link">
-                    <a href="{{ path('edit-writting', {'idWritting': p.idWritting.title}) }}">Editar</a>
+                    <a href="{{ path('edit-publication', {'idPublication': p.id, 'idMusa': app.request.get('idMusa')}) }}">Editar</a>
+                </p>
+                <p class="delete-link">
+                    <a href="{{ path('delete-publication', {'idPublication': p.id, 'idMusa': app.request.get('idMusa')}) }}">Borrar</a>
                 </p>
                 {% for m in p.idMusa %}
                 <h2>{{ m.name }}</h2>
@@ -59,11 +61,13 @@
             width: 1366px;
         }
         .bxslider h2 {
-            font-family: 'Walter Turncoat', cursive;
-            color: #5454FF;
-            text-shadow: 0px 2px 2px #4d4d4d;
-            clear: both;
-            font-size: 2em;
+            color: #5454ff;
+            display: inline-block;
+            float: right;
+            font-family: "Walter Turncoat",cursive;
+            font-size: 1.6em;
+            padding: 5px;
+            text-shadow: 0 2px 2px #4d4d4d;
         }
         .bxslider h1 {
             font-family: 'Poiret One', cursive;
@@ -75,25 +79,29 @@
             font-family: 'Architects Daughter', cursive;
             font-size: 22px;
             color: #2d2d2d;
+            width: 90%;
+            margin: auto auto;
         }
         .bx-wrapper .bx-viewport {
-            background: rgba(255,255,255,0.2) !important;
+            background: rgba(255,255,255,0.6) !important;
             border: 2px solid rgba(255,255,255,0.2) !important;
 
         }
         div.back-link {
             font-size: 1em;
-            margin-right: 1em;
-            margin-bottom: 0.8em;
-            text-align: right;
+            background-color: rgba(255,255,255,0.6) !important;
+            border: 2px solid rgba(255,255,255,0.2) !important;
+            padding: 1px 10px;
+            display: inline-block;
+            margin-left: 1285px;
 
         }
         .back-link a {
             text-decoration: none;
             display: inline-block;
             font-family: "Arial Black", Gadget, sans-serif;
-            color: #d2d2d2;
-            text-shadow: 0px 2px 2px #4d4d4d;
+            color: #BA000E;
+            text-shadow: 0px 2px 2px #d2d2d2;
         }
         .back-link img {
             vertical-align: middle;
@@ -111,6 +119,25 @@
 
         }
         .edit-link a {
+            text-decoration: none;
+            display: inline-block;
+            font-family: "Arial Black", Gadget, sans-serif;
+            color: #d2d2d2;
+            text-shadow: 0px 2px 2px #4d4d4d;
+        }
+        p.delete-link {
+            font-size: 18px;
+            display: block;
+            text-align: right;
+            margin-left: 1em;
+            background-image: none !important;
+            float: left;
+            background-color: #BA000E;
+            padding: 1px 10px;
+            border-radius: 25px;
+
+        }
+        .delete-link a {
             text-decoration: none;
             display: inline-block;
             font-family: "Arial Black", Gadget, sans-serif;
