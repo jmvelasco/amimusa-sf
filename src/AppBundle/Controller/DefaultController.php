@@ -57,7 +57,7 @@ class DefaultController extends Controller
             ->setAction($this->generateUrl('nuevo'))
             ->add('title', 'text', array('label' => 'Título'))
             ->add('body', 'textarea', array('label' => 'Escrito'))
-            ->add('musas', 'textarea', array('label' => 'Musas','required' => false))
+            ->add('musas', 'textarea', array('label' => '¿Quién es tu musa?','required' => false))
             ->add('musasid_list', 'hidden')
             ->add('save', 'submit', array('label' => 'Guardar'))
             ->getForm();
@@ -123,6 +123,18 @@ class DefaultController extends Controller
                     'musas' => $musas,
                 ));
         }
+
+    }
+
+    /**
+     * @Route("/edit/{idWritting}", name="edit-writting")
+     */
+    public function editAction($idWritting)
+    {
+        $publications = array();
+        return $this->render('default/show.html.twig', array(
+            'publications' => $publications
+        ));
 
     }
 }

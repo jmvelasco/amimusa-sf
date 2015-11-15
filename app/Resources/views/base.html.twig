@@ -10,36 +10,29 @@
         <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
         <style type="text/css">
             body {
-                background: #d2d2d2;
-                /* Safari 4-5, Chrome 1-9 */ /* Can't specify a percentage size? Laaaaaame. */
-                background: -webkit-gradient(radial, center center, 0, center center, 460, from(#d2d2d2), to(#2F2727));
-                /* Safari 5.1+, Chrome 10+ */
-                background: -webkit-radial-gradient(circle, #d2d2d2, #2F2727);
-                /* Firefox 3.6+ */
-                background: -moz-radial-gradient(circle, #d2d2d2, #2F2727);
-                /* IE 10 */
-                background: -ms-radial-gradient(circle, #d2d2d2, #2F2727);
+                background-image: url('/img/background.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
             }
             header {
                 margin: auto;
                 width: 1366px;
+                z-index: 1000;
             }
-            header span {
-                /*font-family: 'Caveat Brush', cursive;*/
+            header p {
                 font-family: 'Walter Turncoat', cursive;
-                font-size: 72px;
-                /*color: rgba(0, 115, 0, 0.8);*/
-                /*color: rgba(17, 102, 17, 1);*/
+                font-size: 60px;
                 color: #1a82f7;
                 text-shadow: 0px 1px 1px #4d4d4d;
+                clear: both;
 
 
             }
-            header span small {
-                color: #666;
+            header small {
+                color: #929292;
                 font-family: 'Poiret One', cursive;
-                /*text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;*/
-                text-shadow: 0px 0px 10px rgba(255,255,255,0.6), 0px 0px 30px rgba(255,255,255,0.4), 0px 0px 50px rgba(255,255,255,0.3), 0px 0px 180px rgba(255,255,255,0.3);
+                font-size: 48px;
+                display: inline-block;
 
             }
             header a {
@@ -47,11 +40,10 @@
                 font-family: 'Walter Turncoat', cursive;
                 text-decoration: none;
                 color: #d2d2d2;
-                font-size: 18px;
+                font-size: 24px;
                 padding: 12px;
                 background-color: rgba(3, 85, 176, 0.8);
                 border-radius: 25px;
-                margin-top: 80px;
             }
         </style>
 
@@ -60,8 +52,8 @@
     <body>
         <header>
             {% block header %}
-            <span>Amimusa<small>el espacio donde compartir tus musas</small></span>
             <a href="{{ path('nuevo') }}">Me siento inspirado</a>
+            <p>Amimusa:&nbsp;<small>Comparte tu inspiración</small></p>
             {% endblock %}
         </header>
         {% block body %}{% endblock %}
