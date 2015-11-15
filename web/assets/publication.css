@@ -1,0 +1,61 @@
+#container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1366px;
+    background-color: rgba(255,255,255,0.6);
+}
+#formWrapper {
+    width: 90%;
+    margin: auto auto;
+    padding-top: 2em;
+}
+#formWrapper ul {
+    list-style: none;
+    list-style-position: outside;
+    padding-left: 2px;
+    padding-right: 2px;
+    background-color: #f2dede;
+}
+#formWrapper li {
+    color: red;
+    font-size: 1.2em;
+    font-family: 'Poiret One', cursive;
+    font-weight: bold;
+}
+#formWrapper li::before {
+    font-family: "Glyphicons Halflings";
+    content:"\e086";
+    margin-right: 5px;
+}
+#formWrapper p.form-message {
+    font-family: 'Poiret One', cursive;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 5px;
+    display: inline-block;
+}
+#formWrapper label {
+    font-size: 2em;
+    text-shadow: 0px 1px 1px #d2d2d2;
+    color: #222;
+}
+.add-musa,
+.remove-musa {
+    cursor: pointer;
+    padding-left: 5px;
+}
+.body-writting {
+    resize: none;
+    width: 100%;
+}
+#musas {
+    height: 325px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+}
+#musas-list {
+    height: 80px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
