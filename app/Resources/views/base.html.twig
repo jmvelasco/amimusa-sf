@@ -17,23 +17,19 @@
             header {
                 margin: auto;
                 width: 1366px;
-                z-index: 1000;
             }
             header p {
                 font-family: 'Walter Turncoat', cursive;
                 font-size: 60px;
                 color: #1a82f7;
                 text-shadow: 0px 1px 1px #4d4d4d;
-                clear: both;
-
-
+                margin: 0 0 10px;
             }
             header small {
                 color: #929292;
                 font-family: 'Poiret One', cursive;
                 font-size: 48px;
                 display: inline-block;
-
             }
             header a {
                 float: right;
@@ -52,8 +48,11 @@
     <body>
         <header>
             {% block header %}
-            <a href="{{ path('nuevo') }}">Me siento inspirado</a>
-            <p>Amimusa:&nbsp;<small>Comparte tu inspiración</small></p>
+                <div style="float: right">
+                    <a href="{{ path('new-publication') }}">Me siento inspirado</a>
+                </div>
+
+                <p>Amimusa:&nbsp;<small>Comparte tu inspiración</small></p>
             {% endblock %}
         </header>
         {% block body %}{% endblock %}

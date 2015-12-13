@@ -2,10 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Musas;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\Response;
 
 use AppBundle\Entity\Publications;
 use AppBundle\Entity\Writtings;
@@ -29,7 +31,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/musas/{idMusa}")
+     * @Route("/musas/{idMusa}", name="show-musas")
      */
     public function showAction($idMusa)
     {
@@ -44,7 +46,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/new", name="nuevo")
+     * @Route("/new", name="new-publication")
      */
     public function newAction(Request $request)
     {
@@ -54,7 +56,7 @@ class DefaultController extends Controller
         $musas = $musasRepository->findAll();
 
         $form = $this->createFormBuilder()
-            ->setAction($this->generateUrl('nuevo'))
+            ->setAction($this->generateUrl('new-publication'))
             ->add('title', 'text', array('label' => 'Título'))
             ->add('body', 'textarea', array('label' => 'Escrito'))
             ->add('musas', 'textarea', array('label' => '¿Quién es tu musa?','required' => false))
@@ -98,8 +100,11 @@ class DefaultController extends Controller
 
                     $musasId = explode(",", $writtingData['musasid_list']);
                     foreach($musasId as $musaId) {
-                        $musa = $musasRepository->find($musaId);
-                        $publication->addIdMusa($musa);
+                        if (!empty($musaId)) {
+                            $musa = $musasRepository->find($musaId);
+                            $publication->addIdMusa($musa);
+                        }
+
                     }
                     $em->persist($publication);
                     $em->flush();
@@ -127,14 +132,109 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/edit/{idWritting}", name="edit-writting")
+     * @Route("/edit/{idPublication}/{idMusa}", name="edit-publication")
      */
-    public function editAction($idWritting)
+    public function editAction($idPublication, $idMusa, Request $request)
     {
-        $publications = array();
-        return $this->render('default/show.html.twig', array(
-            'publications' => $publications
+        $em = $this->getDoctrine()->getManager();
+        $musasRepository = $em->getRepository('AppBundle:Musas');
+        $musas = $musasRepository->findAll();
+
+        $publicationRepository = $em->getRepository('AppBundle:Publications');
+        $publication = $publicationRepository->find($idPublication);
+
+        $form = $this->createFormBuilder()
+            ->setAction($this->generateUrl('edit-publication', array( 'idPublication' => $idPublication, 'idMusa' => $idMusa)))
+            ->add('title', 'text', array('label' => 'Título'))
+            ->add('body', 'textarea', array('label' => 'Escrito'))
+            ->add('musas', 'textarea', array('label' => '¿Quién es tu musa?','required' => false))
+            ->add('musasid_list', 'hidden')
+            ->add('publicationid', 'hidden')
+            ->add('save', 'submit', array('label' => 'Guardar'))
+            ->getForm();
+
+        $writting = $publication->getIdWritting();
+
+        $form->get('title')->setData($writting->getTitle());
+        $form->get('body')->setData(preg_replace("/<br>/", "\n", $writting->getBody()));
+       // $form->get('body')->setData($writting->getBody());
+
+        $musasListArr = array();
+        foreach($publication->getIdMusa() as $m) {
+            array_push($musasListArr, $m->getId());
+        };
+        $musasList = implode(",", $musasListArr);
+        $form->get('musasid_list')->setData($musasList);
+        $form->get('publicationid')->setData($idPublication);
+
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+            $writtingData = $form->getData();
+
+            $writting->setTitle($writtingData['title']);
+            $writting->setBody(str_replace("\n", "<br>", $writtingData['body']));
+
+            foreach($publication->getIdMusa() as $musas) {
+                $publication->removeIdMusa($musas);
+            }
+            $musasId = explode(",", $writtingData['musasid_list']);
+            foreach($musasId as $musaId) {
+                $musa = $musasRepository->find($musaId);
+                $publication->addIdMusa($musa);
+            }
+            $date = new \DateTime();
+            $writting->setModificationDate($date);
+
+            $em->persist($publication);
+            $em->flush();
+
+            return $this->redirectToRoute('show-musas', array('idMusa' => $idMusa));
+        }
+
+        return $this->render('default/edit.html.twig', array(
+            'form' => $form->createView(),
+            'musas' => $musas,
         ));
 
+    }
+
+    /**
+     * @Route("/delete/{idPublication}/{idMusa}", name="delete-publication")
+     */
+    public function deleteAction($idPublication, $idMusa, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $publicationRepository = $em->getRepository('AppBundle:Publications');
+        $publication = $publicationRepository->find($idPublication);
+        $em->remove($publication);
+        $em->flush();
+
+        return $this->redirectToRoute('show-musas', array('idMusa' => $idMusa));
+    }
+
+    /**
+     * @Route("/search-musa/", name="search-musa")
+     */
+    public function searchMusaAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $musasRepository = $em->getRepository('AppBundle:Musas');
+        $musas = $musasRepository->findAll();
+
+        $musaToSearch = $request->request->get('name', 'n/a');
+
+        foreach($musas as $musaObj) {
+            if (str_replace("\n","",$musaObj->getName()) == $musaToSearch) {
+                return new Response($musaObj->getId());
+            }
+        }
+
+        $musa = new Musas();
+        $musa->setName($musaToSearch);
+        $em->persist($musa);
+        $em->flush();
+
+        return new Response($musa->getId());
     }
 }
