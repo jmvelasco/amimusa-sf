@@ -2,18 +2,22 @@
 
 {% block body %}
 <div id="container">
-    <div class="back-link">
-        <a href="{{ path('homepage') }}">Cerrar</a>
-    </div>
     <ul class="bxslider">
     {% for p in publications %}
             <li>
+                <span class="back-link">
+                    <a href="{{ path('homepage') }}">
+                        <img src="/img/cancel3.png" alt="X">
+                    </a>
+                </span>
+            
                 <p class="edit-link">
                     <a href="{{ path('edit-publication', {'idPublication': p.id, 'idMusa': app.request.get('idMusa')}) }}">Editar</a>
                 </p>
                 <p class="delete-link">
                     <a href="{{ path('delete-publication', {'idPublication': p.id, 'idMusa': app.request.get('idMusa')}) }}">Borrar</a>
                 </p>
+            
                 {% for m in p.idMusa %}
                 <h2>{{ m.name }}</h2>
                 {% endfor %}
@@ -21,6 +25,7 @@
                 <h1>{{ p.idWritting.title }}</h1>
                 <div class="writtingWrapper">
                 <p>{{ p.idWritting.body | raw }}</p>
+                <p>&nbsp;</p>
                 </div>
 
             </li>
@@ -36,12 +41,16 @@
     <script src="/assets/bxslider/jquery.bxslider.min.js"></script>
     <script type="application/javascript">
         $(document).ready(function(){
-            $('.bxslider').bxSlider({pager:false});
+            $('.bxslider').bxSlider({
+                pager:false,
+                adaptiveHeight: true,
+                slideWidth: 940,
+            });
 
             var $bxsliderContainer = $('.bx-wrapper .bx-viewport');
             $bxsliderContainer.css('background-color', '#F4F4F4');
             $bxsliderContainer.css('text-align', 'center');
-
+            
             var $writting = $('.bxslider .writtingWrapper');
             $writting.css('background-repeat', 'no-repeat');
             $writting.css('background-position', 'center');
@@ -58,65 +67,54 @@
     <style type="text/css">
         #container {
             margin: auto;
-            width: 1366px;
+            width: 100%;
         }
         .bxslider h2 {
             color: #5454ff;
             display: inline-block;
             float: right;
-            font-family: "Walter Turncoat",cursive;
-            font-size: 1.6em;
-            padding: 5px;
-            text-shadow: 0 2px 2px #4d4d4d;
+            /*font-family: "Walter Turncoat",cursive;*/
+            font-family: 'Poiret One', cursive;
+            text-transform: uppercase;
+            font-size: 1.4em;
+            padding: 0 1em 0 0;
+            text-shadow: 0 0.4em 0.4em #4d4d4d;
         }
         .bxslider h1 {
             font-family: 'Poiret One', cursive;
-            color: #d2d2d2;
-            text-shadow: 0px 2px 2px #4d4d4d;
+            color: #fff;
+            text-shadow: -1px -1px 1.4px #000;
             clear: both;
+            text-align: center;
         }
         .bxslider .writtingWrapper {
-            font-family: 'Architects Daughter', cursive;
-            font-size: 22px;
+            font-family: 'Special Elite', cursive;
+            font-size: 1.2em;
             color: #2d2d2d;
-            width: 90%;
-            margin: auto auto;
+            width: 80%;
+            margin-left: 10%;
         }
         .bx-wrapper .bx-viewport {
             background: rgba(255,255,255,0.6) !important;
-            border: 2px solid rgba(255,255,255,0.2) !important;
+            border: 0.1em solid #969696 !important;
 
         }
-        div.back-link {
-            font-size: 1em;
-            background-color: rgba(255,255,255,0.6) !important;
-            border: 2px solid rgba(255,255,255,0.2) !important;
-            padding: 1px 10px;
+        span.back-link {
             display: inline-block;
-            margin-left: 1285px;
-            border-radius: 25px 0 0 0;
-
-        }
-        .back-link a {
-            text-decoration: none;
-            display: inline-block;
-            font-family: "Arial Black", Gadget, sans-serif;
-            color: #BA000E;
-            text-shadow: 0px 2px 2px #d2d2d2;
-        }
-        .back-link img {
-            vertical-align: middle;
+            position: relative;
+            left: 22.1em;
+            top: -0.8em;
         }
         p.edit-link {
-            font-size: 18px;
+            font-size: 1em;
             display: block;
             text-align: right;
             margin-left: 3em;
             background-image: none !important;
             float: left;
             background-color: #969696;
-            padding: 1px 10px;
-            border-radius: 25px;
+            padding: 0.2em 3em;
+            border-radius: 2.5em;
 
         }
         .edit-link a {
@@ -124,18 +122,18 @@
             display: inline-block;
             font-family: "Arial Black", Gadget, sans-serif;
             color: #d2d2d2;
-            text-shadow: 0px 2px 2px #4d4d4d;
+            text-shadow: 0px 0.4em 0.4em #4d4d4d;
         }
         p.delete-link {
-            font-size: 18px;
+            font-size: 1em;
             display: block;
             text-align: right;
             margin-left: 1em;
             background-image: none !important;
             float: left;
             background-color: #BA000E;
-            padding: 1px 10px;
-            border-radius: 25px;
+            padding: 0.2em 3em;
+            border-radius: 2.5em;
 
         }
         .delete-link a {
@@ -143,7 +141,7 @@
             display: inline-block;
             font-family: "Arial Black", Gadget, sans-serif;
             color: #d2d2d2;
-            text-shadow: 0px 2px 2px #4d4d4d;
+            text-shadow: 0px 0.4em 0.4em #6E0008;
         }
     </style>
 {% endblock %}
