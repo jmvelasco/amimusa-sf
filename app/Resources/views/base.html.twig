@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Amimusa: El espacio de las musas{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link href='https://fonts.googleapis.com/css?family=Caveat+Brush' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Walter+Turncoat' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
@@ -25,14 +25,14 @@
                 font-size: 4em;
                 color: #1a82f7;
                 margin: 0 0 0 0.6em;
-                text-shadow: -2px -2px 0.4px #000;
+                text-shadow: -1px -1px 3.4px #d2d2d2;
             }
             header small {
                 color: #929292;
                 font-family: 'Poiret One', cursive;
                 font-size: 1em;
                 display: inline-block;
-                text-shadow: -1px -1px 1.4px #000;
+                text-shadow: -1px -1px 1.4px #2d2d2d;
             }
             header a {
                 float: right;
@@ -43,18 +43,23 @@
                 padding: 0.4em;
                 background-color: rgba(3, 85, 176, 0.8);
                 border-radius: 2.5em;
+                border-top: 1px solid #d2d2d2;
+                border-bottom: 1px solid #d2d2d2;
             }
 
-        </style>
 
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        </style>
+        
+        {% block stylesheets %}{% endblock %}
     </head>
     <body>
         <header>
             {% block header %}
+                {#
                 <div style="float: right">
                     <a href="{{ path('new-publication') }}">Me siento inspirado</a>
                 </div>
+                #}
 
                 <p>Amimusa:&nbsp;<small>comparte tu inspiración</small></p>
             {% endblock %}
