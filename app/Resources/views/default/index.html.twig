@@ -21,25 +21,14 @@
     <script type="application/javascript">
     $(document).ready(function(){
 
-
-
-        //canvas init
-        // var canvas = document.getElementById("canvas");
-        // var ctx = canvas.getContext("2d");
-
-        // var W = $(document).width();
-        // var H = $(document).height() * 0.6;
-        // canvas.width = W;
-        // canvas.height = H;
-
-
-
         $("#canvas").tagcanvas({
                 textFont: '"Trebuchet MS, Helvetica, sans-serif', 
-                maxSpeed: 0.05, minSpeed: 0.01,
-                textColour: '#fff', textHeight: 25, 
+                maxSpeed: 0.05, 
+                minSpeed: 0.01,
+                textColour: '#fff', 
+                textHeight: 25, 
                 outlineMethod: 'colour', 
-                adeIn: 800,
+                fadeIn: 800,
                 outlineColour: '#1a82f7', 
                 outlineOffset: 0, 
                 depth: 0.97, 
@@ -53,172 +42,31 @@
                 initial: [0,0.1], 
                 clickToFront: 600,
                 shape: "hcylinder",
-                freezeActive: true,
+                freezeDecel: true,
                 lock: "x"
-                //zoom: 0.6
             }, 'tags');
 
-        $("#canvas").width(parseInt($(document).width()) * 0.9);
+        $("#canvas").width(parseInt($(window).width()) * 0.9);
         $("#canvas").height(parseInt($(document).height()) * 0.4);
 
-        // // Add mouse listeners
-        // canvas.addEventListener("mousemove", on_mousemove, false);
-        // canvas.addEventListener("click", on_click, false);
+        $(window).resize(function(){
+            $("#canvas").width(parseInt($(window).width()) * 0.9);
+        });
 
-        // // musas
-        // var elements = [];
-        // // crear array javascript con las musas existentes dadas como parametos a la vista
-        // {% for musa in musas %}
-        //     ctx.font='32px "Trebuchet MS", Helvetica, sans-serif';
-        //     elements.push({
-        //         c: '{{ musa.name|replace({"\n":""})|upper }}',
-        //         l: '/musas/' + {{ musa.id}},
-        //         lw: ctx.measureText('{{ musa.name|replace({"\n":""})|upper }}').width,
-        //         lh: parseInt(ctx.font),
-        //         x: Math.random()*W, //x-coordinate
-        //         y: Math.random()*H, //y-coordinate
-        //         r: Math.random()*4+1, //radius
-        //         d: Math.random()*{{  musas|length }} //density
-        //     });
-        // {% endfor %}
-
-        // var hoverLink = ""; // Href of the link which cursor points at
-        // var running = true;
-
-        // // Link hover
-        // function on_mousemove (ev) {
-        //     var x, y;
-
-        //     // Get the mouse position relative to the canvas element
-        //     if (ev.layerX || ev.layerX == 0) { // For Firefox
-        //         x = ev.layerX;
-        //         y = ev.layerY;
-        //     }
-
-        //     // Link hover
-        //     for (var i = elements.length - 1; i >= 0; i--) {
-        //         var linkX       = elements[i].x,
-        //             linkY       = elements[i].y,
-        //             linkWidth   = elements[i].lw,
-        //             linkHeight  = elements[i].lh ,
-        //             linkHref    = elements[i].l;
-
-        //         // Check if cursor is in the link area
-        //         if (x >= linkX && x <= (linkX + linkWidth) && y >= linkY && y <= (linkY + linkHeight)){
-        //             document.body.style.cursor = "pointer";
-        //             hoverLink = linkHref;
-        //             running = false;
-        //             break;
-        //         }
-        //         else {
-        //             document.body.style.cursor = "";
-        //             running = true;
-        //             hoverLink = "";
-        //         }
-        //     };
-        // }
-
-        // // Link click
-        // function on_click(e) {
-        //     if (hoverLink){
-        //         window.location = hoverLink; // Use this to open in current window
-        //     }
-        // }
-
-        // // Dibujar cada musa
-        // function draw()
-        // {
-        //     ctx.clearRect(0, 0, W, H);
-        //     ctx.fillStyle = "#5d5d5d";
-        //     ctx.textBaseline = 'top';
-        //     ctx.beginPath();
-        //     for(var i = 0; i < elements.length; i++) {
-        //         // Makes left top point a start point for rendering text
-        //         ctx.textBaseline = "top";
-        //         ctx.strokeText(elements[i].c, elements[i].x, elements[i].y);
-        //         ctx.strokeStyle = "rgba(255, 255, 255, 0.8)"; //255, 128, 64
-
-        //     }
-        //     if (running) {
-        //         update();
-        //     }
-
-        // }
-
-        // //Function mover las musas con efecto de caída de nieve
-        // var angle = 0;
-        // function update()
-        // {
-        //     angle += 0.01;
-        //     for(var i = 0; i < elements.length; i++) {
-        //         //Updating X and Y coordinates
-        //         //We will add 1 to the cos function to prevent negative values which will lead flakes to move upwards
-        //         //Every particle has its own density which can be used to make the downward movement different for each flake
-        //         //Lets make it more random by adding in the radius
-        //         elements[i].y += Math.cos(angle + elements[i].d) + 1 + elements[i].r / 2;
-        //         elements[i].x += Math.sin(angle) * 2;
-
-        //         //Sending flakes back from the top when it exits
-        //         //Lets make it a bit more organic and let flakes enter from the left and right also.
-        //         if(elements[i].x > W+5 || elements[i].x < -5 || elements[i].y > H) {
-        //             if(i%3 > 0) {
-        //                 elements[i] = {x: Math.random()*W, y: -10,
-        //                     r: elements[i].r,
-        //                     d: elements[i].d,
-        //                     c: elements[i].c,
-        //                     l: elements[i].l,
-        //                     lw: elements[i].lw,
-        //                     lh: elements[i].lh
-        //                 };
-        //             } else {
-        //                 //If the flake is exitting from the right
-        //                 if(Math.sin(angle) > 0) {
-        //                     //Enter from the left
-        //                     elements[i] = {x: -5, y: Math.random()*H,
-        //                         r: elements[i].r,
-        //                         d: elements[i].d,
-        //                         c: elements[i].c,
-        //                         l: elements[i].l,
-        //                         lw: elements[i].lw,
-        //                         lh: elements[i].lh
-        //                     };
-        //                 }  else {
-        //                     //Enter from the right
-        //                     elements[i] = {x: W+5, y: Math.random()*H,
-        //                         r: elements[i].r,
-        //                         d: elements[i].d,
-        //                         c: elements[i].c,
-        //                         l: elements[i].l,
-        //                         lw: elements[i].lw,
-        //                         lh: elements[i].lh
-        //                     };
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-
-        // //animation loop
-        // setInterval(draw, 30);
     });
     </script>
 {% endblock %}
 {% block stylesheets %}
-    <style>
-    
+    <style type="text/css">
         #canvas {
             padding: 0;
             margin: auto;
             display: block;
-            /*position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;*/
             background-color: rgba(255, 255, 255, 0.1);
             -moz-border-radius: 25px 10px / 10px 25px;
             border-radius: 25px 10px / 10px 25px;
+            width: 940px;
+            height: 480px;
         }
-        
     </style>
 {% endblock %}
