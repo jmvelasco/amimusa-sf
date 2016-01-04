@@ -46,6 +46,20 @@
                 border-top: 1px solid #d2d2d2;
                 border-bottom: 1px solid #d2d2d2;
             }
+            #login {
+                font-family: 'Poiret One', cursive;
+                font-weight: bold;
+                color: #2d2d2d;
+                float: right;
+                margin: 0 0.6em 1em 0;
+            }
+            #login a {
+                text-decoration: none;
+                color: #2d2d2d;
+            }
+            #login a:hover {
+                text-decoration: underline;
+            }
 
 
         </style>
@@ -55,15 +69,25 @@
     <body>
         <header>
             {% block header %}
-                {#
+                
                 <div style="float: right">
                     <a href="{{ path('new-publication') }}">Me siento inspirado</a>
                 </div>
-                #}
-
+                
                 <p>Amimusa:&nbsp;<small>comparte tu inspiración</small></p>
             {% endblock %}
         </header>
+        <div id="login">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+        </div>
+        <br style="clear:both">
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

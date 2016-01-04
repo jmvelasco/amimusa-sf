@@ -30,7 +30,7 @@ USE `amimusa`;
 
 CREATE TABLE IF NOT EXISTS `contributors` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(80) NOT NULL,
+  `name` varchar(80) DEFAULT NULL,
   `email` varchar(80) NOT NULL,
   `description` mediumtext,
   `link_to_profile` varchar(80) DEFAULT NULL,

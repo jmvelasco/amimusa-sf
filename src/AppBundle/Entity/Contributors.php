@@ -3,28 +3,22 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * Contributors
  *
- * @ORM\Table(name="contributors", uniqueConstraints={@ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"}), @ORM\UniqueConstraint(name="username_UNIQUE", columns={"username"})})
+ * @ORM\Table(name="contributors", uniqueConstraints={@ORM\UniqueConstraint(name="username_UNIQUE", columns={"username"})})
  * @ORM\Entity
  */
-class Contributors
+class Contributors extends BaseUser
 {
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=80, nullable=false)
+     * @ORM\Column(name="name", type="string", length=80, nullable=true)
      */
     private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=80, nullable=false)
-     */
-    private $email;
 
     /**
      * @var string
@@ -50,20 +44,6 @@ class Contributors
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=45, nullable=false)
-     */
-    private $username;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=128, nullable=false)
-     */
-    private $password;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="security_token", type="string", length=128, nullable=true)
      */
     private $securityToken;
@@ -82,8 +62,7 @@ class Contributors
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
-
+    protected $id;
 
 
     /**
@@ -108,30 +87,6 @@ class Contributors
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return Contributors
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
     }
 
     /**
@@ -204,54 +159,6 @@ class Contributors
     public function getInscriptionDate()
     {
         return $this->inscriptionDate;
-    }
-
-    /**
-     * Set username
-     *
-     * @param string $username
-     *
-     * @return Contributors
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return Contributors
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
     }
 
     /**

@@ -20,12 +20,19 @@ SET foreign_key_checks = 0;
 -- Dumping data for table `contributors`
 --
 
-INSERT INTO `contributors` (`id`, `name`, `email`, `description`, `link_to_profile`, `inscription_date`, `username`, `password`, `security_token`, `active`) VALUES
-(0, 'anonimo', 'anonimo@server.net', NULL, NULL, '2015-11-11 23:02:49', '', '', NULL, 1),
-(34, 'manou', 'amimusa@yahoo.es', 'Hace tiempo que deje de escribir porque decidí ser feliz, no quería mirar más a mis penunbras ...\r\nNo obstante aquí comparto algunos de los escritos que me sirvieron como deshago en muchas ocasiones.\r\n\r\nHe decidido cambiar el formato de http://amimusa.net/man.u/ y crear este espacio donde todos y todas podamos compartir nuestros momentos de inspiración, dando especialmente importancia precisamente a "eso" que nos inspira.\r\n\r\n¡Espero conocer todas tus musas!', 'https://www.facebook.com/jmanuel.velasco', '2015-06-25 20:48:30', 'amimusa', 'd8578edf8458ce06fbc5bb76a58c5ca4', NULL, 1),
-(36, 'Óscar', 'oscar.gaeta@gmail.com', NULL, NULL, '2015-08-10 21:23:45', 'Óscar', 'c2f57cddc5cdedf77b7fa7d0c80b5f47', NULL, 1),
-(46, 'Natalia', 'nataliamunevar@gmail.com', NULL, NULL, '2015-09-22 16:36:01', 'Natalia Muse', '3d08a58706613c0a448a4ebe8e0a89b3', NULL, 1),
-(48, 'montserrat', 'gpasesores@outlook.es', NULL, NULL, '2015-12-05 21:05:30', 'montserrat', '5c0b24b86609dd62d15ebafb873cc555', NULL, 1);
+-- INSERT INTO `contributors` (`id`, `name`, `email`, `description`, `link_to_profile`, `inscription_date`, `username`, `password`, `security_token`, `active`) VALUES
+-- (0, 'anonimo', 'anonimo@server.net', NULL, NULL, '2015-11-11 23:02:49', '', '', NULL, 1),
+-- (34, 'manou', 'amimusa@yahoo.es', 'Hace tiempo que deje de escribir porque decidí ser feliz, no quería mirar más a mis penunbras ...\r\nNo obstante aquí comparto algunos de los escritos que me sirvieron como deshago en muchas ocasiones.\r\n\r\nHe decidido cambiar el formato de http://amimusa.net/man.u/ y crear este espacio donde todos y todas podamos compartir nuestros momentos de inspiración, dando especialmente importancia precisamente a "eso" que nos inspira.\r\n\r\n¡Espero conocer todas tus musas!', 'https://www.facebook.com/jmanuel.velasco', '2015-06-25 20:48:30', 'amimusa', 'd8578edf8458ce06fbc5bb76a58c5ca4', NULL, 1),
+-- (36, 'Óscar', 'oscar.gaeta@gmail.com', NULL, NULL, '2015-08-10 21:23:45', 'Óscar', 'c2f57cddc5cdedf77b7fa7d0c80b5f47', NULL, 1),
+-- (46, 'Natalia', 'nataliamunevar@gmail.com', NULL, NULL, '2015-09-22 16:36:01', 'Natalia Muse', '3d08a58706613c0a448a4ebe8e0a89b3', NULL, 1),
+-- (48, 'montserrat', 'gpasesores@outlook.es', NULL, NULL, '2015-12-05 21:05:30', 'montserrat', '5c0b24b86609dd62d15ebafb873cc555', NULL, 1);
+
+--
+-- Dumping data for table `contributors`
+--
+
+INSERT INTO `contributors` (`id`, `name`, `email`, `description`, `link_to_profile`, `inscription_date`, `username`, `password`, `security_token`, `active`, `username_canonical`, `email_canonical`, `enabled`, `salt`, `last_login`, `locked`, `expired`, `expires_at`, `confirmation_token`, `password_requested_at`, `roles`, `credentials_expired`, `credentials_expire_at`) VALUES
+(1, NULL, 'amimusamanou@gmail.com', NULL, NULL, NULL, 'manou', '$2y$13$sos1m4lcwdwco400kkkkkuwFYrDxdgpw.iR7ENcmG5SgnzpaI.aaK', NULL, 1, 'manou', 'amimusamanou@gmail.com', 1, 'sos1m4lcwdwco400kkkkk0gogw0c0c', NULL, 0, 0, NULL, NULL, NULL, 'a:0:{}', 0, NULL);
 
 --
 -- Dumping data for table `likes`
@@ -60,16 +67,16 @@ INSERT INTO `likes` (`id_publication`, `date`, `referer`) VALUES
 --
 
 INSERT INTO `musas` (`id`, `name`) VALUES
-(182, 'amor\n'),
+(182, 'amor'),
 (197, 'ana'),
 (193, 'angie'),
 (195, 'crecimiento'),
-(186, 'desengaño\n'),
+(186, 'desengaño'),
 (201, 'fanstasia'),
 (199, 'luna'),
 (222, 'momento'),
 (194, 'muerte'),
-(183, 'nostalgia\n'),
+(183, 'nostalgia'),
 (196, 'padres'),
 (220, 'prueba'),
 (200, 'rabia'),
@@ -82,52 +89,52 @@ INSERT INTO `musas` (`id`, `name`) VALUES
 --
 
 INSERT INTO `publications` (`id`, `id_contributor`, `id_writting`, `id_state`) VALUES
-(41, 34, 61, 1),
-(42, 34, 62, 1),
-(43, 34, 63, 1),
-(44, 34, 64, 1),
-(45, 34, 65, 1),
-(46, 34, 66, 1),
-(48, 34, 68, 1),
-(49, 34, 69, 1),
-(50, 34, 70, 1),
-(51, 34, 71, 1),
-(52, 34, 72, 1),
-(53, 34, 73, 1),
-(54, 34, 74, 1),
-(55, 34, 75, 1),
-(56, 34, 76, 1),
-(57, 34, 77, 1),
-(58, 34, 78, 1),
-(59, 34, 79, 1),
-(60, 34, 80, 1),
-(61, 34, 81, 1),
-(62, 34, 82, 1),
-(63, 34, 83, 1),
-(64, 34, 84, 1),
-(65, 34, 85, 1),
-(66, 34, 86, 1),
-(67, 34, 87, 1),
-(68, 34, 88, 1),
-(69, 34, 89, 1),
-(70, 34, 90, 1),
-(71, 34, 91, 1),
-(72, 34, 92, 1),
-(73, 34, 93, 1),
-(74, 34, 94, 1),
-(75, 34, 95, 1),
-(76, 34, 96, 1),
-(77, 34, 97, 1),
-(78, 34, 98, 1),
-(79, 34, 99, 1),
-(80, 34, 100, 1),
-(81, 34, 101, 1),
-(82, 34, 102, 1),
-(83, 34, 103, 1),
-(84, 34, 104, 1),
-(86, 34, 106, 1),
-(87, 34, 107, 1),
-(90, 36, 110, 1);
+(41, 1, 61, 1),
+(42, 1, 62, 1),
+(43, 1, 63, 1),
+(44, 1, 64, 1),
+(45, 1, 65, 1),
+(46, 1, 66, 1),
+(48, 1, 68, 1),
+(49, 1, 69, 1),
+(50, 1, 70, 1),
+(51, 1, 71, 1),
+(52, 1, 72, 1),
+(53, 1, 73, 1),
+(54, 1, 74, 1),
+(55, 1, 75, 1),
+(56, 1, 76, 1),
+(57, 1, 77, 1),
+(58, 1, 78, 1),
+(59, 1, 79, 1),
+(60, 1, 80, 1),
+(61, 1, 81, 1),
+(62, 1, 82, 1),
+(63, 1, 83, 1),
+(64, 1, 84, 1),
+(65, 1, 85, 1),
+(66, 1, 86, 1),
+(67, 1, 87, 1),
+(68, 1, 88, 1),
+(69, 1, 89, 1),
+(70, 1, 90, 1),
+(71, 1, 91, 1),
+(72, 1, 92, 1),
+(73, 1, 93, 1),
+(74, 1, 94, 1),
+(75, 1, 95, 1),
+(76, 1, 96, 1),
+(77, 1, 97, 1),
+(78, 1, 98, 1),
+(79, 1, 99, 1),
+(80, 1, 100, 1),
+(81, 1, 101, 1),
+(82, 1, 102, 1),
+(83, 1, 103, 1),
+(84, 1, 104, 1),
+(86, 1, 106, 1),
+(87, 1, 107, 1),
+(90, 1, 110, 1);
 
 --
 -- Dumping data for table `publications_musas`
