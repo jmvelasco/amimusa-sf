@@ -43,9 +43,9 @@ class Contributors
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="inscription_date", type="datetime", nullable=false)
+     * @ORM\Column(name="inscription_date", type="datetime", nullable=true)
      */
-    private $inscriptionDate = 'CURRENT_TIMESTAMP';
+    private $inscriptionDate;
 
     /**
      * @var string

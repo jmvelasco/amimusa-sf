@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Writtings
  *
- * @ORM\Table(name="writtings", indexes={@ORM\Index(name="fk_publication_type_idx", columns={"publication_type"})})
+ * @ORM\Table(name="writtings", indexes={@ORM\Index(name="publication_type_FK", columns={"publication_type"})})
  * @ORM\Entity
  */
 class Writtings
@@ -29,9 +29,9 @@ class Writtings
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="creation_date", type="datetime", nullable=false)
+     * @ORM\Column(name="creation_date", type="datetime", nullable=true)
      */
-    private $creationDate = 'CURRENT_TIMESTAMP';
+    private $creationDate;
 
     /**
      * @var \DateTime

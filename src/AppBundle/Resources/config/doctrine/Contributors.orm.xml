@@ -28,11 +28,7 @@
         <option name="fixed"/>
       </options>
     </field>
-    <field name="inscriptionDate" type="datetime" column="inscription_date" nullable="false">
-      <options>
-        <option name="default">CURRENT_TIMESTAMP</option>
-      </options>
-    </field>
+    <field name="inscriptionDate" type="datetime" column="inscription_date" nullable="true"/>
     <field name="username" type="string" column="username" length="45" nullable="false">
       <options>
         <option name="fixed"/>
