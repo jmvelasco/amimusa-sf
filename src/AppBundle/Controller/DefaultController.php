@@ -50,7 +50,6 @@ class DefaultController extends Controller
      */
     public function newAction(Request $request)
     {
-
         $em = $this->getDoctrine()->getManager();
         $musasRepository = $em->getRepository('AppBundle:Musas');
         $musas = $musasRepository->findAll();
@@ -76,7 +75,7 @@ class DefaultController extends Controller
 
                 if (!empty($writtingData['musasid_list'])) {
                     $publicationTypeRepository = $em->getRepository('AppBundle:PublicationsType');
-                    $publicationType = $publicationTypeRepository->find(23);
+                    $publicationType = $publicationTypeRepository->find(1);
                     $writting->setPublicationType($publicationType);
 
                     $date = new \DateTime();
@@ -91,7 +90,12 @@ class DefaultController extends Controller
                     $state = $statesRepository->find(1);
 
                     $contributorsRepository = $em->getRepository('AppBundle:Contributors');
-                    $contributor = $contributorsRepository->find(34);
+                    if (null != $this->getUser()) {
+                        $contributor = $contributorsRepository->find($this->getUser()->getId());
+                    } else {
+                        $contributor = $contributorsRepository->find(0);
+                    }
+                    
 
                     $publication = new Publications();
                     $publication->setIdContributor($contributor);

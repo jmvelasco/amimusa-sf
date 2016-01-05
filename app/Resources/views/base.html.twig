@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Amimusa: El espacio de las musas{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link href='https://fonts.googleapis.com/css?family=Caveat+Brush' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Walter+Turncoat' rel='stylesheet' type='text/css'>
@@ -78,13 +79,15 @@
             {% endblock %}
         </header>
         <div id="login">
+            
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
                 <a href="{{ path('fos_user_security_logout') }}">
                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                 </a>
             {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+               {% render controller("FOSUserBundle:Security:login") %}
+               <span style="float:right;margin: 0.4em 0.6em 0 0;">o&nbsp;<a href="{{ path('fos_user_registration_register') }}">Registrarse</a></span>
             {% endif %}
         </div>
         <br style="clear:both">
