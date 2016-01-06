@@ -2,6 +2,7 @@
 
 {% block body %}
 <div id="container">
+    
     <ul class="bxslider">
     {% for p in publications %}
             <li>
@@ -10,14 +11,18 @@
                         <img src="/img/cancel3.png" alt="X">
                     </a>
                 </span>
-            {#
+    
+                {% if loggedUsername  == p.idContributor.username %}
+                
                 <p class="edit op-link">
                     <a href="{{ path('edit-publication', {'idPublication': p.id, 'idMusa': app.request.get('idMusa')}) }}">Editar</a>
                 </p>
                 <p class="delete op-link">
                     <a href="{{ path('delete-publication', {'idPublication': p.id, 'idMusa': app.request.get('idMusa')}) }}">Borrar</a>
                 </p>
-            #}
+
+                {% endif %}
+
                 <div class="musasWrapper">
                 {% for m in p.idMusa %}
                 <h2>{{ m.name }}</h2>
@@ -60,6 +65,17 @@
             $writting.css('background-position', 'center');
 
             $(window).trigger('resize');
+
+            $('.delete').click(function(event){
+                var flag = confirm("¿Seguro que quieres borrar este escrito?");
+                if (flag) {
+                    return;
+                } else {
+                    event.preventDefault();
+                }
+                
+            });
+
 
         });
 

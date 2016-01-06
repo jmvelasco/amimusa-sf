@@ -39,8 +39,15 @@ class DefaultController extends Controller
         $publicationsMusas = $repository->find($idMusa);
         $publications = $publicationsMusas->getIdPublication()->getValues();
 
+        if ($this->getUser()) {
+            $loggedUsername = $this->getUser()->getUsername();
+        } else {
+            $loggedUsername = '__off__';
+        }
+        
         return $this->render('default/show.html.twig', array(
-            'publications' => $publications
+            'publications' => $publications,
+            'loggedUsername' => $loggedUsername
         ));
 
     }
