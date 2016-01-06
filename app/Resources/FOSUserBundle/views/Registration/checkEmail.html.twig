@@ -1,7 +1,44 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
-
+{% extends 'base.html.twig' %}
 {% trans_default_domain 'FOSUserBundle' %}
+    
+{% block header %}{% endblock %}
+{% block login %}{% endblock %}
 
-{% block fos_user_content %}
-    <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
-{% endblock fos_user_content %}
+{% block body %}
+    <div id="container">
+        {% block fos_user_content %}
+            <div id="formWrapper">
+                <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+                <a id="_back" href="{{ path('homepage') }}">{{ 'registration.back'|trans({}, 'FOSUserBundle') }}</a>
+            </div>
+        {% endblock fos_user_content %}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style type="text/css">
+        #container {
+            margin: auto;
+            width: 100%;
+            background-color: rgba(255,255,255,0.6);
+        }
+        #formWrapper {
+            width: 90%;
+            margin: auto auto;
+            padding-top: 2em;
+            padding-bottom: 2em;
+            font-family: 'Poiret One', cursive;
+            font-size: 1.2em;
+        }
+        #formWrapper a {
+            text-decoration: none;
+            color: #2d2d2d;
+            font-weight: bold;
+        }
+        #formWrapper a:hover {
+            text-decoration: underline;
+        }
+    </style>
+{% endblock %}
+
+

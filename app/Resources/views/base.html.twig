@@ -29,10 +29,11 @@
                 text-shadow: -1px -1px 3.4px #d2d2d2;
             }
             header small {
-                color: #929292;
+                /*color: #929292;*/
                 font-family: 'Poiret One', cursive;
                 font-size: 1em;
                 display: inline-block;
+                color: #d2d2d2;
                 text-shadow: -1px -1px 1.4px #2d2d2d;
             }
             header a {
@@ -41,7 +42,7 @@
                 text-decoration: none;
                 color: #d2d2d2;
                 font-size: 1em;
-                padding: 0.4em;
+                padding: 0.4em 1em 0.4em 1em;
                 background-color: rgba(3, 85, 176, 0.8);
                 border-radius: 2.5em;
                 border-top: 1px solid #d2d2d2;
@@ -61,8 +62,6 @@
             #login a:hover {
                 text-decoration: underline;
             }
-
-
         </style>
         
         {% block stylesheets %}{% endblock %}
@@ -70,28 +69,30 @@
     <body>
         <header>
             {% block header %}
-                
                 <div style="float: right">
                     <a href="{{ path('new-publication') }}">Me siento inspirado</a>
                 </div>
-                
-                <p>Amimusa:&nbsp;<small>comparte tu inspiración</small></p>
             {% endblock %}
+            <p><small>Comparte tu inspiración</small></p>
         </header>
-        <div id="login">
-            
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
-            {% else %}
-               {% render controller("FOSUserBundle:Security:login") %}
-               <span style="float:right;margin: 0.4em 0.6em 0 0;">o&nbsp;<a href="{{ path('fos_user_registration_register') }}">Registrarse</a></span>
-            {% endif %}
-        </div>
-        <br style="clear:both">
-        {% block body %}{% endblock %}
+        
+        {% block login %}
+            <div id="login">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                    <a href="{{ path('fos_user_security_logout') }}">
+                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                    </a>
+                {% else %}
+                   {% render controller("FOSUserBundle:Security:login") %}
+                {% endif %}
+            </div>
+            <br style="clear:both">
+        {% endblock %}
+        
+        {% block body %}
+            {% block fos_user_content %}{% endblock fos_user_content %}
+        {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>

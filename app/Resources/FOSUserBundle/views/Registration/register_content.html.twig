@@ -2,7 +2,8 @@
 
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
     {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+    <div style="margin-top: 1em;padding-bottom: 1em;">
+        <input type="submit" id="_register" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />&nbsp;o&nbsp;<a id="_cancel" href="{{ path('homepage') }}">{{ 'registration.cancel'|trans({}, 'FOSUserBundle') }}</a>
     </div>
 {{ form_end(form) }}
+

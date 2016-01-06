@@ -1,48 +1,69 @@
-{% block stylesheets %}
-    <style type="text/css">
-        input {
-            background-color: transparent;
-            font-family: 'Poiret One', cursive;
-            font-weight: bold;
-            color: #2d2d2d;
-            font-size: 1em;
-        }
-
-
-        input[type=text],
-        input[type=password] {
-            width: 10em;
-            border-top: 0 none;
-            border-bottom: 1px solid #2d2d2d;
-            border-left: 0 none;
-            border-right: 0 none;
-        }
-        input[type=submit] {
-            border: 0 none;
-        }
-    </style>
-{% endblock %}
-
 {% trans_default_domain 'FOSUserBundle' %}
     
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
+<div id="loginWrapper">
 
-<form action="{{ path("fos_user_security_check") }}" method="post">
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-{#
-    <label for="username">{{ 'security.login.username'|trans }}</label>
-#}
-    <input placeholder="{{ 'security.login.username'|trans }}" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
-{#
-    <label for="password">{{ 'security.login.password'|trans }}</label>
-#}
-    <input placeholder="{{ 'security.login.password'|trans }}" type="password" id="password" name="_password" required="required" />
-{#
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-#}
-    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-</form>
+    <form action="{{ path("fos_user_security_check") }}" method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <input placeholder="{{ 'security.login.username'|trans }}" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+        <input placeholder="{{ 'security.login.password'|trans }}" type="password" id="password" name="_password" required="required" />
+        <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+    </form>
+    <span>
+    o
+    <a href="{{ path('fos_user_registration_register') }}">
+        {{ 'layout.register'|trans({}, 'FOSUserBundle') }}
+    </a>
+    </span>
 
+    {% if error %}
+        <div id="_error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+</div>
+
+{% block stylesheets %}
+    
+    <style type="text/css">
+            #loginWrapper {
+                position: relative;
+            }
+            #loginWrapper span {
+                float:right;
+                margin: 0.4em 0.6em 0 0;
+            }
+            #username,
+            #password {
+                width: 10em;
+                border-top: 0 none;
+                border-bottom: 1px solid #2d2d2d;
+                border-left: 0 none;
+                border-right: 0 none;
+                background-color: transparent;
+                font-family: 'Poiret One', cursive;
+                font-weight: bold;
+                color: #2d2d2d;
+                font-size: 1em;
+            }
+            #_error {
+                position: absolute;
+                top: 1.8em;
+                left: 0;
+                color: #ff0033;
+                font-weight: bold;
+                padding: 0.4em;
+                background-color: rgba(220,220,220,0.6);
+            }
+            #_submit {
+                border: 0 none;
+                background-color: transparent;
+                font-family: 'Poiret One', cursive;
+                font-size: 1em;
+                font-weight: bold;
+                color: #2d2d2d;
+                cursor: pointer;
+            }
+            #_submit:hover {
+                text-decoration: underline;
+            }
+    </style>
+{% endblock %}
