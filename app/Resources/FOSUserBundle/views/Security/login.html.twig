@@ -16,13 +16,24 @@
     </span>
 
     {% if error %}
-        <div id="_error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div id="_errorWrapper">
+            <a style="float: right;" href="{{ path('homepage') }}"><img src="{{ asset( 'img/cancel2.png' ) }}" alt="[X]"></a>
+            <p id="_error">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+            <form action="{{ path('fos_user_resetting_send_email') }}" method="POST">
+                <div>
+                    {% if invalid_username is defined %}
+                        <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+                    {% endif %}
+                    <input placeholder="{{ 'resetting.request.username'|trans }}" type="text" id="username" name="username" value="{{ last_username }}" required="required" />
+                    <input type="submit" id="_reset" name="_reset" value="{{ 'resetting.request.submit'|trans }}" />
+                </div>
+            </form>
+        </div>
     {% endif %}
 
 </div>
 
 {% block stylesheets %}
-    
     <style type="text/css">
             #loginWrapper {
                 position: relative;
@@ -45,14 +56,17 @@
                 font-size: 1em;
             }
             #_error {
+                color: #ff0033;
+                font-weight: bold;
+            }
+            #_errorWrapper {
                 position: absolute;
                 top: 1.8em;
                 left: 0;
-                color: #ff0033;
-                font-weight: bold;
                 padding: 0.4em;
                 background-color: rgba(220,220,220,0.6);
             }
+            #_reset,
             #_submit {
                 border: 0 none;
                 background-color: transparent;
@@ -62,6 +76,7 @@
                 color: #2d2d2d;
                 cursor: pointer;
             }
+            #_reset:hover,
             #_submit:hover {
                 text-decoration: underline;
             }

@@ -1,5 +1,72 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block fos_user_content %}
-{% include "FOSUserBundle:Resetting:reset_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block header %}{% endblock %}
+{% block login %}{% endblock %}
+
+{% block body %}
+    <div id="container">
+        {% block fos_user_content %}
+            <div id="formWrapper">
+                {% include "FOSUserBundle:Resetting:reset_content.html.twig" %}
+            </div>
+        {% endblock fos_user_content %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <!-- jQuery library (served from Google) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+{% endblock %}
+{% block stylesheets %}
+    <!-- Bootstrap
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    -->
+    <style type="text/css">
+        #container {
+            margin: auto;
+            width: 100%;
+            background-color: rgba(255,255,255,0.6);
+        }
+        #formWrapper {
+            width: 90%;
+            margin: auto auto;
+            padding-top: 2em;
+            font-family: 'Poiret One', cursive;
+            font-size: 1.2em;
+        }
+        #formWrapper label {
+            margin-right: 0.6em;
+        }
+        #formWrapper input[type=text],
+        #formWrapper input[type=password],
+        #formWrapper input[type=email] {
+            width: 10em;
+            border-top: 0 none;
+            border-bottom: 1px solid #2d2d2d;
+            border-left: 0 none;
+            border-right: 0 none;
+            background-color: transparent;
+            font-family: 'Poiret One', cursive;
+            font-weight: bold;
+            color: #2d2d2d;
+            font-size: 1em;
+        }
+        #_reset {
+            font-family: 'Poiret One', cursive;
+            border: 1px solid #d2d2d2;
+            color: #d2d2d2;
+            background-color: rgba(3, 85, 176, 0.8);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        #_cancel {
+            color: #2d2d2d;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
+
+

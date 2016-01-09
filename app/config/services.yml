@@ -7,3 +7,11 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    fos_user.doctrine_registry:
+        alias: doctrine
+
+    appbundle_user.password_resetting:
+        class: AppBundle\UserBundle\EventListener\PasswordResettingListener
+        arguments: [@router]
+        tags:
+            - { name: kernel.event_subscriber }
