@@ -14,7 +14,7 @@
             body {
                 background-image: url('/img/background.jpg');
                 background-size: cover;
-                background-repeat: no-repeat;
+                background-position: center center;   
             }
             header {
                 /*margin: auto;*/
@@ -22,20 +22,14 @@
                 width: 100%;
             }
             header p {
-                font-family: 'Walter Turncoat', cursive;
-                font-size: 4em;
-                color: #1a82f7;
-                margin: 0 0 0 0.6em;
-                text-shadow: -1px -1px 3.4px #d2d2d2;
-            }
-            header small {
-                /*color: #929292;*/
                 font-family: 'Poiret One', cursive;
-                font-size: 1em;
-                display: inline-block;
+                font-size: 4em;
                 color: #d2d2d2;
+                margin: 0 0 0 0.6em;
                 text-shadow: -1px -1px 1.4px #2d2d2d;
+                display: inline-block;
             }
+
             header a {
                 float: right;
                 font-family: 'Walter Turncoat', cursive;
@@ -43,10 +37,12 @@
                 color: #d2d2d2;
                 font-size: 1em;
                 padding: 0.4em 1em 0.4em 1em;
-                background-color: rgba(3, 85, 176, 0.8);
+                /*background-color: rgba(3, 85, 176, 0.8);*/
+                background-color: rgba(255, 255, 255, 0.1);
                 border-radius: 2.5em;
-                border-top: 1px solid #d2d2d2;
-                border-bottom: 1px solid #d2d2d2;
+                text-shadow: -1px -1px 1.4px #2d2d2d;
+                /*border-top: 1px solid #d2d2d2;
+                border-bottom: 1px solid #d2d2d2;*/
             }
             #login {
                 font-family: 'Poiret One', cursive;
@@ -62,6 +58,42 @@
             #login a:hover {
                 text-decoration: underline;
             }
+            @media only screen
+                and (min-device-width : 320px)
+                and (max-device-width : 480px) {
+
+                header {
+                    margin: 0 0 0.4em 0;
+                    
+                }
+                header p {
+                    font-size: 1.6em;
+                    margin: 0.2em 0 0 0;
+                    
+                }
+                header a {
+                    font-size: 0.8em;
+                    
+                }
+            }
+            @media only screen
+                and (min-device-width : 320px)
+                and (max-device-width : 768px) {
+
+                header {
+                    margin: 0 0 0.4em 0;
+                    
+                }
+                header p {
+                    font-size: 1.6em;
+                    margin: 0.2em 0 0 0;
+                }
+                header a {
+                    font-size: 0.8em;
+                    
+                }
+
+            }
         </style>
         
         {% block stylesheets %}{% endblock %}
@@ -73,7 +105,7 @@
                     <a href="{{ path('new-publication') }}">Me siento inspirado</a>
                 </div>
             {% endblock %}
-            <p><small>Comparte tu inspiración</small></p>
+            <p>Comparte tu inspiración</p>
         </header>
         
         {% block login %}
