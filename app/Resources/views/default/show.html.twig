@@ -63,8 +63,10 @@
             var $writting = $('.bxslider .writtingWrapper');
             $writting.css('background-repeat', 'no-repeat');
             $writting.css('background-position', 'center');
+            //$writting.css('min-height', parseInt($(document).height()));
 
             $(window).trigger('resize');
+
 
             $('.delete').click(function(event){
                 var flag = confirm("¿Seguro que quieres borrar este escrito?");
@@ -122,8 +124,10 @@
         span.back-link {
             display: inline-block;
             position: absolute;
-            left: 57.1em;
-            top: -0.8em;
+            /*left: 57.1em;
+            top: -0.8em;*/
+            left: 97%;
+            top: -1%;
         }
         .op-link a {
             text-decoration: none;
@@ -155,5 +159,46 @@
         .delete a {
             text-shadow: 0px 0.4em 0.4em #6E0008;
         }
+
+
+        @media only screen
+            and (min-device-width : 320px)
+            and (max-device-width : 480px) {
+
+            span.back-link {
+                left: 90%;
+                top: -1%;
+            }
+
+            .bx-wrapper .musasWrapper {
+                position: absolute;
+                top: -7%;
+                left: 0.1em;
+            }
+            .bxslider .writtingWrapper {
+                font-size: 0.9em;
+            }
+
+        }
+        @media only screen
+            and (min-device-width : 320px)
+            and (max-device-width : 768px) {
+
+            span.back-link {
+                left: 90%;
+                top: -1%;
+            }
+
+            .bx-wrapper .musasWrapper {
+                position: absolute;
+                top: -7%;
+                left: 0.1em;
+            }
+            .bxslider .writtingWrapper {
+                font-size: 0.9em;
+            }
+        }
+
+
     </style>
 {% endblock %}
