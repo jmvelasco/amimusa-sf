@@ -11,7 +11,7 @@ services:
         alias: doctrine
 
     appbundle_user.password_resetting:
-        class: AppBundle\UserBundle\EventListener\PasswordResettingListener
+        class: FOS\UserBundle\EventListener\PasswordResettingListener
         arguments: [@router]
         tags:
             - { name: kernel.event_subscriber }
