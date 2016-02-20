@@ -1,6 +1,41 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+<h1>Mis Contribuciones</h1>
 <div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    <table>
+        <thead>
+            <th>Título</th>
+            <th colspan="2"></th>
+        </thead>
+
+        {% for p in publications %}
+        <tr>
+            <td>{{ p.idWritting.title }}</td>
+            <td><a href="{{ path('edit-publication', {'idPublication': p.id, 'idMusa': p.idMusa[0].id}) }}">Editar</a></td>
+            <td><a href="{{ path('delete-publication', {'idPublication': p.id, 'idMusa': p.idMusa[0].id}) }}">Borrar</a></td>
+        </tr>
+    {% endfor %}
+    </table>
 </div>
+
+<div style="margin-top: 1em;padding-bottom: 1em;">
+    <a id="_back" href="{{ path('homepage') }}">Volver</a>
+</div>
+
+{% block stylesheets %}
+<style type="text/css">
+    #_back {
+        font-family: 'Poiret One', cursive;
+        border: 1px solid #d2d2d2;
+        color: #d2d2d2;
+        background-color: rgba(3, 85, 176, 0.8);
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+    a#_back {
+        text-decoration: none;
+        padding: 0.2em;
+    }
+</style>
+{% endblock %}
+

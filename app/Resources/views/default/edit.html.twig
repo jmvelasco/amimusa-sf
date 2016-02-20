@@ -36,7 +36,7 @@
 
             <div class="pull-right" style="margin-top: 40px;">
             {{ form_widget(form.save, { 'attr': {'class': 'btn btn-primary'} }) }}
-            <a class="btn btn-default" href="{{ path('show-musas', {'idMusa': app.request.get('idMusa')}) }}">Volver</a>
+            <a class="btn btn-default" href="{{ returnPath }}">Volver</a>
             </div>
 
         </div>
