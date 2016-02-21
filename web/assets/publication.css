@@ -1,3 +1,14 @@
+html {
+    font-size: 1em;
+}
+body {
+    background-image: url('/img/background.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #2d2d2d;
+    font-size: 1em;
+}
 #container {
     margin: auto;
     width: 100%;
@@ -28,7 +39,6 @@
 }
 #formWrapper p.form-message {
     font-family: 'Poiret One', cursive;
-    font-size: 18px;
     font-weight: bold;
     padding-top: 5px;
     display: inline-block;

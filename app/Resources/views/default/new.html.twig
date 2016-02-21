@@ -1,18 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block header %}{% endblock %}
-{% block login %}
-    <div id="login">
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-            <a href="{{ path('fos_user_security_logout') }}">
-                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-            </a>
-        {% else %}
-           <span>{{ 'layout.nologged_in'|trans({}, 'FOSUserBundle') }}</span>
-        {% endif %}
-    </div>
-{% endblock %}
 
 {% block body %}
     <div id="container">
@@ -85,5 +73,6 @@
 {% block stylesheets %}
     <!-- Bootstrap -->
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
     <link href="/assets/publication.css" rel="stylesheet">
 {% endblock %}

@@ -11,15 +11,18 @@
         <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
         <style type="text/css">
+            html {
+                font-size: 1em;
+            }
             body {
                 background-image: url('/img/background.jpg');
                 background-size: cover;
                 background-position: center center;
                 background-repeat: no-repeat;
                 background-color: #2d2d2d;
+                font-size: 1em;
             }
             header {
-                /*margin: auto;*/
                 margin: 0 0 2em 0;
                 width: 100%;
             }
@@ -31,7 +34,6 @@
                 text-shadow: -1px -1px 1.4px #2d2d2d;
                 display: inline-block;
             }
-
             header a {
                 float: right;
                 font-family: 'Walter Turncoat', cursive;
@@ -39,14 +41,9 @@
                 color: #d2d2d2;
                 font-size: 1em;
                 padding: 0.4em 1em 0.4em 1em;
-                /*background-color: rgba(3, 85, 176, 0.8);*/
-                /*background-color: rgba(255, 255, 255, 0.1);*/
                 background-color: rgba(100, 100, 255, 0.6);
-
                 border-radius: 2.5em;
                 text-shadow: -1px -1px 1.4px #2d2d2d;
-                /*border-top: 1px solid #d2d2d2;
-                border-bottom: 1px solid #d2d2d2;*/
             }
             #login {
                 font-family: 'Poiret One', cursive;
@@ -115,10 +112,10 @@
         {% block login %}
             <div id="login">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} >
+                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} //
                     <a href="{{ path('fos_user_profile_show') }}">
                         Ir a mi espacio
-                    </a> |
+                    </a> //
                     <a href="{{ path('fos_user_security_logout') }}">
                         {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                     </a>
