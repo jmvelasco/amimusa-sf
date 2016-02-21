@@ -16,7 +16,18 @@ class ProfileController extends BaseController
      */
     public function showAction()
     {
-        $user = $this->getUser();
+        $userId = $this->getRequest()->query->get('idContributor');
+        if (is_null($userId) || ($userId == $this->getUser()->getId())) {
+            // Load de user logged user
+            $user = $this->getUser();
+            $editPermision = true;
+        } else {
+            // Load de user with the given userId
+            $em = $this->getDoctrine()->getManager();
+            $contributorsRepository = $em->getRepository('AppBundle:Contributors');
+            $user = $contributorsRepository->find($userId);
+            $editPermision = false;
+        }
 
         if (is_null($user)) {
             return $this->redirect('/');
@@ -39,7 +50,8 @@ class ProfileController extends BaseController
 
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
-            'publications' => $publications
+            'publications' => $publications,
+            'editPermision' => $editPermision
         ));
     }
 }

@@ -44,9 +44,31 @@ class DefaultController extends Controller
         } else {
             $loggedUsername = '__off__';
         }
-        
+        //var_dump($publications);
         return $this->render('default/show.html.twig', array(
             'publications' => $publications,
+            'loggedUsername' => $loggedUsername
+        ));
+
+    }
+
+
+    /**
+     * @Route("/publication/{idPublication}", name="show-publication")
+     */
+    public function showPublicationAction($idPublication)
+    {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Publications');
+        $publication = $repository->findById($idPublication);
+
+        if ($this->getUser()) {
+            $loggedUsername = $this->getUser()->getUsername();
+        } else {
+            $loggedUsername = '__off__';
+        }
+        //var_dump($publications);
+        return $this->render('default/showpublication.html.twig', array(
+            'publications' => $publication,
             'loggedUsername' => $loggedUsername
         ));
 
@@ -168,7 +190,6 @@ class DefaultController extends Controller
 
         $form->get('title')->setData($writting->getTitle());
         $form->get('body')->setData(preg_replace("/<br>/", "\n", $writting->getBody()));
-       // $form->get('body')->setData($writting->getBody());
 
         $musasListArr = array();
         foreach($publication->getIdMusa() as $m) {
@@ -199,7 +220,7 @@ class DefaultController extends Controller
             $em->persist($publication);
             $em->flush();
 
-            return $this->redirectToRoute('show-musas', array('idMusa' => $idMusa));
+            return $this->redirectToRoute('fos_user_profile_show', array('idContributor' => $this->getUser()->getId()));
         }
 
         return $this->render('default/edit.html.twig', array(
@@ -222,7 +243,7 @@ class DefaultController extends Controller
         $em->remove($publication);
         $em->flush();
 
-        return $this->redirectToRoute('show-musas', array('idMusa' => $idMusa));
+        return $this->redirectToRoute('fos_user_profile_show', array('idContributor' => $this->getUser()->getId()));
     }
 
     /**
