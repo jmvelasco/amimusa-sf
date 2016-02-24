@@ -1,29 +1,48 @@
 {% extends 'base.html.twig' %}
 
+
 {% block body %}
 <div id="container">
-    
-    <ul class="bxslider">
-    {% for p in publications %}
-            <li>
-                <span class="back-link">
-                    <a href="{{ path('homepage') }}">
-                        <img src="/img/cancel2.png" alt="X">
-                    </a>
-                </span>
 
-                <h1>{{ p.idWritting.title }}</h1>
-                <div class="writtingWrapper">
-                    <p>{{ p.idWritting.body | raw }}</p>
-                    <p>&nbsp;</p>
-                </div>
+    <div id="container-centered">
+        <div class="titlesWrapper">
+            <h2 class="musa-title">Amimusa {{ musa }}</h2>
+            {% for wp in publications %}
+                <a data-slide-index="{{ loop.index-1 }}" href="" class="titles">
+                    {{ wp.idWritting.title }}
+                </a>
+            {% endfor %}
+        </div>
 
-                <div class="contributorWrapper">
-                    <h2>Por&nbsp;<a href="{{ path('fos_user_profile_show', {'idContributor' : p.idContributor.id}) }}">{{ p.idContributor.username }}</a></h2>
-                </div>
-            </li>
-    {% endfor %}
-    </ul>
+
+
+        <div style="float: left">
+            <ul class="bxslider">
+            {% for p in publications %}
+                    <li>
+                        <a href="{{ path('homepage') }}" class="back-link">
+                            <img src="/img/cancel2.png" alt="[X]">
+                        </a>
+                        <h1>{{ p.idWritting.title }}</h1>
+                        <div class="writtingWrapper">
+                            <p>{{ p.idWritting.body | raw }}</p>
+                            <p>&nbsp;</p>
+                        </div>
+
+                        <div class="contributorWrapper">
+                            <h2>Por&nbsp;<a href="{{ path('fos_user_profile_show', {'idContributor' : p.idContributor.id}) }}">{{ p.idContributor.username }}</a></h2>
+                        </div>
+                    </li>
+            {% endfor %}
+            </ul>
+            {#
+            <div id="prev"></div>
+            <div id="next"></div>
+            #}
+        </div>
+
+    </div>
+
 </div>
 {% endblock %}
 
@@ -35,24 +54,25 @@
     <script src="/assets/bxslider/jquery.bxslider.min.js"></script>
     <script type="application/javascript">
         $(document).ready(function(){
-
+            var idx;
             $('.bxslider').bxSlider({
-                pager:false,
-                adaptiveHeight: true,
+                pager:true,
+                controls: false,
+                //adaptiveHeight: true,
                 slideWidth: 940,
+                infiniteLoop: false,
+                hideControlOnEnd: true,
+                pagerCustom: '.titlesWrapper',
+                //nextSelector: '#next',
+                //prevSelector: '#prev'
+
             });
 
             var $bxsliderContainer = $('.bx-wrapper .bx-viewport');
-            $bxsliderContainer.css('background-color', '#F4F4F4');
             $bxsliderContainer.css('text-align', 'center');
-            
-            var $writting = $('.bxslider .writtingWrapper');
-            $writting.css('background-repeat', 'no-repeat');
-            $writting.css('background-position', 'center');
-
-            $(window).trigger('resize');
 
         });
+
 
     </script>
 {% endblock %}

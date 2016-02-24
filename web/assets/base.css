@@ -1,0 +1,168 @@
+html {
+    font-size: 1em;
+    height: 100%;
+}
+body {
+    background-image: url('/img/background.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #2d2d2d;
+    font-size: 1em;
+}
+header {
+    margin: 0 0 2em 0;
+    width: 100%;
+}
+header p {
+    font-family: 'Poiret One', cursive;
+    font-size: 4em;
+    color: #d2d2d2;
+    margin: 0 0 0 0.6em;
+    text-shadow: -1px -1px 1.4px #2d2d2d;
+    display: inline-block;
+}
+header a {
+    float: right;
+    font-family: 'Walter Turncoat', cursive;
+    text-decoration: none;
+    color: #d2d2d2;
+    font-size: 1em;
+    padding: 0.4em 1em 0.4em 1em;
+    background-color: rgba(100, 100, 255, 0.6);
+    border-radius: 2.5em;
+    text-shadow: -1px -1px 1.4px #2d2d2d;
+}
+#login {
+    font-family: 'Poiret One', cursive;
+    font-weight: bold;
+    color: #2d2d2d;
+    float: right;
+    margin: 0 0.6em 1em 0;
+}
+#login a {
+    text-decoration: none;
+    color: #2d2d2d;
+}
+#login a:hover {
+    text-decoration: underline;
+}
+#loginWrapper {
+    position: relative;
+}
+#loginWrapper span {
+    float:right;
+    margin: 0.4em 0.6em 0 0;
+}
+#username,
+#password {
+    width: 10em;
+    border-top: 0 none;
+    border-bottom: 1px solid #2d2d2d;
+    border-left: 0 none;
+    border-right: 0 none;
+    background-color: transparent;
+    font-family: 'Poiret One', cursive;
+    font-weight: bold;
+    color: #2d2d2d;
+    font-size: 1em;
+}
+#_error {
+    color: #ff0033;
+    font-weight: bold;
+}
+#_errorWrapper {
+    position: absolute;
+    top: 1.8em;
+    left: 0;
+    padding: 0.4em;
+    background-color: rgba(220,220,220,0.6);
+}
+#_reset,
+#_submit {
+    border: 0 none;
+    background-color: transparent;
+    font-family: 'Poiret One', cursive;
+    font-size: 1em;
+    font-weight: bold;
+    color: #2d2d2d;
+    cursor: pointer;
+}
+#_reset:hover,
+#_submit:hover {
+    text-decoration: underline;
+}
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+
+    header {
+        margin: 0 0 0.4em 0;
+
+    }
+    header p {
+        font-size: 1.6em;
+        margin: 0.2em 0 0 0;
+
+    }
+    header a {
+        font-size: 0.8em;
+
+    }
+    #username,
+    #password {
+        width: 8em;
+        font-size: 0.8em;
+        color: #d2d2d2;
+        border-bottom: 1px solid #a2a2a2;
+    }
+    #loginWrapper span {
+        font-size: 0.8em;
+        color: #d2d2d2;
+    }
+    #loginWrapper span a {
+        font-size: 1em;
+        color: #d2d2d2;
+    }
+    #_submit {
+        font-size: 0.8em;
+        color: #d2d2d2;
+    }
+}
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 768px) {
+
+    header {
+        margin: 0 0 0.4em 0;
+
+    }
+    header p {
+        font-size: 1.6em;
+        margin: 0.2em 0 0 0;
+    }
+    header a {
+        font-size: 0.8em;
+
+    }
+    #username,
+    #password {
+        width: 8em;
+        font-size: 0.8em;
+        color: #d2d2d2;
+        border-bottom: 1px solid #a2a2a2;
+    }
+    #loginWrapper span {
+        font-size: 0.8em;
+        color: #d2d2d2;
+    }
+    #loginWrapper span a {
+        font-size: 1em;
+        color: #d2d2d2;
+    }
+    #_submit {
+        font-size: 0.8em;
+        color: #d2d2d2;
+    }
+
+}

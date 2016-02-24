@@ -1,15 +1,27 @@
 #container {
-    margin: auto;
+    margin: auto auto;
     width: 100%;
     min-height: 480px;
+    position: relative;
+}
+#container-centered {
+    /*top: 50%;*/
+    top: 75%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+.bx-wrapper {
+    margin: 0 !important;
 }
 .bxslider h2 {
-    color: #5454ff;
     font-family: 'Poiret One', cursive;
-    text-transform: uppercase;
     font-size: 1em;
     text-shadow: 0 0.4em 0.4em #4d4d4d;
+    color: #2d2d2d;
 }
+
 .bxslider h1 {
     font-family: 'Poiret One', cursive;
     color: #fff;
@@ -17,10 +29,46 @@
     clear: both;
     text-align: center;
 }
+.musa-title {
+    font-family: 'Poiret One', cursive;
+    font-size: 1.6em !important;
+}
+.titles {
+    font-family: 'Special Elite', cursive;
+    font-size: 1.2em;
+    color: #2d2d2d;
+    text-shadow: -1px -1px 1.4px #fff;
+    display: block;
+    cursor: pointer;
+}
+.titlesWrapper {
+    float: left;
+    /*margin-top: 40px;*/
+    margin-bottom: 20px;
+    margin-right: 5px;
+    width: 280px;
+    background: rgba(255,255,255,0.75) !important;
+    padding: 1em;
+
+    border-radius: 25px 0 0 25px;
+}
+.titlesWrapper a {
+    text-decoration: none;
+    padding: 2px;
+}
+.titlesWrapper a:hover {
+    color: #0088CC;
+}
+.active {
+    color: #1E365C;
+    font-weight: bold;
+    outline: 0;
+}
 .bxslider a {
     color: #2d2d2d;
     text-decoration: none;
     text-transform: lowercase;
+    outline: 0;
 }
 .bxslider a:hover {
     text-decoration: underline;
@@ -34,18 +82,18 @@
     margin-left: 10%;
 }
 .bx-wrapper .bx-viewport {
-    background: rgba(255,255,255,0.6) !important;
-    border: 0.1em solid #969696 !important;
+    background: rgba(255,255,255,0.75) !important;
+    /*border: 0.1em solid #969696 !important;*/
+    border: 0 none !important;
+    box-shadow: 0 0 0 0 !important;
+    border-radius: 5px;
 }
-.bx-wrapper .musasWrapper {
-    position: absolute;
-    top: 0.8em;
-    left: 52em;
-}
+
 .bx-wrapper .contributorWrapper {
+    border-top: 1px solid #2d2d2d;
     position: absolute;
     bottom: 0.4em;
-    right: 51em;
+    left: 51em;
 }
 
 span.back-link {
@@ -53,7 +101,17 @@ span.back-link {
     float: right;
     cursor: pointer;
     margin-right: 0.4em;
+}
 
+a.back-link {
+    float: right;
+    font-family: 'Poiret One', cursive;
+    font-size: 1.2em;
+    margin-right: 5px;
+
+}
+a.back-link:hover {
+    color: #000;
 }
 
 .op-link a {

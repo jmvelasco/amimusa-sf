@@ -1,5 +1,6 @@
 html {
     font-size: 1em;
+    height: 100%;
 }
 body {
     background-image: url('/img/background.jpg');

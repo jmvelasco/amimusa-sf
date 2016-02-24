@@ -2,12 +2,13 @@
 
 {% block body %}
 <div id="container">
+    <div id="container-centered">
     
     <ul class="bxslider">
     {% for p in publications %}
             <li>
                 <span class="back-link">
-                    <a href="{{ path('fos_user_profile_show', {'idContributor' : p.idContributor.id}) }}">
+                    <a href="{{ returnPath }}">
                         <img src="/img/cancel2.png" alt="X">
                     </a>
                 </span>
@@ -21,11 +22,10 @@
                 <div class="contributorWrapper">
                     <h2>Por&nbsp;<a href="{{ path('fos_user_profile_show', {'idContributor' : p.idContributor.id}) }}">{{ p.idContributor.username }}</a></h2>
                 </div>
-
-
             </li>
     {% endfor %}
     </ul>
+    </div>
 </div>
 {% endblock %}
 
