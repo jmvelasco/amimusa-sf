@@ -23,7 +23,15 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Musas');
-        $musas = $repository->findAll();
+        $allMusas = $repository->findAll();
+        $musas = array();
+
+        // Filter by musas with publications
+        foreach ($allMusas as $musa) {
+            if (count($musa->getIdPublication()) > 0) {
+                $musas[] = $musa;
+            }
+        }
 
         return $this->render('default/index.html.twig', array(
             'musas' => $musas
@@ -33,21 +41,15 @@ class DefaultController extends Controller
     /**
      * @Route("/musas/{idMusa}", name="show-musas")
      */
-    public function showAction($idMusa)
+    public function showAction($idMusa, Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Musas');
         $publicationsMusas = $repository->find($idMusa);
-        $publications = $publicationsMusas->getIdPublication()->getValues();
 
-        if ($this->getUser()) {
-            $loggedUsername = $this->getUser()->getUsername();
-        } else {
-            $loggedUsername = '__off__';
-        }
-        //var_dump($publications);
         return $this->render('default/show.html.twig', array(
-            'publications' => $publications,
-            'loggedUsername' => $loggedUsername
+            'publications'  => $publicationsMusas->getIdPublication()->getValues(),
+            'musa'          => $publicationsMusas->getName(),
+            'returnPath' => $request->headers->get('referer')
         ));
 
     }
@@ -56,20 +58,14 @@ class DefaultController extends Controller
     /**
      * @Route("/publication/{idPublication}", name="show-publication")
      */
-    public function showPublicationAction($idPublication)
+    public function showPublicationAction($idPublication, Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Publications');
         $publication = $repository->findById($idPublication);
 
-        if ($this->getUser()) {
-            $loggedUsername = $this->getUser()->getUsername();
-        } else {
-            $loggedUsername = '__off__';
-        }
-        //var_dump($publications);
         return $this->render('default/showpublication.html.twig', array(
             'publications' => $publication,
-            'loggedUsername' => $loggedUsername
+            'returnPath' => $request->headers->get('referer')
         ));
 
     }
