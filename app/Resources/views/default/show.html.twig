@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="contributorWrapper">
-                            <h2>Por&nbsp;<a href="{{ path('fos_user_profile_show', {'idContributor' : p.idContributor.id}) }}">{{ p.idContributor.username }}</a></h2>
+                            <h2><a href="{{ path('fos_user_profile_show', {'idContributor' : p.idContributor.id}) }}"><img src="{{ asset('/img/profile.png') }}">{{ p.idContributor.username }}</a></h2>
                         </div>
 
                         <div class="socialWrapper">

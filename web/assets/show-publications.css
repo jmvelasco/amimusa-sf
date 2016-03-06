@@ -119,6 +119,7 @@
     background-color: #4d85c7;
 }
 
+.contributorWrapper img,
 .like img,
 .share img {
     display: inline-block !important;

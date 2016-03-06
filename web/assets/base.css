@@ -27,11 +27,11 @@ header a {
     font-family: 'Walter Turncoat', cursive;
     text-decoration: none;
     color: #d2d2d2;
-    font-size: 1em;
+    font-size: 1.2em;
     padding: 0.4em 1em 0.4em 1em;
-    background-color: rgba(100, 100, 255, 0.6);
+    background-color: #5372C7;/*rgba(100, 100, 255, 0.6);*/
     border-radius: 2.5em;
-    text-shadow: -1px -1px 1.4px #2d2d2d;
+    /*text-shadow: -1px -1px 1.4px #2d2d2d;*/
 }
 #login {
     font-family: 'Poiret One', cursive;
