@@ -6,10 +6,10 @@
 }
 #container-centered {
     /*top: 50%;*/
-    top: 75%;
+    top: 250px;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -250px);
     position: absolute;
 }
 .bx-wrapper {
@@ -78,7 +78,8 @@
     font-family: 'Special Elite', cursive;
     font-size: 1.2em;
     color: #2d2d2d;
-    width: 80%;
+    /*width: 80%;*/
+    width: 940px;
     margin-left: 10%;
 }
 .bx-wrapper .bx-viewport {
