@@ -102,6 +102,24 @@
     float: left;
 }
 
+.share {
+    font-family: 'Poiret One', cursive;
+    color: #000;
+    text-shadow: -1px -1px 1.4px #d2d2d2;
+    padding: 0 1em 0 1em;
+    display: inline-block;
+}
+
+.share:hover {
+    color: #fff;
+    background-color: #5372C7;
+    border-radius: 0.4em;
+}
+
+.share img {
+    display: inline-block !important;
+}
+
 span.back-link {
     display: inline-block;
     float: right;
