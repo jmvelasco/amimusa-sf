@@ -17,7 +17,9 @@ class ProfileController extends BaseController
     public function showAction()
     {
         $userId = $this->getRequest()->query->get('idContributor');
-        if (is_null($userId) || ($userId == $this->getUser()->getId())) {
+
+
+        if (is_null($userId) || (!is_null($this->getUser())) && ($userId == $this->getUser()->getId()) ) {
             // Load de user logged user
             $user = $this->getUser();
             $editPermision = true;
