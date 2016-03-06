@@ -1,7 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div id="container">
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <div id="container">
 
     <div id="container-centered">
         <div class="titlesWrapper">
@@ -32,7 +43,15 @@
                         </div>
 
                         <div class="socialWrapper">
-                            <span>Me gusta</span> | <span class="share" data-shareurl="{{ url('show-publication', {'idPublication' : p.id}) }}">Compartir</span>
+
+                                <!-- Your like button code -->
+                                <div class="fb-like"
+                                     data-href="{{ url('show-publication', {'idPublication' : p.id}) }}"
+                                     data-layout="standard"
+                                     data-action="like"
+                                     data-show-faces="true">
+                                </div>
+                             | <span class="share" data-shareurl="{{ url('show-publication', {'idPublication' : p.id}) }}">Compartir</span>
                         </div>
 
                     </li>
@@ -47,6 +66,7 @@
     </div>
 
 </div>
+
 {% endblock %}
 
 {% block javascripts %}
