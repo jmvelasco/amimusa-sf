@@ -65,11 +65,11 @@
                                      data-layout="button"
                                      data-action="like"
                                      data-show-faces="true"
-                                     data-share="true">
+                                     data-share="false">
                                 </div>
-                            {#
+
                              | <span class="share" data-shareurl="{{ url('show-publication', {'idPublication' : p.id}) }}">Compartir</span>
-                             #}
+
                         </div>
 
                     </li>
@@ -107,6 +107,16 @@
 
             var $bxsliderContainer = $('.bx-wrapper .bx-viewport');
             $bxsliderContainer.css('text-align', 'center');
+
+            var $shareButton = $(".share");
+            $shareButton.css("cursor", "pointer");
+
+            $shareButton.click(function(){
+                var url = $(this).data('shareurl');
+                var y = window.outerHeight / 2;
+                var x = window.outerWidth / 2;
+                window.open("http://www.facebook.com/sharer.php?p[url]="+url, "Compartir Inspiracion", "height=200,width=480, top=" + y + ", left=" + x);
+            });
 
         });
 
