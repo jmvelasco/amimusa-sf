@@ -1,11 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block opengraph %}
-    <meta property="og:title" content="Amimusa: El Espacio de las musas" />
-    <meta property="og:description" content="El espacio donde compartir tus inspiraciones" />
-    <meta property="og:image" content="{{ absolute_url(asset('/img/shared.jpg')) }}" />
-{% endblock %}
-
 {% block body %}
 <div id="container">
 
@@ -18,8 +12,6 @@
                 </a>
             {% endfor %}
         </div>
-
-
 
         <div style="float: left">
             <ul class="bxslider">

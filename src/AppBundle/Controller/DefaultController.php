@@ -61,10 +61,16 @@ class DefaultController extends Controller
     public function showPublicationAction($idPublication, Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Publications');
-        $publication = $repository->findById($idPublication);
+        $publication = current($repository->findById($idPublication));
 
         return $this->render('default/showpublication.html.twig', array(
-            'publications' => $publication,
+            //'publications' => $publication,
+            'id' => $publication->getId(),
+            'title' => $publication->getIdWritting()->getTitle(),
+            'body' => $publication->getIdWritting()->getBody(),
+            'contributorId' => $publication->getIdContributor()->getId(),
+            'username' => $publication->getIdContributor()->getUsername(),
+            'musa' => current($publication->getIdMusa()->getValues())->getName(),
             'returnPath' => $request->headers->get('referer')
         ));
 

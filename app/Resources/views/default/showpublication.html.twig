@@ -1,11 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block opengraph %}
+    <meta property="og:url" content="{{ url('show-publication', {'idPublication' : id}) }}" />
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:description" content="Inspiración basado en {{ musa }}" />
+    <meta property="og:image" content="{{ absolute_url(asset('/img/shared.jpg')) }}" />
+{% endblock %}
+
 {% block body %}
 <div id="container">
     <div id="container-centered">
     
     <ul class="bxslider">
-    {% for p in publications %}
+
             <li>
                 <span class="back-link">
                     <a href="{{ returnPath }}">
@@ -13,17 +20,17 @@
                     </a>
                 </span>
 
-                <h1>{{ p.idWritting.title }}</h1>
+                <h1>{{ title }}</h1>
                 <div class="writtingWrapper">
-                    <p>{{ p.idWritting.body | raw }}</p>
+                    <p>{{ body | raw }}</p>
                     <p>&nbsp;</p>
                 </div>
 
                 <div class="contributorWrapper">
-                    <h2>Por&nbsp;<a href="{{ path('fos_user_profile_show', {'idContributor' : p.idContributor.id}) }}">{{ p.idContributor.username }}</a></h2>
+                    <h2>Por&nbsp;<a href="{{ path('fos_user_profile_show', {'idContributor' : contributorId}) }}">{{ username }}</a></h2>
                 </div>
             </li>
-    {% endfor %}
+
     </ul>
     </div>
 </div>
@@ -34,7 +41,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     
     <!-- bxSlider Javascript file -->
-    <script src="/assets/bxslider/jquery.bxslider.min.js"></script>
+    <script src="/assets/bxslider/jquery.bxslider.js"></script>
     <script type="application/javascript">
         $(document).ready(function(){
 
@@ -53,17 +60,6 @@
             $writting.css('background-position', 'center');
 
             $(window).trigger('resize');
-
-            $('.delete').click(function(event){
-                var flag = confirm("¿Seguro que quieres borrar este escrito?");
-                if (flag) {
-                    return;
-                } else {
-                    event.preventDefault();
-                }
-                
-            });
-
 
         });
 
