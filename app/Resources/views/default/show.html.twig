@@ -35,12 +35,12 @@
                         <div class="socialWrapper">
 
                              <span class="like" data-shareurl="{{ path('like-publication', {'idPublication' : p.id}) }}">
-                                 Me Gusta
+                                 <img src="{{ asset('/img/black-heart.png') }}">Me Gusta
                              </span>
 
 
                              <span class="share" data-shareurl="{{ url('show-publication', {'idPublication' : p.id}) }}">
-                                 Compartir
+                                 <img src="{{ asset('/img/facebook-logo-on-square.png') }}">Compartir
                              </span>
 
                         </div>
@@ -84,6 +84,7 @@
             var $shareButton = $(".share");
             $shareButton.click(function(){
                 var url = $(this).data('shareurl');
+
                 var y = window.outerHeight / 2;
                 var x = window.outerWidth / 2;
                 window.open("http://www.facebook.com/sharer.php?p[url]="+url, "Compartir Inspiracion", "height=200,width=480, top=" + y + ", left=" + x);
