@@ -15,6 +15,10 @@
                 var $bxsliderContainer = $('.bx-wrapper .bx-viewport');
                 $bxsliderContainer.css('height', $bxsliderContainer.height() + $('.socialWrapper').outerHeight(false));
             });
+            FB.Event.subscribe('edge.create', function(response) {
+                alert('You liked the URL: ' + response);
+
+            });
         };
 
         (function(d, s, id){
@@ -119,7 +123,12 @@
                 var x = window.outerWidth / 2;
                 window.open("http://www.facebook.com/sharer.php?p[url]="+url, "Compartir Inspiracion", "height=200,width=480, top=" + y + ", left=" + x);
             });
-
+/*
+            var $like = $('.like');
+            $like.click(function(){
+                console.log($(this))
+            });
+*/
         });
 
 
