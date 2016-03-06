@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="contributorWrapper">
-                    <h2>Por&nbsp;<a href="{{ path('fos_user_profile_show', {'idContributor' : contributorId}) }}">{{ username }}</a></h2>
+                    <h2><a href="{{ path('fos_user_profile_show', {'idContributor' : contributorId}) }}"><img src="{{ asset('/img/profile.png') }}">{{ username }}</a></h2>
                 </div>
             </li>
 
@@ -54,6 +54,7 @@
             var $bxsliderContainer = $('.bx-wrapper .bx-viewport');
             $bxsliderContainer.css('background-color', '#F4F4F4');
             $bxsliderContainer.css('text-align', 'center');
+            $bxsliderContainer.css('border-radius', '5px');
             
             var $writting = $('.bxslider .writtingWrapper');
             $writting.css('background-repeat', 'no-repeat');

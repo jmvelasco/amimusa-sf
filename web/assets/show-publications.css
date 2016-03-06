@@ -130,7 +130,8 @@ span.back-link {
     display: inline-block;
     float: right;
     cursor: pointer;
-    margin-right: 0.4em;
+    margin-right: 5px;
+    margin-top: -10px;
 }
 
 a.back-link {
@@ -138,6 +139,7 @@ a.back-link {
     font-family: 'Poiret One', cursive;
     font-size: 1.2em;
     margin-right: 5px;
+    margin-top: -10px;
 
 }
 a.back-link:hover {
