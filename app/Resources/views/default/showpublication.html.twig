@@ -29,6 +29,20 @@
                 <div class="contributorWrapper">
                     <h2><a href="{{ path('fos_user_profile_show', {'idContributor' : contributorId}) }}"><img src="{{ asset('/img/profile.png') }}">{{ username }}</a></h2>
                 </div>
+
+                <div class="socialWrapper">
+
+                             <span class="like" data-shareurl="{{ path('like-publication', {'idPublication' : id}) }}">
+                                 <img src="{{ asset('/img/black-heart.png') }}">Me Gusta
+                             </span>
+
+
+                             <span class="share" data-shareurl="{{ url('show-publication', {'idPublication' : id}) }}">
+                                 <img src="{{ asset('/img/facebook-logo-on-square.png') }}">Compartir
+                             </span>
+
+                </div>
+
             </li>
 
     </ul>
@@ -61,6 +75,26 @@
             $writting.css('background-position', 'center');
 
             $(window).trigger('resize');
+
+            var $shareButton = $(".share");
+            $shareButton.click(function(){
+                var url = $(this).data('shareurl');
+
+                var y = window.outerHeight / 2;
+                var x = window.outerWidth / 2;
+                window.open("http://www.facebook.com/sharer.php?p[url]="+url, "Compartir Inspiracion", "height=200,width=480, top=" + y + ", left=" + x);
+            });
+            var $likeButton = $(".like");
+            $likeButton.click(function(){
+                var url = $(this).data('shareurl');
+                var y = window.outerHeight / 2;
+                var x = window.outerWidth / 2;
+                var opener = window.open(url, "Me gusta", "height=200,width=480, top=" + y + ", left=" + x);
+                window.setTimeout(function(){
+                    opener.close();
+                }, 2000);
+
+            });
 
         });
 
