@@ -1,37 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <!-- Load Facebook SDK for JavaScript -->
-    <div id="fb-root"></div>
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '1571698523157547',
-                xfbml      : true,
-                version    : 'v2.5',
-                status: true,
-                cookie: true
-            });
-            FB.Event.subscribe('xfbml.render', function(){
-                //alert('You just liked the page!');
-                var $bxsliderContainer = $('.bx-wrapper .bx-viewport');
-                $bxsliderContainer.css('height', $bxsliderContainer.height() + $('.socialWrapper').outerHeight(false));
-            });
-            FB.Event.subscribe('edge.create', function(response) {
-                alert('You liked the URL: ' + response);
-
-            });
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/es_ES/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-
 
     <div id="container">
 
@@ -65,14 +34,10 @@
 
                         <div class="socialWrapper">
 
-                                <!-- Your like button code -->
-                                <div class="fb-like-box"
-                                     data-href="{{ url('show-publication', {'idPublication' : p.id}) }}"
-                                     data-layout="button"
-                                     data-action="like"
-                                     data-show-faces="true"
-                                     data-share="false">
-                                </div>
+                             <span class="like" data-shareurl="{{ path('like-publication', {'idPublication' : p.id}) }}">
+                                 Me Gusta
+                             </span>
+
 
                              <span class="share" data-shareurl="{{ url('show-publication', {'idPublication' : p.id}) }}">
                                  Compartir
@@ -117,13 +82,22 @@
             $bxsliderContainer.css('text-align', 'center');
 
             var $shareButton = $(".share");
-            $shareButton.css("cursor", "pointer");
-
             $shareButton.click(function(){
                 var url = $(this).data('shareurl');
                 var y = window.outerHeight / 2;
                 var x = window.outerWidth / 2;
                 window.open("http://www.facebook.com/sharer.php?p[url]="+url, "Compartir Inspiracion", "height=200,width=480, top=" + y + ", left=" + x);
+            });
+            var $likeButton = $(".like");
+            $likeButton.click(function(){
+                var url = $(this).data('shareurl');
+                var y = window.outerHeight / 2;
+                var x = window.outerWidth / 2;
+                var opener = window.open(url, "Me gusta", "height=200,width=480, top=" + y + ", left=" + x);
+                window.setTimeout(function(){
+                    opener.close();
+                }, 2000);
+
             });
 /*
             var $like = $('.like');

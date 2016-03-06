@@ -102,14 +102,17 @@
     float: left;
 }
 
+.like,
 .share {
     font-family: 'Poiret One', cursive;
     color: #000;
     text-shadow: -1px -1px 1.4px #d2d2d2;
     padding: 0 1em 0 1em;
     display: inline-block;
+    cursor: pointer;
 }
 
+.like:hover,
 .share:hover {
     color: #fff;
     background-color: #5372C7;

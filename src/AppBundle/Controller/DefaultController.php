@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Publications;
 use AppBundle\Entity\Writtings;
 use AppBundle\Entity\Contributors;
+use AppBundle\Entity\Likes;
 use AppBundle\Entity\States;
 use AppBundle\Entity\PublicationsType;
 
@@ -75,6 +76,32 @@ class DefaultController extends Controller
         ));
 
     }
+
+    /**
+     * @Route("/like/{idPublication}", name="like-publication")
+     */
+    public function likePublicationAction($idPublication, Request $request)
+    {
+        $like = new Likes();
+        $like->setIdPublication($idPublication);
+        $date = new \DateTime('now');
+
+        $like->setDate($date->getTimestamp());
+        $like->setReferer($request->getClientIp());
+
+        $em = $this->getDoctrine()->getManager();
+        $em->getRepository('AppBundle:Likes');
+        $em->persist($like);
+        $em->flush();
+
+        return new Response('
+            <body bgcolor="#2d2d2d">
+            <p style="color:#d2d2d2;font-family: Arial;text-align:center;font-size:2em;">¡Gracias!</p>
+            </body>
+        ');
+
+    }
+
 
     /**
      * @Route("/new", name="new-publication")

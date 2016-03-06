@@ -22,9 +22,9 @@ class Likes
     private $idPublication;
 
     /**
-     * @var \DateTime
+     * @var integer
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      */
@@ -38,7 +38,6 @@ class Likes
      * @ORM\GeneratedValue(strategy="NONE")
      */
     private $referer;
-
 
 
     /**
@@ -112,4 +111,5 @@ class Likes
     {
         return $this->referer;
     }
+
 }
