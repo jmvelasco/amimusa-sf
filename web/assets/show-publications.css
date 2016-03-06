@@ -80,14 +80,14 @@
     color: #2d2d2d;
     /*width: 80%;*/
     width: 940px;
-    margin-left: 10%;
+    /*margin-left: 10%;*/
 }
 .bx-wrapper .bx-viewport {
     background: rgba(255,255,255,0.75) !important;
     /*border: 0.1em solid #969696 !important;*/
     border: 0 none !important;
     box-shadow: 0 0 0 0 !important;
-    border-radius: 5px;
+    border-radius: 0 5px 5px 5px;
 }
 
 .bx-wrapper .contributorWrapper {
@@ -95,6 +95,10 @@
     position: absolute;
     bottom: 0.4em;
     left: 51em;
+}
+
+.bx-wrapper .socialWrapper {
+    display: inline-block;
 }
 
 span.back-link {

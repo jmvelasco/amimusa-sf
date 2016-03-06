@@ -354,6 +354,9 @@
 					}
 				}
 			}
+			//console.log(children);
+			//console.log(children.children());
+
 			// if "vertical" mode, calculate the sum of the heights of the children
 			if(slider.settings.mode == 'vertical'){
 				children.each(function(index) {
@@ -365,8 +368,16 @@
 				}
 			// if not "vertical" mode, calculate the max height of the children
 			}else{
+				//children = children.children();
 				height = Math.max.apply(Math, children.map(function(){
-					return $(this).outerHeight(false);
+					console.log($(this).children());
+					var h = 0;
+					$(this).children().each(function(){
+						h += $(this).outerHeight(false)
+					});
+
+					//return $(this).outerHeight(false);
+					return h;
 				}).get());
 			}
 

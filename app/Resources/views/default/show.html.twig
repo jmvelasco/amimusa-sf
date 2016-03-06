@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block opengraph %}
+    <meta property="og:title" content="Amimusa: El Espacio de las musas" />
+    <meta property="og:description" content="El espacio donde compartir tus inspiraciones" />
+    <meta property="og:image" content="/img/background.jpg" />
+
+{% endblock %}
 
 {% block body %}
 <div id="container">
@@ -33,6 +39,11 @@
                         <div class="contributorWrapper">
                             <h2>Por&nbsp;<a href="{{ path('fos_user_profile_show', {'idContributor' : p.idContributor.id}) }}">{{ p.idContributor.username }}</a></h2>
                         </div>
+
+                        <div class="socialWrapper">
+                            <span>Me gusta</span> | <a href="http://www.facebook.com/sharer.php?s=100&p[url]={{ url('show-publication', {'idPublication' : p.id}) }}&p[title]={{ p.idWritting.title }}&p[summary]=Inspiración basado en {{ musa }}&p[images][0]={{ absolute_url(asset('/img/shared.jpg')) }}">Compartir</a>
+                        </div>
+
                     </li>
             {% endfor %}
             </ul>
@@ -52,14 +63,14 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     
     <!-- bxSlider Javascript file -->
-    <script src="/assets/bxslider/jquery.bxslider.min.js"></script>
+    <script src="/assets/bxslider/jquery.bxslider.js"></script>
     <script type="application/javascript">
         $(document).ready(function(){
             var idx;
             $('.bxslider').bxSlider({
                 pager:true,
                 controls: false,
-                //adaptiveHeight: true,
+                adaptiveHeight: true,
                 slideWidth: 940,
                 infiniteLoop: false,
                 hideControlOnEnd: true,
