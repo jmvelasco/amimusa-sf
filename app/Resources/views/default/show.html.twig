@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="socialWrapper">
-                            <span>Me gusta</span> | <a href="http://www.facebook.com/sharer.php?s=100&p[url]={{ url('show-publication', {'idPublication' : p.id}) }}&p[title]={{ p.idWritting.title }}&p[summary]=Inspiración basado en {{ musa }}&p[images][0]={{ absolute_url(asset('/img/shared.jpg')) }}">Compartir</a>
+                            <span>Me gusta</span> | <a href="http://www.facebook.com/sharer.php?p[url]={{ url('show-publication', {'idPublication' : p.id}) }}">Compartir</a>
                         </div>
 
                     </li>
