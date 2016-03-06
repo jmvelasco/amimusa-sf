@@ -8,7 +8,9 @@
             FB.init({
                 appId      : '1571698523157547',
                 xfbml      : true,
-                version    : 'v2.5'
+                version    : 'v2.5',
+                status: true,
+                cookie: true
             });
             FB.Event.subscribe('xfbml.render', function(){
                 //alert('You just liked the page!');
@@ -64,7 +66,7 @@
                         <div class="socialWrapper">
 
                                 <!-- Your like button code -->
-                                <div class="fb-like"
+                                <div class="fb-like-box"
                                      data-href="{{ url('show-publication', {'idPublication' : p.id}) }}"
                                      data-layout="button"
                                      data-action="like"
