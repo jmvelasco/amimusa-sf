@@ -370,7 +370,7 @@
 			}else{
 				//children = children.children();
 				height = Math.max.apply(Math, children.map(function(){
-					console.log($(this).children());
+					//console.log($(this).children());
 					var h = 0;
 					$(this).children().each(function(){
 						h += $(this).outerHeight(false)

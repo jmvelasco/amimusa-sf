@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="socialWrapper">
-                            <span>Me gusta</span> | <a href="http://www.facebook.com/sharer.php?p[url]={{ url('show-publication', {'idPublication' : p.id}) }}">Compartir</a>
+                            <span>Me gusta</span> | <span class="share" data-shareurl="{{ url('show-publication', {'idPublication' : p.id}) }}">Compartir</span>
                         </div>
 
                     </li>
@@ -57,7 +57,6 @@
     <script src="/assets/bxslider/jquery.bxslider.js"></script>
     <script type="application/javascript">
         $(document).ready(function(){
-            var idx;
             $('.bxslider').bxSlider({
                 pager:true,
                 controls: false,
@@ -73,6 +72,17 @@
 
             var $bxsliderContainer = $('.bx-wrapper .bx-viewport');
             $bxsliderContainer.css('text-align', 'center');
+
+            var $shareButton = $(".share");
+            $shareButton.css("cursor", "pointer");
+
+            $shareButton.click(function(){
+                var url = $(this).data('shareurl');
+                var y = window.outerHeight / 2;
+                var x = window.outerWidth / 2;
+                window.open("http://www.facebook.com/sharer.php?p[url]="+url, "Compartir Inspiracion", "height=200,width=480, top=" + y + ", left=" + x);
+
+            });
 
         });
 
