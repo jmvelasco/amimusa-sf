@@ -33,6 +33,9 @@ header a {
     border-radius: 2.5em;
     /*text-shadow: -1px -1px 1.4px #2d2d2d;*/
 }
+header a:hover {
+    background-color: #4d85c7;
+}
 #login {
     font-family: 'Poiret One', cursive;
     font-weight: bold;
