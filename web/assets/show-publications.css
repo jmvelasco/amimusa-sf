@@ -98,7 +98,8 @@
 }
 
 .bx-wrapper .socialWrapper {
-    display: inline-block;
+    margin-left: 1em;
+    float: left;
 }
 
 span.back-link {

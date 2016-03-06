@@ -3,14 +3,29 @@
 {% block body %}
     <!-- Load Facebook SDK for JavaScript -->
     <div id="fb-root"></div>
-    <script>(function(d, s, id) {
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '1571698523157547',
+                xfbml      : true,
+                version    : 'v2.5'
+            });
+            FB.Event.subscribe('xfbml.render', function(){
+                //alert('You just liked the page!');
+                var $bxsliderContainer = $('.bx-wrapper .bx-viewport');
+                $bxsliderContainer.css('height', $bxsliderContainer.height() + $('.socialWrapper').outerHeight(false));
+            });
+        };
+
+        (function(d, s, id){
             var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
+            if (d.getElementById(id)) {return;}
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+            js.src = "//connect.facebook.net/es_ES/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
+
 
     <div id="container">
 
@@ -47,11 +62,14 @@
                                 <!-- Your like button code -->
                                 <div class="fb-like"
                                      data-href="{{ url('show-publication', {'idPublication' : p.id}) }}"
-                                     data-layout="standard"
+                                     data-layout="button"
                                      data-action="like"
-                                     data-show-faces="true">
+                                     data-show-faces="true"
+                                     data-share="true">
                                 </div>
+                            {#
                              | <span class="share" data-shareurl="{{ url('show-publication', {'idPublication' : p.id}) }}">Compartir</span>
+                             #}
                         </div>
 
                     </li>
@@ -84,25 +102,11 @@
                 slideWidth: 940,
                 infiniteLoop: false,
                 hideControlOnEnd: true,
-                pagerCustom: '.titlesWrapper',
-                //nextSelector: '#next',
-                //prevSelector: '#prev'
-
+                pagerCustom: '.titlesWrapper'
             });
 
             var $bxsliderContainer = $('.bx-wrapper .bx-viewport');
             $bxsliderContainer.css('text-align', 'center');
-
-            var $shareButton = $(".share");
-            $shareButton.css("cursor", "pointer");
-
-            $shareButton.click(function(){
-                var url = $(this).data('shareurl');
-                var y = window.outerHeight / 2;
-                var x = window.outerWidth / 2;
-                window.open("http://www.facebook.com/sharer.php?p[url]="+url, "Compartir Inspiracion", "height=200,width=480, top=" + y + ", left=" + x);
-
-            });
 
         });
 
