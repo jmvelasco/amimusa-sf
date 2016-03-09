@@ -8,7 +8,7 @@
         <div class="titlesWrapper">
             <h2 class="musa-title">Amimusa {{ musa }}</h2>
             {% for wp in publications %}
-                <a data-slide-index="{{ loop.index-1 }}" href="" class="titles">
+                <a data-publicationid="{{ wp.id }}" data-slide-index="{{ loop.index-1 }}" href="" class="titles">
                     {{ wp.idWritting.title }}
                 </a>
             {% endfor %}
@@ -29,22 +29,26 @@
                         </div>
 
                         <div class="contributorWrapper">
-                            <h2><a href="{{ path('fos_user_profile_show', {'idContributor' : p.idContributor.id}) }}"><img src="{{ asset('/img/profile.png') }}">{{ p.idContributor.username }}</a></h2>
+                            <h2>
+                                <a href="{{ path('fos_user_profile_show', {'idContributor' : p.idContributor.id}) }}">
+                                    <img src="{{ asset('/img/profile.png') }}">{{ p.idContributor.username }}
+                                </a>
+                            </h2>
                         </div>
 
                         <div class="socialWrapper">
-
-                             <span class="like" data-shareurl="{{ path('like-publication', {'idPublication' : p.id}) }}">
+                             <span class="like" data-shareurl="{{ path('like-publication', {'idPublication' : p.id}) }}" data-idpublication="{{ p.id }}">
                                  <img src="{{ asset('/img/black-heart.png') }}">Me Gusta
                              </span>
-
-
                              <span class="share" data-shareurl="{{ url('show-publication', {'idPublication' : p.id}) }}">
                                  <img src="{{ asset('/img/facebook-logo-on-square.png') }}">Compartir
                              </span>
-
                         </div>
-
+                        {% if likes[p.id] == 1 %}
+                            <p class="likes">Ha gustado <span id="likes_{{ p.id }}">{{ likes[p.id] }}</span> vez</p>
+                        {% elseif  likes[p.id] > 1%}
+                            <p class="likes">Ha gustado <span id="likes_{{ p.id }}">{{ likes[p.id] }}</span> veces</p>
+                        {% endif %}
                     </li>
             {% endfor %}
             </ul>
@@ -91,13 +95,24 @@
             });
             var $likeButton = $(".like");
             $likeButton.click(function(){
+                var $likesCounter = $("#likes_"+$(this).data('idpublication'));
+                var nLikes = parseInt($likesCounter.text());
+                $likesCounter.text(++nLikes);
                 var url = $(this).data('shareurl');
                 var y = window.outerHeight / 2;
                 var x = window.outerWidth / 2;
                 var opener = window.open(url, "Me gusta", "height=200,width=480, top=" + y + ", left=" + x);
+                var obj = $(this);
                 window.setTimeout(function(){
                     opener.close();
+                    obj.unbind();
                 }, 2000);
+
+            });
+
+            var $visited = $(".titles");
+            $visited.click(function(){
+                console.log($(this).data('publicationid'));
 
             });
 /*

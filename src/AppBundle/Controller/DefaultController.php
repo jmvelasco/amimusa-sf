@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Response;
 
+use Doctrine\ORM\Query\ResultSetMapping;
+
 use AppBundle\Entity\Publications;
 use AppBundle\Entity\Writtings;
 use AppBundle\Entity\Contributors;
@@ -44,11 +46,20 @@ class DefaultController extends Controller
      */
     public function showAction($idMusa, Request $request)
     {
-        $repository = $this->getDoctrine()->getRepository('AppBundle:Musas');
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Musas');
         $publicationsMusas = $repository->find($idMusa);
+
+        $LikesRepository = $em->getRepository('AppBundle:Likes');
+        $likes = array();
+        foreach ($publicationsMusas->getIdPublication()->getValues() as $k => $v) {
+            $publicationId = $v->getId();
+            $likes[$publicationId] = count($LikesRepository->findByIdPublication($publicationId));
+        }
 
         return $this->render('default/show.html.twig', array(
             'publications'  => $publicationsMusas->getIdPublication()->getValues(),
+            'likes'         => $likes,
             'musa'          => $publicationsMusas->getName(),
             'returnPath' => $request->headers->get('referer')
         ));
@@ -64,6 +75,10 @@ class DefaultController extends Controller
         $repository = $this->getDoctrine()->getRepository('AppBundle:Publications');
         $publication = current($repository->findById($idPublication));
 
+        $referer = $request->headers->get('referer');
+
+        $returnPath = (strpos($referer, 'facebook') !== false) ? $this->generateUrl('homepage') : $referer;
+
         return $this->render('default/showpublication.html.twig', array(
             //'publications' => $publication,
             'id' => $publication->getId(),
@@ -72,7 +87,7 @@ class DefaultController extends Controller
             'contributorId' => $publication->getIdContributor()->getId(),
             'username' => $publication->getIdContributor()->getUsername(),
             'musa' => current($publication->getIdMusa()->getValues())->getName(),
-            'returnPath' => $request->headers->get('referer')
+            'returnPath' => $returnPath
         ));
 
     }

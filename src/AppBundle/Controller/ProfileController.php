@@ -48,11 +48,18 @@ class ProfileController extends BaseController
             ->getQuery();
 
         $publications = $query->getResult();
-        //var_dump($publications);exit;
+
+        $LikesRepository = $em->getRepository('AppBundle:Likes');
+        $likes = array();
+        foreach ($publications as $publication) {
+            $publicationId = $publication->getId();
+            $likes[$publicationId] = count($LikesRepository->findByIdPublication($publicationId));
+        }
 
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
             'publications' => $publications,
+            'likes' => $likes,
             'editPermision' => $editPermision
         ));
     }

@@ -35,6 +35,9 @@
                     <img src="/img/book-over.png" alt="Ver">
                 </a>
             </td>
+            <td>
+                Ha gustado <em>{{ likes[p.id] }}</em> veces
+            </td>
             {% else %}
             <td>
                 <a href="{{ path('show-publication', {'idPublication' : p.id}) }}" title="Ver">
