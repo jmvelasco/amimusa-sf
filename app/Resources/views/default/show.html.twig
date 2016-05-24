@@ -13,6 +13,10 @@
                 </a>
             {% endfor %}
         </div>
+        <div id="mobile-menu">
+            &#9776; Más&nbsp;
+        </div>
+        <br>
 
         <div style="float: left">
             <ul class="bxslider">
@@ -112,7 +116,9 @@
 
             var $visited = $(".titles");
             $visited.click(function(){
+                var titlesWrapper = $(".titlesWrapper");
                 console.log($(this).data('publicationid'));
+                titlesWrapper.hide('slow');
 
             });
 /*
@@ -121,6 +127,17 @@
                 console.log($(this))
             });
 */
+            var $mobileMenu = $("#mobile-menu");
+            $mobileMenu.click(function(){
+                var titlesWrapper = $(".titlesWrapper");
+                var isClose = (titlesWrapper.css('display') == 'none');
+                if (isClose) {
+                    titlesWrapper.show('slow');
+                } else {
+                    titlesWrapper.hide('slow');
+                }
+
+            });
         });
 
 

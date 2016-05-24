@@ -69,3 +69,57 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
 }
+
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+
+    #formWrapper label {
+        font-size: 1em;
+    }
+
+    #formWrapper p {
+        font-size: 0.7em;
+    }
+
+    #container {
+        width: 320px;
+    }
+
+    #musas h4 {
+        font-size: 0.8em;
+        margin: 0.2em;
+        float: left;
+    }
+
+    #musas {
+        height: 150px;
+    }
+
+    #musas-list h4 {
+        font-size: 0.8em;
+        margin: 0.2em;
+        float: left;
+    }
+
+}
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 768px) {
+
+    #formWrapper label {
+        font-size: 1em !important;
+    }
+
+    #container {
+        width: 320px;
+    }
+
+    /*
+    .bx-wrapper .bx-viewport {
+        border-radius: 5px;
+    }
+    */
+}
