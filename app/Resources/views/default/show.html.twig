@@ -76,6 +76,13 @@
     <script src="/assets/bxslider/jquery.bxslider.js"></script>
     <script type="application/javascript">
         $(document).ready(function(){
+
+            if (!window.mobilecheck()) {
+                var fbSharer = 'http://www.facebook.com/sharer.php';
+            } else {
+                var fbSharer = 'http://m.facebook.com/sharer.php';
+            }
+
             $('.bxslider').bxSlider({
                 pager:true,
                 controls: false,
@@ -95,7 +102,7 @@
 
                 var y = window.outerHeight / 2;
                 var x = window.outerWidth / 2;
-                window.open("http://www.facebook.com/sharer.php?m2w&p[url]="+url, "Compartir Inspiracion", "height=200,width=480, top=" + y + ", left=" + x);
+                window.open(fbSharer + "?p[url]="+url, "Compartir Inspiracion", "height=200,width=480, top=" + y + ", left=" + x);
             });
             var $likeButton = $(".like");
             $likeButton.click(function(){
