@@ -60,9 +60,9 @@
         $(document).ready(function(){
             
             if (!window.mobilecheck()) {
-                var fbSharer = 'http://www.facebook.com/sharer.php';
+                var fbSharer = 'http://www.facebook.com/sharer.php?p[url]=';
             } else {
-                var fbSharer = 'http://m.facebook.com/sharer.php';
+                var fbSharer = 'http://m.facebook.com/sharer.php?u=';
             }
 
             $('.bxslider').bxSlider({
@@ -88,7 +88,7 @@
 
                 var y = window.outerHeight / 2;
                 var x = window.outerWidth / 2;
-                window.open(fbSharer + "?p[url]="+url, "Compartir Inspiracion", "height=200,width=480, top=" + y + ", left=" + x);
+                window.open(fbSharer + url, "Compartir Inspiracion", "height=200,width=480, top=" + y + ", left=" + x);
             });
             var $likeButton = $(".like");
             $likeButton.click(function(){
