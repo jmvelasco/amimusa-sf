@@ -98,7 +98,7 @@
 
             var $shareButton = $(".share");
             $shareButton.click(function(){
-                var url = $(this).data('shareurl');
+                var url = encodeURI($(this).data('shareurl'));
 
                 var y = window.outerHeight / 2;
                 var x = window.outerWidth / 2;
@@ -109,7 +109,7 @@
                 var $likesCounter = $("#likes_"+$(this).data('idpublication'));
                 var nLikes = parseInt($likesCounter.text());
                 $likesCounter.text(++nLikes);
-                var url = $(this).data('shareurl');
+                var url = encodeURI($(this).data('shareurl'));
                 var y = window.outerHeight / 2;
                 var x = window.outerWidth / 2;
                 var opener = window.open(url, "Me gusta", "height=200,width=480, top=" + y + ", left=" + x);
@@ -140,8 +140,10 @@
                 var isClose = (titlesWrapper.css('display') == 'none');
                 if (isClose) {
                     titlesWrapper.show('slow');
+                    //$mobileMenu.css('margin-left', '0');
                 } else {
                     titlesWrapper.hide('slow');
+                    //$mobileMenu.css('margin-left', '-0.2em');
                 }
 
             });
