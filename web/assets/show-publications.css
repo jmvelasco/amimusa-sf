@@ -11,6 +11,7 @@
     margin-right: -50%;
     transform: translate(-50%, -250px);
     position: absolute;
+    z-index: 100;
 }
 .bx-wrapper {
     margin: 0 !important;
@@ -50,7 +51,11 @@
     background: rgba(255,255,255,0.75) !important;
     padding: 1em;
     display: none;
-    border-radius: 25px 0 0 0;
+    /*border-radius: 25px 0 0 0;*/
+    margin-left: -5px;
+    position: absolute;
+    top: 32px;
+    z-index: 1000;
 }
 .titlesWrapper a {
     text-decoration: none;
