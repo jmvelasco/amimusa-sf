@@ -45,7 +45,7 @@
                                  <img src="{{ asset('/img/black-heart.png') }}">Me Gusta
                              </span>
                              <span class="share" data-shareurl="{{ url('show-publication', {'idPublication' : p.id}) }}">
-                                 <img src="{{ asset('/img/facebook-logo-on-square.png') }}">Kompartir
+                                 <img src="{{ asset('/img/facebook-logo-on-square.png') }}">Compartir
                              </span>
                         </div>
                         {% if likes[p.id] == 1 %}
@@ -81,7 +81,7 @@
                 var fbSharer = 'http://www.facebook.com/sharer.php?p[url]=';
             } else {
 
-                var fbSharer = 'https://www.facebook.com/dialog/feed?app_id=1571698523157547&display=popup&redirect_uri=https://www.amimusa.net&link=';
+                var fbSharer = 'https://www.facebook.com/dialog/share?app_id=1571698523157547&display=popup&redirect_uri=http://www.amimusa.net&href=';
 
 
                 //'http://m.facebook.com/sharer.php?u=';
