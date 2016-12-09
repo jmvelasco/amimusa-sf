@@ -5,7 +5,6 @@
     position: relative;
 }
 #container-centered {
-    /*top: 50%;*/
     top: 250px;
     left: 50%;
     margin-right: -50%;
@@ -44,15 +43,10 @@
 }
 .titlesWrapper {
     float: left;
-    /*margin-top: 40px;
-    margin-bottom: 20px;
-    margin-right: 5px;*/
     device-width: 280px;
     background: rgba(255,255,255,0.75) !important;
     padding: 1em;
     display: none;
-    /*border-radius: 25px 0 0 0;*/
-    /*margin-left: -5px;*/
     position: absolute;
     top: 32px;
     z-index: 1000;
@@ -83,9 +77,6 @@
     font-family: 'Special Elite', cursive;
     font-size: 1.2em;
     color: #2d2d2d;
-    /*device-width: 80%;*/
-    /*device-width: 940px;*/
-    /*margin-left: 10%;*/
 }
 
 .bxslider .writtingWrapper p {
@@ -94,17 +85,14 @@
 
 .bx-wrapper .bx-viewport {
     background: rgba(255,255,255,0.75) !important;
-    /*border: 0.1em solid #969696 !important;*/
     border: 0 none !important;
     box-shadow: 0 0 0 0 !important;
     border-radius: 5px 5px 5px 5px;
-
 }
 
 .bx-wrapper .contributorWrapper {
     border-top: 1px solid #2d2d2d;
     position: absolute;
-    /*bottom: 0.4em;*/
     bottom: -20px;
     right: 2em;
 }
@@ -198,6 +186,7 @@ and (max-device-width : 480px) {
 
     #container {
         min-height: 480px;
+        device-width: 320px;
     }
 
     span.back-link {
@@ -250,11 +239,7 @@ and (max-device-width : 480px) {
     .fos_user_user_show {
         height: 260px; 
     }
-    /*
-    .bx-wrapper .bx-viewport {
-        border-radius: 5px;
-    }
-    */
+
 }
 
 @media only screen
@@ -262,12 +247,17 @@ and (min-device-width : 320px)
 and (max-device-width : 768px) {
 
     #container {
-        min-height: 480px;
+        min-height: 460px;
+        device-width: 320px;
     }
 
     span.back-link {
         left: 90%;
         top: -1%;
+    }
+
+    .bx-wrapper .bx-viewport {
+      width: 340px !important;
     }
 
     .bx-wrapper {
@@ -314,10 +304,6 @@ and (max-device-width : 768px) {
         font-size: 1em !important;
     }
 
-    #container {
-        device-width: 320px;
-    }
-
     .fos_user_user_show {
         height: 260px; 
     }
@@ -329,11 +315,35 @@ and (max-device-width : 768px) {
 }
 
 @media only screen
+and (min-device-width : 320px) and (max-device-width : 768px) 
+and (orientation: landscape) {
+    #container {
+        min-height: 180px !important;
+    }
+    .fos_user_user_show {
+        height: 110px !important; 
+    }
+    #wrapper {
+        height: 190px !important;
+    }
+    .bxslider .writtingWrapper {
+        max-height: 145px !important;
+    }
+    .bxslider .writtingWrapper p {
+        max-height: 90px !important;
+    }
+
+    .bx-wrapper .bx-viewport {
+      width: 620px !important;
+    }
+}
+
+@media only screen
 and (min-device-width : 768px)
 and (max-device-width : 1280px) {
 
     #container {
-        min-height: 380px !important;;
+        min-height: 380px !important;
     }
 
     .bxslider .writtingWrapper p {
