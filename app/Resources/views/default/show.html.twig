@@ -76,13 +76,13 @@
     <script type="application/javascript">
         $(document).ready(function(){
 
-            var fbSharer = 'https://www.facebook.com/dialog/share?app_id=1571698523157547&display=popup&redirect_uri=http://www.amimusa.net&href=';
+            var fbSharer        = 'https://www.facebook.com/dialog/share?app_id=1571698523157547&display=popup&redirect_uri=http://www.amimusa.net&href=';
 
             $('.bxslider').bxSlider({
                 pager:true,
                 controls: false,
                 adaptiveHeight: true,
-                slideWidth: $(window).width(),
+                slideWidth: 1280,
                 infiniteLoop: false,
                 hideControlOnEnd: true,
                 pagerCustom: '.titlesWrapper'
@@ -99,6 +99,7 @@
                 var x = window.outerWidth / 2;
                 window.open(fbSharer + url, "Compartir Inspiracion", "height=200,width=480, top=" + y + ", left=" + x);
             });
+
             var $likeButton = $(".like");
             $likeButton.click(function(){
                 var $likesCounter = $("#likes_"+$(this).data('idpublication'));

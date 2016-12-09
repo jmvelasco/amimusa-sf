@@ -7,7 +7,8 @@
     <h1>Contribuciones de {{ user.username }}</h1>
 {% endif %}
 
-<div class="fos_user_user_show" style="height: 330px; overflow-y: auto; overflow-x: hidden">
+<div class="fos_user_user_show">
+
     <table>
         <thead>
             <tr>
@@ -50,9 +51,7 @@
     </table>
 </div>
 
-<div style="margin-top: 1em;padding-bottom: 1em;">
-    <a id="_back" href="{{ path('homepage') }}">Volver</a>
-</div>
+
 
 {% block javascripts %}
     <!-- jQuery library (served from Google) -->
@@ -89,18 +88,9 @@
 
 {% block stylesheets %}
 <style type="text/css">
-    #_back {
-        font-family: 'Poiret One', cursive;
-        border: 1px solid #d2d2d2;
-        color: #d2d2d2;
-        background-color: rgba(3, 85, 176, 0.8);
-        font-weight: bold;
-        font-size: 1.2em;
+    .fos_user_user_show {
+        overflow-y: auto; 
+        overflow-x: hidden;
     }
-    a#_back {
-        text-decoration: none;
-        padding: 0.2em 0.6em 0.2em 0.6em;
-    }
-
 </style>
 {% endblock %}

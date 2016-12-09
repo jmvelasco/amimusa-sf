@@ -97,14 +97,15 @@
     /*border: 0.1em solid #969696 !important;*/
     border: 0 none !important;
     box-shadow: 0 0 0 0 !important;
-    border-radius: 0 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
 
 }
 
 .bx-wrapper .contributorWrapper {
     border-top: 1px solid #2d2d2d;
     position: absolute;
-    bottom: 0.4em;
+    /*bottom: 0.4em;*/
+    bottom: -20px;
     right: 2em;
 }
 
@@ -185,7 +186,7 @@ a.back-link:hover {
     font-size: 1.6em;
     background: rgba(255,255,255,0.75);
     display: inline-block;
-    margin-left: -0.2em;
+    /*margin-left: -0.2em;*/
     cursor: pointer;
 
 
@@ -196,6 +197,10 @@ a.back-link:hover {
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 480px) {
+
+    #container {
+        min-height: 480px;
+    }
 
     span.back-link {
         left: 90%;
@@ -254,6 +259,10 @@ and (max-device-width : 480px) {
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 768px) {
+
+    #container {
+        min-height: 480px;
+    }
 
     span.back-link {
         left: 90%;
@@ -319,23 +328,45 @@ and (max-device-width : 768px) {
 and (min-device-width : 768px)
 and (max-device-width : 1280px) {
 
+    #container {
+        min-height: 380px !important;;
+    }
+
     .bxslider .writtingWrapper p {
         max-height: 230px;
     }
-
+/*
     .bx-wrapper {
         max-device-width: 1080px !important;
     }
+    */
+    .fos_user_user_show {
+        height: 260px; 
+    }
+
+
 }
 
 @media only screen
 and (min-device-width : 1281px)
 and (max-device-width : 1920px) {
 
+    #container {
+        min-height: 420px;
+    }
+
     .bxslider .writtingWrapper p {
         max-height: 520px;
     }
+    /*
     .bx-wrapper {
         max-device-width: 1280px !important;
     }
+    */
+    .fos_user_user_show {
+        height: 640px; 
+    }
+
+
+
 }

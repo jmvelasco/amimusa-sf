@@ -3,6 +3,11 @@
 {% block body %}
     <div id="container">
         {% block fos_user_content %}
+
+    <a href="{{ path('homepage') }}" class="back-link">
+        <img src="/img/cancel2.png" alt="[X]">
+    </a>
+
             <div id="wrapper">
                 {% include "FOSUserBundle:Profile:show_content.html.twig" %}
             </div>
@@ -20,11 +25,14 @@
     <!-- Bootstrap
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     -->
+    <link href="/assets/show-publications.css" rel="stylesheet" />
     <style type="text/css">
         #container {
             margin: auto;
             width: 100%;
             background-color: rgba(255,255,255,0.6);
+            padding-bottom: 20px;
+            border-radius: 5px;
         }
         #wrapper {
             width: 90%;
@@ -51,7 +59,16 @@
             font-size: 1em;
         }
 
+        a.back-link {
+          margin-top: 10px;
+        }
+
     </style>
+
+    
+
 {% endblock %}
+
+
 
 
