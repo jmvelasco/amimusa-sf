@@ -6,19 +6,22 @@
 
     <div id="container-centered">
         <div class="titlesWrapper">
+            <div class="titlesWrapperContent">            
             <h2 class="musa-title">Amimusa {{ musa }}</h2>
             {% for wp in publications %}
                 <a data-publicationid="{{ wp.id }}" data-slide-index="{{ loop.index-1 }}" href="" class="titles">
                     {{ wp.idWritting.title }}
                 </a>
             {% endfor %}
+            </div>
         </div>
         <div id="mobile-menu">
             &#9776; Índice&nbsp;
         </div>
         <br>
-
+{#
         <div style="float: left">
+#}
             <ul class="bxslider">
             {% for p in publications %}
                     <li>
@@ -41,10 +44,10 @@
 
                         <div class="socialWrapper">
                              <span class="like" data-shareurl="{{ path('like-publication', {'idPublication' : p.id}) }}" data-idpublication="{{ p.id }}">
-                                 <img src="{{ asset('/img/black-heart.png') }}">Me Gusta
+                                 <img src="{{ asset('/img/black-heart.png') }}"><span class="hiddenText">Me Gusta</span>
                              </span>
                              <span class="share" data-shareurl="{{ url('show-publication', {'idPublication' : p.id}) }}">
-                                 <img src="{{ asset('/img/facebook-logo-on-square.png') }}">Compartir
+                                 <img src="{{ asset('/img/facebook-logo-on-square.png') }}"><span class="hiddenText">Compartir</span>
                              </span>
                         </div>
                         {% if likes[p.id] == 1 %}
@@ -58,9 +61,9 @@
             {#
             <div id="prev"></div>
             <div id="next"></div>
-            #}
+            
         </div>
-
+#}
     </div>
 
 </div>
