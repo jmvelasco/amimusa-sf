@@ -1,15 +1,19 @@
 #container {
+    
     margin: auto auto;
     device-width: 100%;
     min-height: 480px;
+    
     position: relative;
 }
 #container-centered {
+    
     top: 250px;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -250px);
     position: absolute;
+    
     z-index: 100;
 }
 .bx-wrapper {
@@ -176,211 +180,4 @@ a.back-link:hover {
     display: inline-block;
     /*margin-left: -0.2em;*/
     cursor: pointer;
-}
-
-
-
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 480px) {
-
-    #container {
-        min-height: 480px;
-        device-width: 320px;
-    }
-
-    span.back-link {
-        left: 90%;
-        top: -1%;
-    }
-
-    .bx-wrapper .musasWrapper {
-        position: absolute;
-        top: -7%;
-        left: 0.1em;
-    }
-    .bx-wrapper {
-        font-size: 0.9em;
-        device-width: 360px;
-    }
-
-    .titlesWrapper {
-        display: none;
-        font-size: 0.8em;
-        position: absolute;
-        top: 32px;
-        left: -5px;
-        z-index: 100;
-        background: rgba(255, 255, 255, 0.9) none repeat scroll 0 0 !important;
-        border-radius: 0;
-        device-width: 100%;
-    }
-    .bxslider .writtingWrapper {
-        device-width: 100%;
-        max-height: 330px;
-    }
-
-    .bxslider .writtingWrapper p {
-        max-height: 260px;
-    }
-
-    .socialWrapper img {
-        device-width: 12px;
-    }
-
-    .contributorWrapper img {
-        device-width: 20px;
-    }
-
-    #formWrapper label {
-        font-size: 1em;
-    }
-
-    .fos_user_user_show {
-        height: 260px; 
-    }
-
-}
-
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 768px) {
-
-    #container {
-        min-height: 460px;
-        device-width: 320px;
-    }
-
-    span.back-link {
-        left: 90%;
-        top: -1%;
-    }
-
-    .bx-wrapper .bx-viewport {
-      width: 340px !important;
-    }
-
-    .bx-wrapper {
-        font-size: 0.8em;
-        device-width: 320px;
-    }
-
-    .titlesWrapper {
-        display: none;
-        font-size: 0.8em;
-        position: absolute;
-        top: 32px;
-        left: -5px;
-        z-index: 100;
-        background: rgba(255, 255, 255, 0.9) none repeat scroll 0 0 !important;
-        border-radius: 0;
-
-    }
-    .bxslider .writtingWrapper {
-        device-width: 100%;
-    }
-    .bxslider .writtingWrapper p {
-        max-height: 260px;
-    }
-
-    .bx-wrapper .contributorWrapper {
-        position: static;
-        float: right;
-        border-top: 1px solid #2d2d2d;
-        bottom: 0;
-        left: 0;
-        margin-right: 0.3em;
-    }
-
-    .socialWrapper img {
-        device-width: 12px;
-    }
-
-    .contributorWrapper img {
-        device-width: 20px;
-    }
-
-    #formWrapper label {
-        font-size: 1em !important;
-    }
-
-    .fos_user_user_show {
-        height: 260px; 
-    }
-    /*
-    .bx-wrapper .bx-viewport {
-        border-radius: 5px;
-    }
-    */
-}
-
-@media only screen
-and (min-device-width : 320px) and (max-device-width : 768px) 
-and (orientation: landscape) {
-    #container {
-        min-height: 180px !important;
-    }
-    .fos_user_user_show {
-        height: 110px !important; 
-    }
-    #wrapper {
-        height: 190px !important;
-    }
-    .bxslider .writtingWrapper {
-        max-height: 145px !important;
-    }
-    .bxslider .writtingWrapper p {
-        max-height: 90px !important;
-    }
-
-    .bx-wrapper .bx-viewport {
-      width: 620px !important;
-    }
-}
-
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1280px) {
-
-    #container {
-        min-height: 380px !important;
-    }
-
-    .bxslider .writtingWrapper p {
-        max-height: 230px;
-    }
-/*
-    .bx-wrapper {
-        max-device-width: 1080px !important;
-    }
-    */
-    .fos_user_user_show {
-        height: 260px; 
-    }
-
-
-}
-
-@media only screen
-and (min-device-width : 1281px)
-and (max-device-width : 1920px) {
-
-    #container {
-        min-height: 420px;
-    }
-
-    .bxslider .writtingWrapper p {
-        max-height: 520px;
-    }
-    /*
-    .bx-wrapper {
-        max-device-width: 1280px !important;
-    }
-    */
-    .fos_user_user_show {
-        height: 640px; 
-    }
-
-
-
 }
