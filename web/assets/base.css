@@ -9,7 +9,9 @@ body {
     background-repeat: no-repeat;
     background-color: #2d2d2d;
     font-size: 1em;
+    overflow: hidden;
 }
+
 header {
     margin: 0 0 2em 0;
     width: 100%;
@@ -95,9 +97,11 @@ header a:hover {
 #_submit:hover {
     text-decoration: underline;
 }
+
+
 @media only screen
-and (min-device-width : 320px)
-and (max-device-width : 480px) {
+and (min-width : 320px)
+and (max-width : 480px) {
 
     header {
         margin: 0 0 0.4em 0;
@@ -133,8 +137,8 @@ and (max-device-width : 480px) {
     }
 }
 @media only screen
-and (min-device-width : 320px)
-and (max-device-width : 768px) {
+and (min-width : 320px)
+and (max-width : 768px) {
 
     header {
         margin: 0 0 0.4em 0;
