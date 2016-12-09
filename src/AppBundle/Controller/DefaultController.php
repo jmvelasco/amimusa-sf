@@ -52,17 +52,31 @@ class DefaultController extends Controller
 
         $LikesRepository = $em->getRepository('AppBundle:Likes');
         $likes = array();
-        foreach ($publicationsMusas->getIdPublication()->getValues() as $k => $v) {
-            $publicationId = $v->getId();
-            $likes[$publicationId] = count($LikesRepository->findByIdPublication($publicationId));
+        $publications = $publicationsMusas->getIdPublication()->getValues();
+
+        if (count($publications) > 1) {
+
+            foreach ($publicationsMusas->getIdPublication()->getValues() as $k => $v) {
+                $publicationId = $v->getId();
+                $likes[$publicationId] = count($LikesRepository->findByIdPublication($publicationId));
+            }
+
+            return $this->render('default/show.html.twig', array(
+                'publications'  => $publicationsMusas->getIdPublication()->getValues(),
+                'likes'         => $likes,
+                'musa'          => $publicationsMusas->getName(),
+                'returnPath' => $request->headers->get('referer')
+            ));
+
+        } else {
+            $idPublication = $publications[0]->getId();
+            $response = $this->forward('AppBundle:Default:showPublication', array(
+                'idPublication'  => $idPublication,
+            ));
+
+            return $response;
         }
 
-        return $this->render('default/show.html.twig', array(
-            'publications'  => $publicationsMusas->getIdPublication()->getValues(),
-            'likes'         => $likes,
-            'musa'          => $publicationsMusas->getName(),
-            'returnPath' => $request->headers->get('referer')
-        ));
 
     }
 
