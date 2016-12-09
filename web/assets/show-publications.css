@@ -228,6 +228,10 @@ and (max-width : 480px) {
         max-height: 330px;
     }
 
+    .bxslider .writtingWrapper p {
+        max-height: 260px;
+    }
+
     .socialWrapper img {
         width: 12px;
     }
@@ -276,7 +280,7 @@ and (max-width : 768px) {
         width: 100%;
     }
     .bxslider .writtingWrapper p {
-        max-height: 330px;
+        max-height: 260px;
     }
 
     .bx-wrapper .contributorWrapper {
