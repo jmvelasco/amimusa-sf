@@ -39,7 +39,7 @@
         max-height: 280px !important;
         font-size: 0.8em !important;
     }
-     .bxslider .writtingWrapper h1 {
+    .bxslider .writtingWrapper h1 {
         font-size: 1.4em !important;
     }
 
@@ -154,11 +154,78 @@
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
 /* Styles */
+    #username,
+    #password {
+        color: #d2d2d2 !important;
+        border-bottom: 1px solid #d2d2d2;
+    }
+    #loginWrapper span {
+        color: #d2d2d2 !important;
+    }
+    #loginWrapper span a {
+        color: #d2d2d2 !important;
+    }
+    #_submit {
+        color: #555 !important;
+    }
+    .bxslider .writtingWrapper p {
+        max-height: 560px !important;
+    }
+
+     .fos_user_user_show {
+        height: 560px !important; 
+    }
+
+	#container-centered {
+	    top: 0;
+	    left: 0;
+	    margin: 0;
+	    transform: translate(0, 0);
+	    position: static;
+	}	
 }
 
 /* iPads (landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
 /* Styles */
+    #password {
+        color: #555 !important;
+        border-bottom: 1px solid #555;
+    }
+    #username {
+        color: #d2d2d2 !important;
+        border-bottom: 1px solid #d2d2d2;
+    }
+
+    #loginWrapper span {
+        color: #555 !important;
+    }
+    #loginWrapper span a {
+        color: #555 !important;
+    }
+    #_submit {
+        color: #555 !important;
+    }
+    .bxslider .writtingWrapper p {
+        max-height: 370px !important;
+    }
+
+    .fos_user_user_show {
+        height: 380px !important; 
+    }
+
+	.bx-wrapper .bx-viewport {
+	    width: 940px !important;
+	}
+
+	#container-centered {
+	    top: 250px;
+	    left: 50%;
+	    margin-right: -50%;
+	    transform: translate(-50%, -250px);
+	    position: absolute;
+	    z-index: 100;
+	}
 }
 
 /* iPads (portrait) ----------- */
@@ -178,11 +245,49 @@ iPad 3
 /* Desktops and laptops ----------- */
 @media only screen  and (min-width : 1224px) {
 /* Styles */
+	.bx-wrapper .bx-viewport {
+		height: 390px !important; 
+	}
+    .bxslider .writtingWrapper p {
+        max-height: 220px !important;
+    }
+    .fos_user_user_show {
+        height: 280px !important; 
+    }
+
+	#container-centered {
+	    top: 0;
+	    left: 0;
+	    margin: 0;
+	    transform: translate(0, 0);
+	    position: static;
+	}	
 }
 
 /* Large screens ----------- */
 @media only screen  and (min-width : 1824px) {
 /* Styles */
+	.bx-wrapper .bx-viewport {
+		height: 720px !important; 
+	}
+    .bxslider .writtingWrapper p {
+        max-height: 540px !important;
+        font-size: 1.4em !important;
+    }
+    .bxslider .writtingWrapper h1 {
+        font-size: 1.8em !important;
+    }
+    .fos_user_user_show {
+        height: 580px !important; 
+    }
+	#container-centered {
+	    top: 250px;
+	    left: 50%;
+	    margin-right: -50%;
+	    transform: translate(-50%, -250px);
+	    position: absolute;
+	    z-index: 100;
+	}
 }
 
 /* iPhone 4 ----------- */
