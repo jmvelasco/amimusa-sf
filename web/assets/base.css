@@ -14,7 +14,7 @@ body {
 
 header {
     margin: 0 0 2em 0;
-    width: 100%;
+    device-width: 100%;
 }
 header p {
     font-family: 'Poiret One', cursive;
@@ -61,7 +61,7 @@ header a:hover {
 }
 #username,
 #password {
-    width: 10em;
+    device-width: 10em;
     border-top: 0 none;
     border-bottom: 1px solid #2d2d2d;
     border-left: 0 none;
@@ -100,8 +100,8 @@ header a:hover {
 
 
 @media only screen
-and (min-width : 320px)
-and (max-width : 480px) {
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
 
     header {
         margin: 0 0 0.4em 0;
@@ -118,7 +118,7 @@ and (max-width : 480px) {
     }
     #username,
     #password {
-        width: 8em;
+        device-width: 8em;
         font-size: 0.8em;
         color: #d2d2d2;
         border-bottom: 1px solid #a2a2a2;
@@ -137,8 +137,8 @@ and (max-width : 480px) {
     }
 }
 @media only screen
-and (min-width : 320px)
-and (max-width : 768px) {
+and (min-device-width : 320px)
+and (max-device-width : 768px) {
 
     header {
         margin: 0 0 0.4em 0;
@@ -154,7 +154,7 @@ and (max-width : 768px) {
     }
     #username,
     #password {
-        width: 8em;
+        device-width: 8em;
         font-size: 0.8em;
         color: #d2d2d2;
         border-bottom: 1px solid #a2a2a2;

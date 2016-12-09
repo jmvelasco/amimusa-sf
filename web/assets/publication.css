@@ -12,11 +12,11 @@ body {
 }
 #container {
     margin: auto;
-    width: 100%;
+    device-width: 100%;
     background-color: rgba(255,255,255,0.6);
 }
 #formWrapper {
-    width: 90%;
+    device-width: 90%;
     margin: auto auto;
     padding-top: 2em;
 }
@@ -56,7 +56,7 @@ body {
 }
 .body-writting {
     resize: none;
-    width: 100%;
+    device-width: 100%;
 }
 #musas {
     height: 325px;
@@ -72,8 +72,8 @@ body {
 
 
 @media only screen
-and (min-width : 320px)
-and (max-width : 480px) {
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
 
     #formWrapper label {
         font-size: 1em;
@@ -84,7 +84,7 @@ and (max-width : 480px) {
     }
 
     #container {
-        width: 320px;
+        device-width: 320px;
     }
 
     #musas h4 {
@@ -106,15 +106,15 @@ and (max-width : 480px) {
 }
 
 @media only screen
-and (min-width : 320px)
-and (max-width : 768px) {
+and (min-device-width : 320px)
+and (max-device-width : 768px) {
 
     #formWrapper label {
         font-size: 1em !important;
     }
 
     #container {
-        width: 320px;
+        device-width: 320px;
     }
 
     /*
