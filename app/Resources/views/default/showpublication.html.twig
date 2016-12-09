@@ -59,16 +59,12 @@
     <script type="application/javascript">
         $(document).ready(function(){
             
-            if (!window.mobilecheck()) {
-                var fbSharer = 'http://www.facebook.com/sharer.php?p[url]=';
-            } else {
-                var fbSharer = 'http://m.facebook.com/sharer.php?u=';
-            }
+            var fbSharer = 'https://www.facebook.com/dialog/share?app_id=1571698523157547&display=popup&redirect_uri=http://www.amimusa.net&href=';
 
             $('.bxslider').bxSlider({
                 pager:false,
                 adaptiveHeight: true,
-                slideWidth: 940,
+                slideWidth: $(window).width(),
             });
 
             var $bxsliderContainer = $('.bx-wrapper .bx-viewport');
