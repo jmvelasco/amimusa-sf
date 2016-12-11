@@ -25,6 +25,7 @@
             }
 
         }
+        return musasListObj.val();
     };
 }( jQuery ));
 
@@ -45,7 +46,9 @@
         h4.style.marginLeft = "2px";
         h4.className = "pull-left";
         h4.appendChild(label);
-        $("#musas").html($("#musas").html() + h4.outerHTML);
+
+        $("#mobileWrapper #musas").html($("#mobileWrapper #musas").html() + h4.outerHTML);
+        $("#desktopWrapper #musas").html($("#desktopWrapper #musas").html() + h4.outerHTML);
     };
 }( jQuery ));
 
@@ -67,7 +70,9 @@
         h4.style.marginLeft = "2px";
         h4.className = "pull-left";
         h4.appendChild(label);
-        $("#musas-list").html($("#musas-list").html() + h4.outerHTML);
+
+        $("#mobileWrapper #musas-list").html($("#mobileWrapper #musas-list").html() + h4.outerHTML);
+        $("#desktopWrapper #musas-list").html($("#desktopWrapper #musas-list").html() + h4.outerHTML);
     };
 }( jQuery ));
 
@@ -83,8 +88,17 @@ $('.musas').keypress(function(e){
                 url: "/search-musa/",
                 data: data,
                 success: function (returnData, dataType) {
-                    $("#musas-list").addMusa({id: returnData, name: musa});
-                    //$("#musas").createMusa({id: returnData, name: musa});
+                    if ('none' == $("#mobileWrapper").css('display')) {
+                        var musasListContainer = $("#desktopWrapper #musas-list");
+                    } else {
+                        var musasListContainer = $("#mobileWrapper #musas-list");
+                    }
+                    var musasIds = musasListContainer.addMusa({id: returnData, name: musa});
+                    if ('none' == $("#mobileWrapper").css('display')) {
+                        $("#mobileWrapper #form_musasid_list").val(musasIds);
+                    } else {
+                        $("#desktopWrapper #form_musasid_list").val(musasIds);
+                    }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert('Error : ' + errorThrown);
@@ -146,7 +160,24 @@ $("#formWrapper").on('click', '.remove-musa', function(e){
         });
     }
     musasListObj.val(musasIdsArr.join(","));
+    $("#desktopWrapper #form_musasid_list").val(musasListObj.val());
+    $("#mobileWrapper #form_musasid_list").val(musasListObj.val());
     // Eliminar elemento del DOM
     $(this).parents('h4').remove();
 });
 
+$("#mobileWrapper").on('blur', '#form_title', function(e){
+    $("#desktopWrapper #form_title").val($(this).val());
+});
+
+$("#desktopWrapper").on('blur', '#form_title', function(e){
+    $("#mobileWrapper #form_title").val($(this).val());
+});
+
+$("#mobileWrapper").on('blur', '#form_body', function(e){
+    $("#desktopWrapper #form_body").val($(this).val());
+});
+
+$("#desktopWrapper").on('blur', '#form_body', function(e){
+    $("#mobileWrapper #form_body").val($(this).val());
+});
