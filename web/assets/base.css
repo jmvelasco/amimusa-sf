@@ -44,6 +44,9 @@ header a:hover {
     color: #2d2d2d;
     float: right;
     margin: 0 0.6em 1em 0;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 5px;
+    padding: 10px;
 }
 #login a {
     text-decoration: none;
@@ -101,3 +104,5 @@ header a:hover {
 .hiddenText {
     display: inline-block;
 }
+
+
