@@ -6,42 +6,15 @@
 {% block body %}
     <div id="container">
         <div id="formWrapper">
-        {{ form_start(form) }}
-        <div class="row">
-            <div class="col-xs-4">
-                <div class="form-group">
-                    {{ form_label(form.title) }}
-                    {{ form_errors(form.title) }}
-                    {{ form_widget(form.title, { 'attr': {'class': 'form-control'} }) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.musas) }}
-                    {{ form_widget(form.musas, { 'attr': {'class': 'form-control musas', 'rows': 1, 'style' : 'resize: none'} }) }}
-                    <p class="form-message">Pulsa ENTER después de indicar tu musa o selecciona alguna de las existentes:</p>
-                </div>
-                <div id="musas"></div>
-
+            <!-- Mobile disposition -->
+            <div id="mobileWrapper">
+                {% include "default/writting_form_mobile.html.twig" %}
             </div>
 
-            <div class="col-xs-8">
-                <div class="form-group">
-                    {{ form_label(form.body) }}
-                    {{ form_errors(form.body) }}
-                    {{ form_widget(form.body, { 'attr': {'class': 'form-control body-writting', 'rows': 16} }) }}
-                </div>
-                <div id="musas-list"><div id="error-message">{{ form_errors(form.musas) }}</div></div>
-                {{ form_widget(form.musasid_list, { 'attr': {'id': 'musasid_list'} }) }}
+            <!-- Desktop disposition -->
+            <div id="desktopWrapper">
+                {% include "default/writting_form_desktop.html.twig" %}
             </div>
-            {{ form_widget(form.musasid_list, { 'attr': {'id': 'publicationid'} }) }}
-
-            <div class="pull-right" style="margin-top: 40px;">
-            {{ form_widget(form.save, { 'attr': {'class': 'btn btn-primary'} }) }}
-            <a class="btn btn-default" href="{{ returnPath }}">Volver</a>
-            </div>
-
-        </div>
-
-        {{ form_end(form) }}
         </div>
 
     </div>
