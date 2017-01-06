@@ -15,6 +15,7 @@ body {
 header {
     margin: 0 0 2em 0;
     width: 100%;
+    display: inline-block;
 }
 header p {
     font-family: 'Poiret One', cursive;
@@ -42,21 +43,27 @@ header a:hover {
     font-family: 'Poiret One', cursive;
     font-weight: bold;
     color: #2d2d2d;
+    /*
     float: right;
     margin: 0 0.6em 1em 0;
-    background-color: rgba(255,255,255,0.2);
+    */
+    background-color: rgba(255,255,255,0.7);
     border-radius: 5px;
     padding: 10px;
+    display: inline-block;
+    text-align: left;
+
 }
 #login a {
     text-decoration: none;
-    color: #2d2d2d;
+    color: #5372c7;
 }
 #login a:hover {
-    text-decoration: underline;
+    color: #4d85c7;
 }
 #loginWrapper {
     position: relative;
+    display: block;
 }
 #loginWrapper span {
     float:right;
@@ -93,12 +100,12 @@ header a:hover {
     font-family: 'Poiret One', cursive;
     font-size: 1em;
     font-weight: bold;
-    color: #2d2d2d;
+    color: #5372c7;
     cursor: pointer;
 }
 #_reset:hover,
 #_submit:hover {
-    text-decoration: underline;
+    color: #4d85c7;
 }
 
 .hiddenText {

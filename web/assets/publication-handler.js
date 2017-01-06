@@ -94,11 +94,15 @@ $('.musas').keypress(function(e){
                         var musasListContainer = $("#mobileWrapper #musas-list");
                     }
                     var musasIds = musasListContainer.addMusa({id: returnData, name: musa});
+                    $("#mobileWrapper #form_musasid_list").val(musasIds);
+                    $("#desktopWrapper #form_musasid_list").val(musasIds);
+                    /*
                     if ('none' == $("#mobileWrapper").css('display')) {
                         $("#mobileWrapper #form_musasid_list").val(musasIds);
                     } else {
                         $("#desktopWrapper #form_musasid_list").val(musasIds);
                     }
+                    */
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     alert('Error : ' + errorThrown);

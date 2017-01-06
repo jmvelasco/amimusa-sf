@@ -65,7 +65,7 @@ class DefaultController extends Controller
                 'publications'  => $publicationsMusas->getIdPublication()->getValues(),
                 'likes'         => $likes,
                 'musa'          => $publicationsMusas->getName(),
-                'returnPath' => $request->headers->get('referer')
+                'returnPath'    => $request->headers->get('referer')
             ));
 
         } else {
@@ -137,90 +137,114 @@ class DefaultController extends Controller
      */
     public function newAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $musasRepository = $em->getRepository('AppBundle:Musas');
-        $musas = $musasRepository->findAll();
 
-        $form = $this->createFormBuilder()
-            ->setAction($this->generateUrl('new-publication'))
-            ->add('title', 'text', array('label' => 'Título'))
-            ->add('body', 'textarea', array('label' => 'Escrito'))
-            ->add('musas', 'textarea', array('label' => '¿Quién es tu musa?','required' => false))
-            ->add('musasid_list', 'hidden')
-            ->add('save', 'submit', array('label' => 'Guardar'))
-            ->getForm();
+        $isAnonymous = $request->query->get('anonymous');
+        if ( !is_null($this->getUser()) || (('true' == $isAnonymous)) || $request->isMethod('POST')) {
 
-        if ($request->isMethod('POST')) {
-            $form->handleRequest($request);
-            if ( $form->isValid() ) {
-                // perform some action, such as saving the task to the database
-                $writting = new Writtings();
-                $writtingData = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $musasRepository = $em->getRepository('AppBundle:Musas');
+            $musas = $musasRepository->findAll();
 
-                $writting->setTitle($writtingData['title']);
-                $writting->setBody(str_replace("\n", "<br>", $writtingData['body']));
+            $form = $this->createFormBuilder()
+                ->setAction($this->generateUrl('new-publication'))
+                ->add('title', 'text', array('label' => 'Título'))
+                ->add('body', 'textarea', array('label' => 'Escrito'))
+                ->add('musas', 'textarea', array('label' => '¿Quién es tu musa?','required' => false))
+                ->add('musasid_list', 'hidden')
+                ->add('save', 'submit', array('label' => 'Guardar'))
+                ->getForm();
 
-                if (!empty($writtingData['musasid_list'])) {
-                    $publicationTypeRepository = $em->getRepository('AppBundle:PublicationsType');
-                    $publicationType = $publicationTypeRepository->find(1);
-                    $writting->setPublicationType($publicationType);
+            if ($request->isMethod('POST')) {
+                $form->handleRequest($request);
+                if ( $form->isValid() ) {
+                    $writting = new Writtings();
+                    $writtingData = $form->getData();
 
-                    $date = new \DateTime();
-                    $writting->setModificationDate($date);
-                    $writting->setCreationDate($date);
+                    $writting->setTitle($writtingData['title']);
+                    $writting->setBody(str_replace("\n", "<br>", $writtingData['body']));
 
-                    $em->getRepository('AppBundle:Writtings');
-                    $em->persist($writting);
-                    $em->flush();
+                    if (!empty($writtingData['musasid_list'])) {
+                        $publicationTypeRepository = $em->getRepository('AppBundle:PublicationsType');
+                        $publicationType = $publicationTypeRepository->find(1);
+                        $writting->setPublicationType($publicationType);
 
-                    $statesRepository = $em->getRepository('AppBundle:States');
-                    $state = $statesRepository->find(1);
+                        $date = new \DateTime();
+                        $writting->setModificationDate($date);
+                        $writting->setCreationDate($date);
 
-                    $contributorsRepository = $em->getRepository('AppBundle:Contributors');
-                    if (null != $this->getUser()) {
-                        $contributor = $contributorsRepository->find($this->getUser()->getId());
-                    } else {
-                        $contributor = $contributorsRepository->find(0);
-                    }
-                    
+                        $em->getRepository('AppBundle:Writtings');
+                        $em->persist($writting);
+                        $em->flush();
 
-                    $publication = new Publications();
-                    $publication->setIdContributor($contributor);
-                    $publication->setIdState($state);
-                    $publication->setIdWritting($writting);
+                        $statesRepository = $em->getRepository('AppBundle:States');
+                        $state = $statesRepository->find(1);
 
-                    $musasId = explode(",", $writtingData['musasid_list']);
-                    foreach($musasId as $musaId) {
-                        if (!empty($musaId)) {
-                            $musa = $musasRepository->find($musaId);
-                            $publication->addIdMusa($musa);
+                        $contributorsRepository = $em->getRepository('AppBundle:Contributors');
+                        if (null != $this->getUser()) {
+                            $contributor = $contributorsRepository->find($this->getUser()->getId());
+                        } else {
+                            // Create anonymous user
+                            $userManager = $this->get('fos_user.user_manager');
+                            $user = $userManager->createUser();
+                            $user->setEnabled(false);
+
+                            $length = 8;
+                            $token = bin2hex(random_bytes($length));
+                            $ip = $this->container->get('request')->getClientIp();
+                            $username = 'anonymous-' . $token . '@' . $ip;
+
+                            $user->setUsername($username);
+                            $user->setEmail($username);
+                            $user->setSalt('randomString-'.$username);
+                            $user->setPassword('randomPassword-'.$username);
+                            $user->setLastLogin(new \DateTime());
+
+                            $userManager->updateUser($user);
+
+                            $contributor = $contributorsRepository->find($user->getId());
                         }
+                        
 
+                        $publication = new Publications();
+                        $publication->setIdContributor($contributor);
+                        $publication->setIdState($state);
+                        $publication->setIdWritting($writting);
+
+                        $musasId = explode(",", $writtingData['musasid_list']);
+                        foreach($musasId as $musaId) {
+                            if (!empty($musaId)) {
+                                $musa = $musasRepository->find($musaId);
+                                $publication->addIdMusa($musa);
+                            }
+
+                        }
+                        $em->persist($publication);
+                        $em->flush();
+
+                        return $this->redirectToRoute('homepage');
+                    } else {
+                        $form->get('musas')->addError(new FormError('Debes indicar al menos una musa para poder registrar tu inspiración.'));
+                        return $this->render('default/new.html.twig',
+                            array(
+                                'formMobile' => $form->createView(),
+                                'formDesktop' => $form->createView(),
+                                'musas' => $musas,
+                            ));
                     }
-                    $em->persist($publication);
-                    $em->flush();
 
-                    return $this->redirectToRoute('homepage');
-                } else {
-                    $form->get('musas')->addError(new FormError('Debes indicar al menos una musa para poder registrar tu inspiración.'));
-                    return $this->render('default/new.html.twig',
-                        array(
-                            'formMobile' => $form->createView(),
-                            'formDesktop' => $form->createView(),
-                            'musas' => $musas,
-                        ));
+
                 }
-
-
+            } else {
+                return $this->render('default/new.html.twig',
+                    array(
+                        'formMobile' => $form->createView(),
+                        'formDesktop' => $form->createView(),
+                        'musas' => $musas,
+                    ));
             }
         } else {
-            return $this->render('default/new.html.twig',
-                array(
-                    'formMobile' => $form->createView(),
-                    'formDesktop' => $form->createView(),
-                    'musas' => $musas,
-                ));
-        }
+            return $this->render('default/anonymous.html.twig');
+        }        
 
     }
 

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}{% endblock %}
+{% block body %}
+
+<center>
+	<div id="login">
+
+		<p>No estás logueado. ¿Continuar como anónimo?</p>
+		{% render controller("FOSUserBundle:Security:login") %}
+
+		<br style="clear:both;margin-top: 50px;">
+		<center>
+		<a href="{{ path('new-publication', {'anonymous' : 'true'}) }}">
+        	Continuar
+        </a>
+        </center>
+	</div>
+</center>
+
+{% endblock %}

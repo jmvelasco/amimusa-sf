@@ -37,7 +37,7 @@
                         <div class="contributorWrapper">
                             <h2>
                                 <a href="{{ path('fos_user_profile_show', {'idContributor' : p.idContributor.id}) }}">
-                                    <img src="{{ asset('/img/profile.png') }}">{{ p.idContributor.username }}
+                                    <img src="{{ asset('/img/profile.png') }}">{{ p.idContributor.username | split('-') | first }}
                                 </a>
                             </h2>
                         </div>

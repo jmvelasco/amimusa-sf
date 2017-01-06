@@ -11,9 +11,10 @@
 
     }
     header a {
-        font-size: 0.8em;
+        font-size: 1em;
 
     }
+    /*
     #login {
     	font-size: 0.7em !important;
     	color: #d2d2d2;
@@ -41,7 +42,7 @@
         font-size: 0.8em;
         color: #d2d2d2;
     }
-
+    */
     .titlesWrapperContent a {
     	font-size: 0.8em;
     }
@@ -147,9 +148,10 @@
 
     }
     header a {
-        font-size: 0.8em;
+        font-size: 1em;
 
     }
+    /*
     #login {
     	font-size: 0.7em !important;
     	color: #d2d2d2;
@@ -177,7 +179,7 @@
         font-size: 0.8em;
         color: #d2d2d2;
     }
-
+    */
 
     #formWrapper label {
         margin: 0;
@@ -268,7 +270,7 @@
 
     }
     header a {
-        font-size: 0.8em;
+        font-size: 1em;
 
     }
     #username,
@@ -537,7 +539,7 @@ iPad 3
     .fos_user_user_show {
         height: 280px !important; 
     }
-
+/*
 	#container-centered {
 	    top: 0;
 	    left: 0;
@@ -545,7 +547,7 @@ iPad 3
 	    transform: translate(0, 0);
 	    position: static;
 	}	
-
+*/
 
 
     .row {
