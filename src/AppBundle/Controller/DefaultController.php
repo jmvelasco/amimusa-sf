@@ -205,7 +205,8 @@ class DefaultController extends Controller
                     $form->get('musas')->addError(new FormError('Debes indicar al menos una musa para poder registrar tu inspiración.'));
                     return $this->render('default/new.html.twig',
                         array(
-                            'form' => $form->createView(),
+                            'formMobile' => $form->createView(),
+                            'formDesktop' => $form->createView(),
                             'musas' => $musas,
                         ));
                 }
@@ -215,7 +216,8 @@ class DefaultController extends Controller
         } else {
             return $this->render('default/new.html.twig',
                 array(
-                    'form' => $form->createView(),
+                    'formMobile' => $form->createView(),
+                    'formDesktop' => $form->createView(),
                     'musas' => $musas,
                 ));
         }
