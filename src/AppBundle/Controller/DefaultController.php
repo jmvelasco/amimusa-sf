@@ -284,7 +284,8 @@ class DefaultController extends Controller
         }
 
         return $this->render('default/edit.html.twig', array(
-            'form' => $form->createView(),
+            'formMobile' => $form->createView(),
+            'formDesktop' => $form->createView(),
             'musas' => $musas,
             'returnPath' => $request->headers->get('referer')
         ));
