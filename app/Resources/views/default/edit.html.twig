@@ -34,12 +34,14 @@
         $(document).ready(function() {
             // Crear un array con todas las musas disponibles en el sistema
             var musas = [];
+            var musasList = [];
             {% for m in musas %}
             var obj = {
                 'name': '{{ m.name|replace({"\n":""}) }}',
                 'id': {{ m.id }}
             }
             musas.push(obj);
+            musasList.push('{{ m.name|replace({"\n":""}) }}');
             {% endfor %}
 
             var musasId = $("#form_musasid_list").val().split(",");
@@ -49,12 +51,11 @@
                     $("#musas-list").renderMusa({id:musas[i].id, name: musas[i].name});
                 }
             }
-            var availableTags = [
-                "ActionScript",
-                "AppleScript"
-            ];
-            $( "#form_musas" ).autocomplete({
-                source: availableTags
+            $( "#formDesktop_musas" ).autocomplete({
+                source: musasList
+            });
+            $( "#formMobile_musas" ).autocomplete({
+                source: musasList
             });
         });
 
