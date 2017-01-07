@@ -14,7 +14,7 @@
                 {{ form_widget(formMobile.musasid_list, { 'attr': {'id': 'musasid_list', 'required': 'required'} }) }}
                 <div class="form-group">
                     {{ form_label(formMobile.musas) }}
-                    {{ form_widget(formMobile.musas, { 'attr': {'class': 'form-control musas', 'rows': 1, 'style' : 'resize: none'} }) }}
+                    {{ form_widget(formMobile.musas, { 'attr': {'class': 'form-control musas'}, 'id': 'formMobile_musas' }) }}
                 </div>
 
                 <div id="musas-list"><div id="error-message">{{ form_errors(formMobile.musas) }}</div></div>
@@ -24,3 +24,4 @@
                 <a class="btn btn-default" href="{{ path('homepage') }}">Volver</a>
                 </div>
                 {{ form_end(formMobile) }}
+

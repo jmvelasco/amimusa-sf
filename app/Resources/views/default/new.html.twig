@@ -31,30 +31,43 @@
     <!-- jQuery library (served from Google) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/publication-handler.js"></script>
 
     <script type="application/javascript">
         $(document).ready(function(){
             var musas = [];
+            var musasList = [];
             {% for m in musas %}
             var obj = {
                 'name': '{{ m.name|replace({"\n":""}) }}',
                 'id': {{ m.id }}
             }
             musas.push(obj);
+            musasList.push('{{ m.name|replace({"\n":""}) }}');
             {% endfor %}
 
             for (var i = 0; i < musas.length; i++) {
                 $("#musas").createMusa({id: musas[i].id, name: musas[i].name});
             }
             $("#form_musasid_list").val('');
+
+            $( "#formDesktop_musas" ).autocomplete({
+                source: musasList
+            });
+            $( "#formMobile_musas" ).autocomplete({
+                source: musasList
+            });
         });
     </script>
 {% endblock %}
 {% block stylesheets %}
     <!-- Bootstrap -->
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- JQuery UI -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <link href="/assets/publication.css" rel="stylesheet">
 {% endblock %}
