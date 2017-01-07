@@ -46,13 +46,11 @@
                              <span class="like" data-shareurl="{{ path('like-publication', {'idPublication' : p.id}) }}" data-idpublication="{{ p.id }}">
                                  <img src="{{ asset('/img/black-heart.png') }}"><span class="hiddenText">Me Gusta</span>
                              </span>
-                             <!--
+
                              <span class="share" data-shareurl="{{ url('show-publication', {'idPublication' : p.id}) }}">
                                  <img src="{{ asset('/img/facebook-logo-on-square.png') }}"><span class="hiddenText">Compartir</span>
                              </span>
-                             -->
 
-                            <div class="fb-share-button" data-href="{{ url('show-publication', {'idPublication' : p.id}) }}" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ url('show-publication', {'idPublication' : p.id}) }}">Compartir</a></div>
 
                         </div>
                         {% if likes[p.id] == 1 %}

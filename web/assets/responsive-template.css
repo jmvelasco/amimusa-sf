@@ -43,6 +43,30 @@
         color: #d2d2d2;
     }
     */
+    #loginWrapper span {
+      float: left;
+      margin: 0.6em 0;
+    }    
+    #loginWrapper input {
+        display: block;
+    }
+    #username,
+    #password {
+        width: 100%;
+        margin: 1em 0;
+    }
+
+    #_submit {
+      background-color: rgba(3, 85, 176, 0.8);
+      border: 1px solid #d2d2d2;
+      color: #d2d2d2;
+      font-family: "Poiret One",cursive;
+      font-size: 1.2em;
+      font-weight: bold;
+      float: right;
+      margin-top: 0.6em;
+    }
+
     .titlesWrapperContent a {
     	font-size: 0.8em;
     }
@@ -181,6 +205,30 @@
     }
     */
 
+    #loginWrapper span {
+      float: left;
+      margin: 0.6em 0;
+    }    
+    #loginWrapper input {
+        display: block;
+    }
+    #username,
+    #password {
+        width: 100%;
+        margin: 1em 0;
+    }
+
+    #_submit {
+      background-color: rgba(3, 85, 176, 0.8);
+      border: 1px solid #d2d2d2;
+      color: #d2d2d2;
+      font-family: "Poiret One",cursive;
+      font-size: 1.2em;
+      font-weight: bold;
+      float: right;
+      margin-top: 0.6em;
+    }
+
     #formWrapper label {
         margin: 0;
     }
@@ -273,6 +321,7 @@
         font-size: 1em;
 
     }
+    /*
     #username,
     #password {
         width: 8em;
@@ -292,7 +341,30 @@
         font-size: 0.8em;
         color: #555;
     }
+    */
+    #loginWrapper span {
+      float: left;
+      margin: 0.6em 0;
+    }    
+    #loginWrapper input {
+        display: block;
+    }
+    #username,
+    #password {
+        width: 100%;
+        margin: 1em 0;
+    }
 
+    #_submit {
+      background-color: rgba(3, 85, 176, 0.8);
+      border: 1px solid #d2d2d2;
+      color: #d2d2d2;
+      font-family: "Poiret One",cursive;
+      font-size: 1.2em;
+      font-weight: bold;
+      float: right;
+      margin-top: 0.6em;
+    }
 
 	.bx-wrapper .bx-viewport {
 		height: 210px !important; 
@@ -393,6 +465,7 @@
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
 /* Styles */
+/*
     #username,
     #password {
         color: #d2d2d2 !important;
@@ -407,6 +480,31 @@
     #_submit {
         color: #555 !important;
     }
+    */
+    #loginWrapper span {
+      float: left;
+      margin: 0.6em 0;
+    }    
+    #loginWrapper input {
+        display: block;
+    }
+    #username,
+    #password {
+        width: 100%;
+        margin: 1em 0;
+    }
+
+    #_submit {
+      background-color: rgba(3, 85, 176, 0.8);
+      border: 1px solid #d2d2d2;
+      color: #d2d2d2;
+      font-family: "Poiret One",cursive;
+      font-size: 1.2em;
+      font-weight: bold;
+      float: right;
+      margin-top: 0.6em;
+    }
+
     .bxslider .writtingWrapper p {
         max-height: 560px !important;
     }
@@ -473,6 +571,7 @@
 /* iPads (landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
 /* Styles */
+    /*
     #password {
         color: #555 !important;
         border-bottom: 1px solid #555;
@@ -491,6 +590,31 @@
     #_submit {
         color: #555 !important;
     }
+    */
+    #loginWrapper span {
+      float: left;
+      margin: 0.6em 0;
+    }    
+    #loginWrapper input {
+        display: block;
+    }
+    #username,
+    #password {
+        width: 100%;
+        margin: 1em 0;
+    }
+
+    #_submit {
+      background-color: rgba(3, 85, 176, 0.8);
+      border: 1px solid #d2d2d2;
+      color: #d2d2d2;
+      font-family: "Poiret One",cursive;
+      font-size: 1.2em;
+      font-weight: bold;
+      float: right;
+      margin-top: 0.6em;
+    }
+
     .bxslider .writtingWrapper p {
         max-height: 370px !important;
     }
@@ -530,6 +654,32 @@ iPad 3
 /* Desktops and laptops ----------- */
 @media only screen  and (min-width : 1224px) {
 /* Styles */
+
+    #loginWrapper span {
+      float: left;
+      margin: 0.6em 0;
+    }    
+    #loginWrapper input {
+        display: block;
+    }
+    #username,
+    #password {
+        width: 100%;
+        margin: 1em 0;
+    }
+
+    #_submit {
+      background-color: rgba(3, 85, 176, 0.8);
+      border: 1px solid #d2d2d2;
+      color: #d2d2d2;
+      font-family: "Poiret One",cursive;
+      font-size: 1.2em;
+      font-weight: bold;
+      float: right;
+      margin-top: 0.6em;
+    }
+
+
 	.bx-wrapper .bx-viewport {
 		height: 390px !important; 
 	}
@@ -597,6 +747,31 @@ iPad 3
 /* Large screens ----------- */
 @media only screen  and (min-width : 1824px) {
 /* Styles */
+
+    #loginWrapper span {
+      float: left;
+      margin: 0.6em 0;
+    }    
+    #loginWrapper input {
+        display: block;
+    }
+    #username,
+    #password {
+        width: 100%;
+        margin: 1em 0;
+    }
+
+    #_submit {
+      background-color: rgba(3, 85, 176, 0.8);
+      border: 1px solid #d2d2d2;
+      color: #d2d2d2;
+      font-family: "Poiret One",cursive;
+      font-size: 1.2em;
+      font-weight: bold;
+      float: right;
+      margin-top: 0.6em;
+    }
+
 	.bx-wrapper .bx-viewport {
 		height: 720px !important; 
 	}

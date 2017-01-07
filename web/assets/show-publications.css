@@ -138,25 +138,6 @@
 
 }
 
-span.back-link {
-    display: inline-block;
-    float: right;
-    cursor: pointer;
-    margin-right: 5px;
-    margin-top: -10px;
-}
-
-a.back-link {
-    float: right;
-    font-family: 'Poiret One', cursive;
-    font-size: 1.2em;
-    margin-right: 5px;
-    margin-top: -10px;
-
-}
-a.back-link:hover {
-    color: #000;
-}
 
 .op-link a {
     text-decoration: none;

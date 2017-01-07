@@ -8,12 +8,11 @@
         <input placeholder="{{ 'security.login.password'|trans }}" type="password" id="password" name="_password" required="required" />
         <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
     </form>
-    
+    <br style="clear:both">
     <span>
-    o
-    <a href="{{ path('fos_user_registration_register') }}">
-        {{ 'layout.register'|trans({}, 'FOSUserBundle') }}
-    </a>
+        <a href="{{ path('fos_user_registration_register') }}">
+            {{ 'layout.register'|trans({}, 'FOSUserBundle') }}
+        </a>
     </span>
 
     {% if error %}
