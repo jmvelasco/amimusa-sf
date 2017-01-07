@@ -200,6 +200,20 @@ class Contributors extends BaseUser
     }
 
     /**
+     * Set salt
+     *
+     * @param string $salt
+     *
+     * @return Contributors
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    /**
      * Get active
      *
      * @return boolean
