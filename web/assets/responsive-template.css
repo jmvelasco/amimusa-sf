@@ -274,8 +274,10 @@
     }
 
     #formWrapper #mobileWrapper {
+        /*
     	height: 480px;
     	overflow-y: auto;
+        */
     	margin: 0 !important;
     	padding: 10px;
     }
