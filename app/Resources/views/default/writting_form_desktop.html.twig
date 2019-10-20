@@ -1,14 +1,14 @@
-                {{ form_start(formDesktop) }}
+                {{ form_start(formDesktop, { 'attr': {'id': 'new'} }) }}
                 <div class="col-xs-4">
                     <div class="form-group">
                         {{ form_label(formDesktop.title) }}
                         {{ form_errors(formDesktop.title) }}
-                        {{ form_widget(formDesktop.title, { 'attr': {'class': 'form-control'} }) }}
+                        {{ form_widget(formDesktop.title, { 'attr': {'class': 'form-control'}, 'id': 'title' }) }}
                     </div>
                     <div class="form-group">
                         {{ form_label(formDesktop.musas) }}
                         {{ form_widget(formDesktop.musas, { 'attr': {'class': 'form-control musas'}, 'id': 'formDesktop_musas' }) }}
-                        <p class="form-message">Pulsa ENTER después de indicar tu musa o selecciona alguna de las existentes:</p>
+                        <p class="form-text">Pulsa Enter después de indicar tu musa.</p>
                     </div>
                     <div id="musas"></div>
 
@@ -18,14 +18,15 @@
                     <div class="form-group">
                         {{ form_label(formDesktop.body) }}
                         {{ form_errors(formDesktop.body) }}
-                        {{ form_widget(formDesktop.body, { 'attr': {'class': 'form-control body-writting', 'rows': 16} }) }}
+                        {{ form_widget(formDesktop.body, { 'attr': {'class': 'form-control body-writting', 'rows': 16}, 'id': 'writting' }) }}
                     </div>
                     <div id="musas-list"><div id="error-message">{{ form_errors(formDesktop.musas) }}</div></div>
-                    {{ form_widget(formDesktop.musasid_list, { 'attr': {'id': 'musasid_list', 'required': 'required'} }) }}
+                    {{ form_widget(formDesktop.musasid_list, { 'id': 'musasid_list' }) }}
                 </div>
 
                 <div class="pull-right" style="margin: 20px 20px 0 0;padding-bottom:1em;">
-                {{ form_widget(formDesktop.save, { 'attr': {'class': 'btn btn-primary'} }) }}
+                {{ form_widget(formDesktop.save, { 'attr': {'class': 'btn btn-primary'}, 'id': 'formDesktopSubmit' }) }}
+
                 <a class="btn btn-default" href="{{ path('homepage') }}">Volver</a>
                 </div>
                 {{ form_end(formDesktop) }}

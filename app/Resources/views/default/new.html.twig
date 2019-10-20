@@ -38,19 +38,25 @@
 
     <script type="application/javascript">
         $(document).ready(function(){
-            var musas = [];
+            // carga inicial del listado de musas disponibles en el sistema
+
+
+            // _musas es una variable JS para generar listado de musas en cliente
+            //  a partir de la variable de plantilla musas, asignada en el controlador
+            var _musas = [];  
             var musasList = [];
+            {# musas es una variable plantilla #}
             {% for m in musas %}
             var obj = {
                 'name': '{{ m.name|replace({"\n":""}) }}',
                 'id': {{ m.id }}
             }
-            musas.push(obj);
+            _musas.push(obj);
             musasList.push('{{ m.name|replace({"\n":""}) }}');
             {% endfor %}
 
-            for (var i = 0; i < musas.length; i++) {
-                $("#musas").createMusa({id: musas[i].id, name: musas[i].name});
+            for (var i = 0; i < _musas.length; i++) {
+                $("#musas").createMusa({id: _musas[i].id, name: _musas[i].name});
             }
             $("#form_musasid_list").val('');
 

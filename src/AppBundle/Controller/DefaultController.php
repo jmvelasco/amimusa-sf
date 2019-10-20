@@ -147,12 +147,12 @@ class DefaultController extends Controller
 
             $form = $this->createFormBuilder()
                 ->setAction($this->generateUrl('new-publication'))
-                ->add('title', 'text', array('label' => 'Título'))
-                ->add('body', 'textarea', array('label' => 'Escrito'))
+                ->add('title', 'text', array('label' => 'Título','required' => false))
+                ->add('body', 'textarea', array('label' => 'Escrito','required' => false))
                 //->add('musas', 'textarea', array('label' => '¿Quién es tu musa?','required' => false))
                 ->add('musas', 'text', array('label' => '¿Quién es tu musa?','required' => false))
                 ->add('musasid_list', 'hidden')
-                ->add('save', 'submit', array('label' => 'Guardar'))
+                ->add('save', 'button', array('label' => 'Guardar'))
                 ->getForm();
 
             if ($request->isMethod('POST')) {
@@ -269,7 +269,7 @@ class DefaultController extends Controller
             ->add('musas', 'text', array('label' => '¿Quién es tu musa?','required' => false))
             ->add('musasid_list', 'hidden')
             ->add('publicationid', 'hidden')
-            ->add('save', 'submit', array('label' => 'Guardar'))
+            ->add('save', 'button', array('label' => 'Guardar'))
             ->getForm();
 
         $writting = $publication->getIdWritting();

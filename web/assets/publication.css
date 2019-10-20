@@ -12,13 +12,13 @@ body {
 }
 #container {
     margin: auto;
-    device-width: 100%;
+    /* device-width: 100%; */
     background-color: rgba(255,255,255,0.6);
     border-radius: 5px;
     margin: 0 0.2em;
 }
 #formWrapper {
-    device-width: 90%;
+    /* device-width: 90%; */
     margin: auto auto;
     padding-top: 2em;
 }
@@ -51,6 +51,12 @@ body {
     text-shadow: 0px 1px 1px #d2d2d2;
     color: #222;
 }
+.form-text {
+    font-family: 'Poiret One', cursive;
+    font-size: 1em;
+    text-shadow: 0px 1px 1px #d2d2d2;
+    color: #222;
+}
 .add-musa,
 .remove-musa {
     cursor: pointer;
@@ -58,7 +64,7 @@ body {
 }
 .body-writting {
     resize: none;
-    device-width: 100%;
+    /* device-width: 100%; */
 }
 #musas {
     height: 325px;

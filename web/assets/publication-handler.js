@@ -76,9 +76,9 @@
     };
 }( jQuery ));
 
+
 $('.musas').keypress(function(e){
     var musa = $(this).val().replace("\n","");
-
     if (13 == e.which) {
         if ('' != $.trim(musa)) {
             // Buscar si la musa ya ha sido añadida
@@ -88,28 +88,24 @@ $('.musas').keypress(function(e){
                 url: "/search-musa/",
                 data: data,
                 success: function (returnData, dataType) {
+                    
                     if ('none' == $("#mobileWrapper").css('display')) {
                         var musasListContainer = $("#desktopWrapper #musas-list");
                     } else {
                         var musasListContainer = $("#mobileWrapper #musas-list");
                     }
+                    
                     var musasIds = musasListContainer.addMusa({id: returnData, name: musa});
-                    $("#mobileWrapper #form_musasid_list").val(musasIds);
-                    $("#desktopWrapper #form_musasid_list").val(musasIds);
-                    /*
-                    if ('none' == $("#mobileWrapper").css('display')) {
-                        $("#mobileWrapper #form_musasid_list").val(musasIds);
-                    } else {
-                        $("#desktopWrapper #form_musasid_list").val(musasIds);
-                    }
-                    */
+                    $("#mobileWrapper #musasid_list").val(musasIds);
+                    $("#desktopWrapper #musasid_list").val(musasIds);
+
+                    $("#form_save").prop('disabled', false);
+                    $(":submit").removeAttr("disabled");
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert('Error : ' + errorThrown);
+                    console.log('search-musa', data, errorThrown);
                 }
             });
-
-
         }
 
     }
@@ -142,6 +138,32 @@ $('.musas').keyup(function(e){
     }
 });
 
+
+$("#formWrapper").on('click', '#formDesktopSubmit', function(e){
+    
+    const title = $("#title").val();
+    const writting = $("#writting").val();
+    const musasid_list = $("#musasid_list").val();
+
+    console.log(title, writting, musasid_list);
+
+    if ($.trim(title) == '') {
+        $("#title").focus();
+        return alert("Por favor, pon un títlo al escrito.");
+    }
+    if ($.trim(writting) == '') {
+        $("#writting").focus();
+        return alert("Vaya, parece que has olvidado escribir algo.");
+    }
+    if (musasid_list.length == 0) {
+        $("#writting").focus();
+        return alert("Por favor, indica tu musa.");
+    }  
+
+    $("#new").submit();
+
+});
+
 $("#formWrapper").on('click', '.add-musa', function(e){
     if ($("#error-message")) $("#error-message").remove();
     var musaId = $(this).attr('id');
@@ -163,11 +185,15 @@ $("#formWrapper").on('click', '.remove-musa', function(e){
             return value != musaId;
         });
     }
+    musasIdsArr = musasIdsArr.filter( val => (val != ""));
+
     musasListObj.val(musasIdsArr.join(","));
-    $("#desktopWrapper #form_musasid_list").val(musasListObj.val());
-    $("#mobileWrapper #form_musasid_list").val(musasListObj.val());
+    $("#desktopWrapper #musasid_list").val(musasListObj.val());
+    $("#mobileWrapper #musasid_list").val(musasListObj.val());
     // Eliminar elemento del DOM
     $(this).parents('h4').remove();
+
+    
 });
 
 $("#mobileWrapper").on('blur', '#form_title', function(e){
