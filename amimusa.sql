@@ -1,182 +1,276 @@
--- phpMyAdmin SQL Dump
--- version 3.4.11.1deb2+deb7u1
--- http://www.phpmyadmin.net
+-- MySQL dump 10.13  Distrib 5.7.27, for Linux (x86_64)
 --
--- Host: localhost
--- Generation Time: Oct 02, 2015 at 10:15 PM
--- Server version: 5.5.44
--- PHP Version: 5.4.41-0+deb7u1
-
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
+-- Host: 127.0.0.1    Database: amimusa
+-- ------------------------------------------------------
+-- Server version	5.7.27-0ubuntu0.18.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Database: `amimusa`
+-- Table structure for table `Visites`
 --
-DROP SCHEMA IF EXISTS`amimusa`;
-CREATE SCHEMA `amimusa`;
-USE `amimusa`;
--- --------------------------------------------------------
+
+DROP TABLE IF EXISTS `Visites`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Visites` (
+  `id_publication` int(11) NOT NULL,
+  `date` int(11) NOT NULL,
+  `referer` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_publication`,`date`,`referer`),
+  KEY `publication_IDX` (`id_publication`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Visites`
+--
+
+LOCK TABLES `Visites` WRITE;
+/*!40000 ALTER TABLE `Visites` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Visites` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `contributors`
 --
 
-CREATE TABLE IF NOT EXISTS `contributors` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `contributors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `contributors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(80) DEFAULT NULL,
-  `email` varchar(80) NOT NULL,
+  `email` varchar(180) NOT NULL,
+  `email_canonical` varchar(180) NOT NULL,
   `description` mediumtext,
   `link_to_profile` varchar(80) DEFAULT NULL,
   `inscription_date` timestamp NULL DEFAULT NULL,
-  `username` varchar(45) NOT NULL,
-  `password` varchar(128) NOT NULL,
+  `username` varchar(180) NOT NULL,
+  `username_canonical` varchar(180) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `security_token` varchar(128) DEFAULT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `active` tinyint(1) NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `salt` varchar(255) DEFAULT NULL,
+  `last_login` datetime DEFAULT NULL,
+  `confirmation_token` varchar(180) DEFAULT NULL,
+  `password_requested_at` datetime DEFAULT NULL,
+  `roles` longtext NOT NULL COMMENT '(DC2Type:array)',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email_UNIQUE` (`email`),
-  UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `UNIQ_72D2626292FC23A8` (`username_canonical`),
+  UNIQUE KEY `UNIQ_72D26262A0D96FBF` (`email_canonical`),
+  UNIQUE KEY `UNIQ_72D26262C05FB297` (`confirmation_token`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `contributors`
+--
+
+LOCK TABLES `contributors` WRITE;
+/*!40000 ALTER TABLE `contributors` DISABLE KEYS */;
+/*!40000 ALTER TABLE `contributors` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `likes`
 --
 
-CREATE TABLE IF NOT EXISTS `likes` (
+DROP TABLE IF EXISTS `likes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `likes` (
   `id_publication` int(11) NOT NULL,
-  `date` timestamp NULL DEFAULT NULL,
+  `date` int(11) NOT NULL,
   `referer` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_publication`, `date`, `referer`),
+  PRIMARY KEY (`id_publication`,`date`,`referer`),
   KEY `publication_IDX` (`id_publication`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `likes`
+--
+
+LOCK TABLES `likes` WRITE;
+/*!40000 ALTER TABLE `likes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `likes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `musas`
 --
 
-CREATE TABLE IF NOT EXISTS `musas` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `musas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `musas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-  -- KEY `name_IDX` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `musas`
+--
+
+LOCK TABLES `musas` WRITE;
+/*!40000 ALTER TABLE `musas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `musas` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `publications`
 --
 
-CREATE TABLE IF NOT EXISTS `publications` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `id_contributor` int(11) unsigned NOT NULL,
-  `id_writting` int(11) unsigned NOT NULL,
-  `id_state` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-  -- KEY `contributor_FK` (`id_contributor`),
-  -- KEY `writting_FK` (`id_writting`),
-  -- KEY `state_FK` (`id_state`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `publications`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `publications` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_contributor` int(11) DEFAULT NULL,
+  `id_writting` int(11) DEFAULT NULL,
+  `id_state` int(11) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `writting_FK` (`id_writting`),
+  KEY `contributor_FK` (`id_contributor`),
+  KEY `state_FK` (`id_state`),
+  CONSTRAINT `FK_32783AF440C1075C` FOREIGN KEY (`id_writting`) REFERENCES `writtings` (`id`),
+  CONSTRAINT `FK_32783AF44D1693CB` FOREIGN KEY (`id_state`) REFERENCES `states` (`id`),
+  CONSTRAINT `FK_32783AF4C27D5A64` FOREIGN KEY (`id_contributor`) REFERENCES `contributors` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `publications`
+--
+
+LOCK TABLES `publications` WRITE;
+/*!40000 ALTER TABLE `publications` DISABLE KEYS */;
+/*!40000 ALTER TABLE `publications` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `publications_musas`
 --
 
-CREATE TABLE IF NOT EXISTS `publications_musas` (
-  `id_publication` int(11) unsigned NOT NULL,
-  `id_musa` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`id_publication`,`id_musa`)
-  -- KEY `publication_FK` (`id_publication`),
-  -- KEY `musa_FK` (`id_musa`)
+DROP TABLE IF EXISTS `publications_musas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `publications_musas` (
+  `id_publication` int(11) NOT NULL,
+  `id_musa` int(11) NOT NULL,
+  PRIMARY KEY (`id_publication`,`id_musa`),
+  KEY `IDX_7EF2161FFB53D80` (`id_musa`),
+  CONSTRAINT `FK_7EF2161FB72EAA8E` FOREIGN KEY (`id_publication`) REFERENCES `publications` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `publications_musas`
+--
+
+LOCK TABLES `publications_musas` WRITE;
+/*!40000 ALTER TABLE `publications_musas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `publications_musas` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `publications_type`
 --
 
-CREATE TABLE IF NOT EXISTS `publications_type` (
+DROP TABLE IF EXISTS `publications_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `publications_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Dumping data for table `publications_type`
+--
+
+LOCK TABLES `publications_type` WRITE;
+/*!40000 ALTER TABLE `publications_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `publications_type` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `states`
 --
 
-CREATE TABLE IF NOT EXISTS `states` (
+DROP TABLE IF EXISTS `states`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `states` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `states`
 --
 
-INSERT INTO `states` (`id`, `name`) VALUES
-(1, 'Published'),
-(2, 'Draft'),
-(3, 'Deleted');
--- --------------------------------------------------------
+LOCK TABLES `states` WRITE;
+/*!40000 ALTER TABLE `states` DISABLE KEYS */;
+INSERT INTO `states` VALUES (1,'Published'),(2,'Draft'),(3,'Deleted');
+/*!40000 ALTER TABLE `states` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `writtings`
 --
 
-CREATE TABLE IF NOT EXISTS `writtings` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `writtings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `writtings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(80) NOT NULL,
   `body` longtext,
   `creation_date` timestamp NULL DEFAULT NULL,
   `modification_date` timestamp NULL DEFAULT NULL,
   `publication_type` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-  -- KEY `publication_type_FK` (`publication_type`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `publication_type_FK` (`publication_type`),
+  CONSTRAINT `FK_F9A6AFF48726D6E4` FOREIGN KEY (`publication_type`) REFERENCES `publications_type` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Constraints for dumped tables
+-- Dumping data for table `writtings`
 --
 
---
--- Constraints for table `publications`
---
-ALTER TABLE `publications`
-  ADD CONSTRAINT `contributor_FK` FOREIGN KEY (`id_contributor`) REFERENCES `contributors` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `state_FK` FOREIGN KEY (`id_state`) REFERENCES `states` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `writting_FK` FOREIGN KEY (`id_writting`) REFERENCES `writtings` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+LOCK TABLES `writtings` WRITE;
+/*!40000 ALTER TABLE `writtings` DISABLE KEYS */;
+/*!40000 ALTER TABLE `writtings` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Constraints for table `publications_musas`
---
-ALTER TABLE `publications_musas`
-  ADD CONSTRAINT `musa_FK` FOREIGN KEY (`id_musa`) REFERENCES `musas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `publication_FK` FOREIGN KEY (`id_publication`) REFERENCES `publications` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `writtings`
---
-ALTER TABLE `writtings`
-  ADD CONSTRAINT `publication_type_FK` FOREIGN KEY (`publication_type`) REFERENCES `publications_type` (`id`) ON UPDATE CASCADE;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-10-20 14:39:56
