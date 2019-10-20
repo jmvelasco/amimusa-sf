@@ -139,7 +139,7 @@ $('.musas').keyup(function(e){
 });
 
 
-$("#formWrapper").on('click', '#formDesktopSubmit', function(e){
+$("#formWrapper").on('click', '#formSubmit', function(e){
     
     const title = $("#title").val();
     const writting = $("#writting").val();
