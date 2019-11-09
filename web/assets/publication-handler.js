@@ -5,7 +5,7 @@
             name: ""
         }, params );
 
-        var musasListObj = $("#form_musasid_list");
+        var musasListObj = $("#musasid_list") || $("#musasid_list-mobile");
         var musasListIdsArr = musasListObj.val().split(",");
 
         if (-1 == musasListIdsArr.indexOf(musa.id)) {
@@ -96,7 +96,7 @@ $('.musas').keypress(function(e){
                     }
                     
                     var musasIds = musasListContainer.addMusa({id: returnData, name: musa});
-                    $("#mobileWrapper #musasid_list").val(musasIds);
+                    $("#mobileWrapper #musasid_list-mobile").val(musasIds);
                     $("#desktopWrapper #musasid_list").val(musasIds);
 
                     $("#form_save").prop('disabled', false);
@@ -164,6 +164,31 @@ $("#formWrapper").on('click', '#formSubmit', function(e){
 
 });
 
+$("#formWrapper").on('click', '#formMobileSubmit', function(e){
+    
+    const title = $("#title-mobile").val();
+    const writting = $("#writting-mobile").val();
+    const musasid_list = $("#musasid_list-mobile").val();
+
+    console.log(title, writting, musasid_list);
+
+    if ($.trim(title) == '') {
+        $("#title").focus();
+        return alert("Por favor, pon un títlo al escrito.");
+    }
+    if ($.trim(writting) == '') {
+        $("#writting").focus();
+        return alert("Vaya, parece que has olvidado escribir algo.");
+    }
+    if (musasid_list.length == 0) {
+        $("#writting").focus();
+        return alert("Por favor, indica tu musa.");
+    }  
+
+    $("#new-mobile").submit();
+
+});
+
 $("#formWrapper").on('click', '.add-musa', function(e){
     if ($("#error-message")) $("#error-message").remove();
     var musaId = $(this).attr('id');
@@ -175,7 +200,7 @@ $("#formWrapper").on('click', '.add-musa', function(e){
 
 $("#formWrapper").on('click', '.remove-musa', function(e){
     var musaId = $(this).attr('id');
-    var musasListObj = $("#form_musasid_list");
+    var musasListObj = $("#musasid_list") || $("#musasid_list-mobile");
     var musasIdsArr = musasListObj.val().split(",");
 
     // Actualizar el campo donde se registrar los ids de las musas
@@ -189,13 +214,13 @@ $("#formWrapper").on('click', '.remove-musa', function(e){
 
     musasListObj.val(musasIdsArr.join(","));
     $("#desktopWrapper #musasid_list").val(musasListObj.val());
-    $("#mobileWrapper #musasid_list").val(musasListObj.val());
+    $("#mobileWrapper #musasid_list-mobile").val(musasListObj.val());
     // Eliminar elemento del DOM
     $(this).parents('h4').remove();
 
     
 });
-
+/*
 $("#mobileWrapper").on('blur', '#form_title', function(e){
     $("#desktopWrapper #form_title").val($(this).val());
 });
@@ -211,3 +236,4 @@ $("#mobileWrapper").on('blur', '#form_body', function(e){
 $("#desktopWrapper").on('blur', '#form_body', function(e){
     $("#mobileWrapper #form_body").val($(this).val());
 });
+*/

@@ -1,22 +1,22 @@
-                {{ form_start(formMobile) }}
+                {{ form_start(formMobile, { 'attr': {'id': 'new-mobile'} }) }}
                 <div class="form-group">
                     {{ form_label(formMobile.title) }}
                     {{ form_errors(formMobile.title) }}
-                    {{ form_widget(formMobile.title, { 'attr': {'class': 'form-control'}, 'id': 'title' }) }}
+                    {{ form_widget(formMobile.title, { 'attr': {'class': 'form-control'}, 'id': 'title-mobile'  }) }}
                 </div>
 
                 <div class="form-group">
                     {{ form_label(formMobile.body) }}
                     {{ form_errors(formMobile.body) }}
-                    {{ form_widget(formMobile.body, { 'attr': {'class': 'form-control body-writting', 'rows': 16}, 'id': 'writting' }) }}
+                    {{ form_widget(formMobile.body, { 'attr': {'class': 'form-control body-writting', 'rows': 16}, 'id': 'writting-mobile'  }) }}
                 </div>
 
-                {{ form_widget(formMobile.musasid_list, { 'attr': {'id': 'musasid_list'} }) }}
                 <div class="form-group">
                     {{ form_label(formMobile.musas) }}
                     {{ form_widget(formMobile.musas, { 'attr': {'class': 'form-control musas'}, 'id': 'formMobile_musas' }) }}
                     <p class="form-text">Pulsa Enter después de indicar tu musa.</p>
                 </div>
+                {{ form_widget(formMobile.musasid_list, { 'id': 'musasid_list-mobile' }) }}
 
                 <div id="musas-list">
                     <div id="error-message">{{ form_errors(formMobile.musas) }}</div>
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="pull-right" style="margin: 20px 20px 0 0;padding-bottom:1em;">
-                {{ form_widget(formMobile.save, { 'attr': {'class': 'btn btn-primary'}, 'id': 'formSubmit' }) }}
+                {{ form_widget(formMobile.save, { 'attr': {'class': 'btn btn-primary'}, 'id': 'formMobileSubmit' }) }}
                 <a class="btn btn-default" href="{{ path('homepage') }}">Volver</a>
                 </div>
                 {{ form_end(formMobile) }}
