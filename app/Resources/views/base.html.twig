@@ -50,35 +50,42 @@
     <!-- End Google Tag Manager -->
 
     <header>
+        
+        
         {% block header %}
-            <div style="float: right">
-                <a href="{{ path('new-publication') }}"><img src="{{ asset('/img/edit.png') }}">Me siento inspirado</a>
-            </div>
+        
+
+        
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <div style="float: left">
+            <a href="{{ path('new-publication') }}">
+                <img src="{{ asset('/img/edit.png') }}">Me siento inspirado
+            </a>
+        </div>             
+        <div style="float: right;">
+            <a href="{{ path('fos_user_security_logout') }}">
+                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+            </a>    
+            
+            <a href="{{ path('fos_user_profile_show') }}">
+                Ir a mi espacio
+            </a> 
+        </div>            
+        {% else %}
+        <div style="float: right">
+            <a href="{{ path('new-publication') }}">
+                <img src="{{ asset('/img/edit.png') }}">Me siento inspirado
+            </a>
+        </div>          
+        {% endif %}
+        
         {% endblock %}
-        {#
-        <p>Comparte tu inspiración</p>
-        #}
+
+
+        
        
     </header>
-    {#
-    {% block login %}
-        <div id="login">
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                
-                <a href="{{ path('fos_user_profile_show') }}">
-                    Ir a mi espacio
-                </a> //
-                <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
-
-            {% else %}
-               {% render controller("FOSUserBundle:Security:login") %}
-            {% endif %}
-        </div>
-        <br style="clear:both">
-    {% endblock %}
-    #}
+    
     {% block body %}
         {% block fos_user_content %}{% endblock fos_user_content %}
     {% endblock %}

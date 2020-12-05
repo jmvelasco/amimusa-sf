@@ -32,9 +32,10 @@ header a {
     color: #d2d2d2;
     font-size: 1.2em;
     padding: 0.4em 1em 0.4em 1em;
-    background-color: #5372C7;/*rgba(100, 100, 255, 0.6);*/
+    background-color: #5372c7; /*rgba(100, 100, 255, 0.6);*/
     border-radius: 2.5em;
     /*text-shadow: -1px -1px 1.4px #2d2d2d;*/
+    margin: 0 6px;
 }
 header a:hover {
     background-color: #4d85c7;
@@ -43,12 +44,11 @@ header a:hover {
     font-family: 'Poiret One', cursive;
     font-weight: bold;
     color: #2d2d2d;
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 5px;
     padding: 10px;
     display: inline-block;
     text-align: left;
-
 }
 #login a {
     text-decoration: none;
@@ -62,7 +62,7 @@ header a:hover {
     display: block;
 }
 #loginWrapper span {
-    float:right;
+    float: right;
     margin: 0.4em 0.6em 0 0;
 }
 #username,
@@ -87,7 +87,7 @@ header a:hover {
     top: 1.8em;
     left: 0;
     padding: 0.4em;
-    background-color: rgba(220,220,220,0.6);
+    background-color: rgba(220, 220, 220, 0.6);
 }
 #_reset,
 #_submit {
@@ -108,7 +108,6 @@ header a:hover {
     display: inline-block;
 }
 
-
 span.back-link {
     display: inline-block;
     float: right;
@@ -123,7 +122,6 @@ a.back-link {
     font-size: 1.2em;
     margin-right: 5px;
     /*margin-top: -10px;*/
-
 }
 a.back-link:hover {
     color: #000;
