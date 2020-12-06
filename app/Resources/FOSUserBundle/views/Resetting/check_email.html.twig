@@ -8,7 +8,7 @@
     <div id="container">
         {% block fos_user_content %}
             <div id="formWrapper">
-                <p>{{ 'resetting.check_email'|trans({'%email%': email}) }}</p>
+                <p>{{ 'resetting.check_email'|trans({'%email%': username}) }}</p>
                 <a id="_back" href="{{ path('homepage') }}">{{ 'registration.back'|trans({}, 'FOSUserBundle') }}</a>
             </div>
         {% endblock fos_user_content %}

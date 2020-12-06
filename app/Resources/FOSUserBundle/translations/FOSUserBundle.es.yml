@@ -15,6 +15,7 @@ security:
         password: Contraseña
         remember_me: Recordar
         submit: Entrar
+
 profile:
     show:
         username: 'Nombre de usuario'
@@ -28,7 +29,9 @@ change_password:
     flash:
         success: 'La contraseña se ha cambiado con éxito'
 registration:
-    check_email: 'Se ha enviado un email a %email%. Contiene un enlace de activación que debes presionar para activar tu cuenta.'
+    check_email: |
+        Se ha enviado un email a %email%. Contiene un enlace de activación que
+        debes presionar para activar tu cuenta.
     confirmed: 'Felicidades %username%, tu cuenta está ahora confirmada.'
     back: 'Volver a la página original.'
     submit: Registrarse
@@ -37,12 +40,19 @@ registration:
         user_created: 'El usuario se ha creado satisfactoriamente'
     email:
         subject: 'Bienvenido %username%!'
-        message: "Hola %username%!\n\nPara completar la validación de tu cuenta - por favor visita %confirmationUrl%\n\nAtentamente,\nel Equipo.\n"
+        message: |
+            Hola %username%!\n\nPara completar la validación de tu cuenta - por
+            favor visita %confirmationUrl%\n\nAtentamente,\nel Equipo.\n
 resetting:
-    password_already_requested: 'La contraseña para este usuario ya ha sido solicitada dentro de las 24 horas.'
-    check_email: 'Un email ha sido enviado a %email%. Contiene un enlace de activación que debes presionar para restablecer tu contraseña.'
+    password_already_requested: |
+        La contraseña para este usuario ya ha sido solicitada dentro de las 24
+        horas.
+    check_email: |
+        Revisa tu correo. Contiene un enlace de activación que debes presionar
+        para restablecer tu contraseña.
     request:
-        invalid_username: 'El usuario o dirección de correo "%username%" no existe.'
+        invalid_username:
+            El usuario o dirección de correo "%username%" no existe.
         username: 'Nombre de usuario'
         submit: 'Restablecer contraseña'
     reset:
@@ -51,13 +61,18 @@ resetting:
         success: 'La contraseña se ha cambiado con éxito'
     email:
         subject: 'Restablecer Contraseña'
-        message: "Hola %username%!\n\nPara restablecer tu contraseña - por favor visita %confirmationUrl%\n\nAtentamente,\nel Equipo.\n"
+        message: |
+            Hola %username%!\n\nPara restablecer tu contraseña - por favor
+            visita %confirmationUrl%\n\nAtentamente,\nel Equipo.\n
 layout:
     logout: Salir
     login: Entrar
     register: Registrarse
     logged_in_as: 'Identificado como %username%'
     nologged_in: 'No identificado'
+    message-header1: 'El sistema no te reconoce.'
+    message-header2: '¿Qué deseas hacer?'
+    anonymous: 'Continuar como anónimo'
 form:
     group_name: 'Nombre de grupo'
     username: 'Nombre de usuario'

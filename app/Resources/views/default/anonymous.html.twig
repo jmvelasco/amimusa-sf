@@ -3,22 +3,69 @@
 {% block header %}{% endblock %}
 {% block body %}
 
-
 <center>
 	<div id="login">
         <a href="{{ path('homepage') }}" class="back-link">
             <img src="/img/cancel2.png" alt="[X]">
         </a>
-		<p style="text-align:center;font-size:1.6em;">El sistema no te reconoce.</p>
-		<p>¿Qué deseas hacer?</p>
-		{% render controller("FOSUserBundle:Security:login") %}
+		<p style="text-align:center;font-size:1.6em;">{{ 'layout.message-header1'|trans({}, 'FOSUserBundle') }}</p>
+		<p>{{ 'layout.message-header2'|trans({}, 'FOSUserBundle') }}</p>
 
-		<br style="clear:both;margin-top: 0.6;">
-		<a href="{{ path('new-publication', {'anonymous' : 'true'}) }}">
-        	Continuar como anónimo
-        </a>
+
+		<div id="login-wrapper">
+		{% render controller("FOSUserBundle:Security:login") %}
+		<p id="request-password-show">{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}</p>
+		</div>
+
+		<div id="request-password-wrapper" style="display: none">
+		{% render controller("FOSUserBundle:Resetting:request") %}
+		</div>
+
+		<br style="clear:both;margin-top: 0.6em;">
+		
+		<a href="{{ path('fos_user_registration_register') }}">
+			{{ 'layout.register'|trans({}, 'FOSUserBundle') }}
+		</a>
+		
+		<br style="clear:both;margin-top: 0.6em;">
+		
+		<a href="{{ path('new-publication', {'anonymous' : 'true'}) }}">			
+			{{ 'layout.anonymous'|trans({}, 'FOSUserBundle') }}
+		</a>		
+		
 	</div>
 <center>
 
+{% endblock %}
 
+{% block javascripts %}
+    <!-- jQuery library (served from Google) -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+ 
+
+    <script type="application/javascript">
+    $(document).ready(function(){
+		$("#request-password-show").click(function() {
+			$("#request-password-wrapper").show();
+			$("#login-wrapper").hide();
+		})
+	});
+	</script>
+
+{% endblock %}
+
+{% block stylesheets %}
+    <style type="text/css">
+		#request-password-show {
+			float: left;
+			cursor: pointer;
+			text-decoration: none;
+			color: #5372c7;			
+		}
+
+		#login-wrapperper {
+			display: none;
+		}
+
+    </style>
 {% endblock %}
