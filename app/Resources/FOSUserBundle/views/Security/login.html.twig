@@ -8,15 +8,15 @@
         <input placeholder="{{ 'security.login.password'|trans }}" type="password" id="password" name="_password" required="required" />
         <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
     </form>
-    <br style="clear:both">
+    {# <br style="clear:both">
     <span>
         <a href="{{ path('fos_user_registration_register') }}">
             {{ 'layout.register'|trans({}, 'FOSUserBundle') }}
         </a>
-    </span>
+    </span> #}
 
     {% if error %}
-        <div id="_errorWrapper">
+        {# <div id="_errorWrapper">
             <a style="float: right;" href="{{ path('homepage') }}"><img src="{{ asset( 'img/cancel2.png' ) }}" alt="[X]"></a>
             <p id="_error">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
             <form action="{{ path('fos_user_resetting_send_email') }}" method="POST">
@@ -28,7 +28,12 @@
                     <input type="submit" id="_reset" name="_reset" value="{{ 'resetting.request.submit'|trans }}" />
                 </div>
             </form>
-        </div>
+        </div> #}
+
+        <div id="_errorWrapper">
+            <a style="float: right;" href="{{ path('homepage') }}"><img src="{{ asset( 'img/cancel2.png' ) }}" alt="[X]"></a>
+            <p id="_error">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+        </div>        
     {% endif %}
 
 </div>
