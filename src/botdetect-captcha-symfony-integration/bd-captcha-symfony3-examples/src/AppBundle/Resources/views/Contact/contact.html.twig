@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Symfony Form Validation BotDetect CAPTCHA Example</title>
+    <link href="{{ asset('bundles/app/css/style.css') }}" rel="stylesheet" />
+</head>
+
+<body>
+    <h2>Symfony Form Validation BotDetect CAPTCHA Example</h2>
+
+    {# show message #}
+    {% if message is not empty %}
+        <p>{{ message }}</p>
+    {% endif %}
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    {# other example #}
+    <div style="margin-top:15px">
+        <ul >
+            <li><a href="./example">Basic CAPTCHA Example</a></li>
+        </ul>
+    </div>
+</body>
+</html>
