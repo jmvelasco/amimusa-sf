@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Captcha\Bundle\CaptchaBundle\Validator\Constraints as CaptchaAssert;
+
 
 /**
  * Contributors
@@ -13,6 +15,13 @@ use FOS\UserBundle\Model\User as BaseUser;
  */
 class Contributors extends BaseUser
 {
+    /**
+     * @CaptchaAssert\ValidCaptcha(
+     *      message = "CAPTCHA validation failed, try again."
+     * )
+     */
+    protected $captchaCode;
+    
     /**
      * @var string
      *
@@ -64,6 +73,15 @@ class Contributors extends BaseUser
      */
     protected $id;
 
+    public function getCaptchaCode()
+    {
+      return $this->captchaCode;
+    }
+  
+    public function setCaptchaCode($captchaCode)
+    {
+      $this->captchaCode = $captchaCode;
+    }
 
     /**
      * Set name

@@ -1,0 +1,16 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<h2>Register Form Validation BotDetect CAPTCHA Example</h2>
+
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+    {{ form_widget(form) }}
+    <div>
+        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+    </div>
+</form>
+
+<div style="margin-top:15px">
+    <ul >
+        <li><a href="../login">Login Form CAPTCHA Example</a></li>
+    </ul>
+</div>
