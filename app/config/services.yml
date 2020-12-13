@@ -10,8 +10,17 @@ services:
     fos_user.doctrine_registry:
         alias: doctrine
 
-    appbundle_user.password_resetting:
+    fos_user.registration.controller:
+        class: AppBundle\Controller\RegistrationController
+        arguments: ['@service_container']
+
+    appbundle.password_resetting:
         class: FOS\UserBundle\EventListener\PasswordResettingListener
         arguments: [@router]
         tags:
             - { name: kernel.event_subscriber }
+
+    # appbundle.form.registration:
+    #     class: AppBundle\Form\Type\RegistrationFormType
+    #     tags:
+    #         - { name: form.type, alias: app_user_registration }
