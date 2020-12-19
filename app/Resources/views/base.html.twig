@@ -67,7 +67,7 @@
                 {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
             </a>    
             
-            <a href="{{ path('fos_user_profile_show') }}">
+            <a href="{{ path('show_contributor_profile', {'idContributor' : 'self'}) }}">
                 Ir a mi espacio
             </a> 
         </div>            
