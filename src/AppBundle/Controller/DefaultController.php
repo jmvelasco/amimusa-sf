@@ -357,4 +357,66 @@ class DefaultController extends Controller
 
         return new Response($musa->getId());
     }
+
+    /**
+     * Show the :idContributor profile
+     * 
+     * @Route("/profile/{idContributor}", name="show_contributor_profile")
+     */    
+    public function showContributorProfileAction($idContributor, Request $request)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $contributorsRepository = $em->getRepository('AppBundle:Contributors');
+
+        $user = $this->getUser();
+        if (!is_null($user) && 
+            ( 
+                ($user->getId() == $idContributor) || ($idContributor == 'self')
+            )
+         ) {
+            // User logged checking his/her profile
+            $editPermision = true;
+            if ($idContributor == 'self') {
+                $idContributor = $user->getId();
+            }
+        } else {
+            // Load de user with the given userId
+            $user = $contributorsRepository->find($idContributor);
+            $editPermision = false;
+        }
+
+        if (is_null($user)) {
+            return $this->redirect('/');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $publicationRepository = $em->getRepository('AppBundle:Publications');
+
+        $query = $publicationRepository->createQueryBuilder('p')
+            ->where('p.idContributor = :idContributor')
+            ->setParameter('idContributor', $idContributor)
+            ->getQuery();
+
+        $publications = $query->getResult();
+
+        $LikesRepository = $em->getRepository('AppBundle:Likes');
+        $likes = array();
+        foreach ($publications as $publication) {
+            $publicationId = $publication->getId();
+            $likes[$publicationId] = count($LikesRepository->findByIdPublication($publicationId));
+        }
+
+        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
+            'user' => $user,
+            'publications' => $publications,
+            'likes' => $likes,
+            'editPermision' => $editPermision
+        ));
+
+
+
+
+
+    }
 }
