@@ -4,7 +4,7 @@ services:
 
     fos_user.registration.controller:
         class: AppBundle\Controller\RegistrationController
-        arguments: ['@service_container']
+        arguments: ['@event_dispatcher', '@fos_user.registration.form.factory', '@fos_user.user_manager']
 
     appbundle.password_resetting:
         class: FOS\UserBundle\EventListener\PasswordResettingListener
