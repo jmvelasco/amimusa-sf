@@ -24,13 +24,6 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class RegistrationController extends BaseController
 {
-    /**
-    * @param ContainerInterface $container
-    */    
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
 
     /**
      * @return Response
