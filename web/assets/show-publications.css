@@ -1,19 +1,17 @@
 #container {
-    
     margin: auto auto;
-    device-width: 100%;
+    /* device-width: 100%; */
     min-height: 480px;
-    
+
     position: relative;
 }
 #container-centered {
-    
     top: 250px;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -250px);
     position: absolute;
-    
+
     z-index: 100;
 }
 .bx-wrapper {
@@ -47,8 +45,8 @@
 }
 .titlesWrapper {
     float: left;
-    device-width: 280px;
-    background: rgba(255,255,255,0.75) !important;
+    /* device-width: 280px; */
+    background: rgba(255, 255, 255, 0.75) !important;
     padding: 1em;
     display: none;
     position: absolute;
@@ -60,10 +58,15 @@
     padding: 2px;
 }
 .titlesWrapper a:hover {
-    color: #0088CC;
+    color: #0088cc;
+}
+.titlesWrapperContent {
+    /* background-color: rgba(255, 255, 255, 0.75) !important; */
+    height: 230px;
+    overflow-y: scroll;
 }
 .active {
-    color: #1E365C;
+    color: #1e365c;
     font-weight: bold;
     outline: 0;
 }
@@ -81,6 +84,7 @@
     font-family: 'Special Elite', cursive;
     font-size: 1.2em;
     color: #2d2d2d;
+    min-height: 310px;
 }
 
 .bxslider .writtingWrapper p {
@@ -88,7 +92,7 @@
 }
 
 .bx-wrapper .bx-viewport {
-    background: rgba(255,255,255,0.75) !important;
+    background: rgba(255, 255, 255, 0.75) !important;
     border: 0 none !important;
     box-shadow: 0 0 0 0 !important;
     border-radius: 5px 5px 5px 5px;
@@ -114,7 +118,7 @@
     padding: 0 1em 0 1em;
     display: inline-block;
     cursor: pointer;
-    background-color: #5372C7;
+    background-color: #5372c7;
     border-radius: 0.4em;
 }
 
@@ -135,14 +139,12 @@
     font-family: 'Poiret One', cursive;
     clear: both;
     margin-left: 1em;
-
 }
-
 
 .op-link a {
     text-decoration: none;
     display: inline-block;
-    font-family: "Arial Black", Gadget, sans-serif;
+    font-family: 'Arial Black', Gadget, sans-serif;
     color: #d2d2d2;
 }
 
@@ -151,13 +153,13 @@
 }
 
 .delete a {
-    text-shadow: 0px 0.4em 0.4em #6E0008;
+    text-shadow: 0px 0.4em 0.4em #6e0008;
 }
 
 #mobile-menu {
     font-family: 'Poiret One', cursive;
     font-size: 1.6em;
-    background: rgba(255,255,255,0.75);
+    background: rgba(255, 255, 255, 0.75);
     display: inline-block;
     /*margin-left: -0.2em;*/
     cursor: pointer;
