@@ -10,6 +10,7 @@
                 {% endfor %}
             </ul>
         </div>
+        <p>Foto: Miguel Lázaro</p>
     </div>
 {% endblock %}
 
@@ -21,9 +22,9 @@
     <script type="application/javascript">
     $(document).ready(function(){
 
-	if (document.location.hash.indexOf('#_=_') >= 0) {
-		window.close();
-	}
+        if (document.location.hash.indexOf('#_=_') >= 0) {
+            window.close();
+        }
 
         $("#canvas").tagcanvas({
                 textFont: '"Trebuchet MS, Helvetica, sans-serif', 
@@ -71,6 +72,12 @@
             border-radius: 25px 10px / 10px 25px;
             width: 940px;
             height: 1080px;
+        }
+        #canvas-conteiner p {
+            font-family: 'Walter Turncoat';
+            font-size: 1em;
+            text-shadow: 0 0.4em 0.4em #4d4d4d;
+            color: rgba(255,255,255,0.4);
         }
     </style>
 {% endblock %}

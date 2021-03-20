@@ -6,8 +6,8 @@
 
     <div id="container-centered">
         <div class="titlesWrapper">
-            <div class="titlesWrapperContent">            
             <h2 class="musa-title">Amimusa {{ musa }}</h2>
+            <div class="titlesWrapperContent">            
             {% for wp in publications %}
                 <a data-publicationid="{{ wp.id }}" data-slide-index="{{ loop.index-1 }}" href="" class="titles">
                     {{ wp.idWritting.title }}
